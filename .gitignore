@@ -15,6 +15,7 @@ dist/
 .eggs/
 .venv_stage4/
 venv/
+venv_*/
 env/
 
 # 测试结果（保留必要的验收报告）
@@ -85,6 +86,10 @@ docs/_build/
 docs/build/
 *.pdf
 !docs/**/*.pdf
+
+# 大文件 PDF（科研论文，不上传）
+sci/
+*.pdf
 
 # 数据文件（保留小样本）
 *.bag
