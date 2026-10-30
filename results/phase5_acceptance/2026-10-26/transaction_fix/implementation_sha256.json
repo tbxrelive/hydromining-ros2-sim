@@ -1,0 +1,20 @@
+{
+  "src/hydromining_sim/scripts/algorithms/voxel_grid.py": "1b809b8479ddb6feab23880ccfab50511e18bc5381dc0661897b2857f5d18b87",
+  "src/hydromining_sim/scripts/algorithms/geometry_utils.py": "ca2edbae6ba8247f356fcba2c45474bfdac42c882863d9b1c0e288e80bf9c487",
+  "src/hydromining_sim/scripts/algorithms/erosion_model.py": "a6e48652a832fd980ed228f13d3d7b002a0b71bc6a3b619efabf035a491cbe6d",
+  "src/hydromining_sim/scripts/algorithms/spray_simulation.py": "8f338a3d8c0290f90d9db25283fb35653681f39b543e25618f14d51713e67e6e",
+  "src/hydromining_sim/scripts/algorithms/__init__.py": "02d8285de3b38aa38d5ba50000c0c46853af37cb1a682a8200397fe7e87ce46c",
+  "src/hydromining_sim/scripts/algorithms/level_set_evolver.py": "4599e1b93b81db05dd4730966841d5f6fda08ac5ff7ee6fc87a5e68a4b09a82a",
+  "src/hydromining_sim/scripts/algorithms/mesh_converter.py": "429a39507acf6bab9a5add70904dc90c7f305086c6ae2a788c903b4bfdcf0181",
+  "src/hydromining_sim/scripts/algorithms/jet_effects.py": "c21f5d7a82f49b536dba74f927830ed868485291a9ad653466b2aea66e1862b6",
+  "src/hydromining_robot/scripts/gazebo_coal_wall.py": "67f0628e4512704809adc144c83e458615452d0713bb33eba5a1f1e5ea1196b8",
+  "src/hydromining_robot/scripts/spray_controller_node.py": "b117c4e50e7df88f825785c122059698c6ad438d800226ce90d60655e04b48dc",
+  "src/hydromining_robot/src/coal_wall_scene.cpp": "fce3a5d5bd2a3c629887c42f6ed87bd7cd01ba74ceb54227d1f35570f003d857",
+  "src/hydromining_robot/CMakeLists.txt": "d6838a85edb404fcd6d2968c59c45941ccc57f18240a07580dab1386709ad19c",
+  "src/hydromining_robot/package.xml": "7a35be76a276bc18314c80d4b00b0c7314c1f08cc6d63b0cf3d16f1caf180506",
+  "src/hydromining_robot/launch/robot_simulation.launch.py": "fb166a517a1764e893404abc690c4ae817c888ab3fea25765908c02e96a7c4ac",
+  "test_scripts/test_phase5_acceptance.py": "3a77b11c5266d4ab88751b82a596d8c4a141982f86485516a7ee058d460a62d9",
+  "test_scripts/test_phase4_acceptance.py": "3b72ac70fc49612c665dde7dfba54730fb302ce0332cbc68b26aea559883c09e",
+  "test_scripts/test_phase5_sigint.py": "85d0d5b7ebfb6e3314a9aad669ec1fbe48a554905df2b9fb81eea9adda22af64",
+  "scripts/run_phase5_acceptance.sh": "65cf098d557702183ff315ec493580c518795e31ccdadf392ec0a78951b38c04"
+}

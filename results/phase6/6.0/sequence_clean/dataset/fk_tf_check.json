@@ -1,0 +1,14 @@
+[
+  {
+    "view": "front_0p8",
+    "tag": "baseline",
+    "fk_vs_tf_position_m": 5.951391046091368e-16,
+    "fk_vs_tf_rotation_rad": 4.2336400821326235e-16
+  },
+  {
+    "view": "front_0p8",
+    "tag": "none",
+    "fk_vs_tf_position_m": 9.447349281558583e-16,
+    "fk_vs_tf_rotation_rad": 8.150870805988478e-16
+  }
+]

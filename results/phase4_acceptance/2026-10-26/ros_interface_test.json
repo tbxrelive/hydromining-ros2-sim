@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "working_directory": "/tmp",
+  "lifecycle_active": true,
+  "invalid_startup_dt_rejected": true,
+  "negative_runtime_dt_rejected": true,
+  "invalid_direction_rejected": true,
+  "inactive_request_rejected": true,
+  "reactivation_preserves_geometry": true,
+  "reset_replay_mesh_identical": true,
+  "volume_removed_m3": 0.0003415208114352338,
+  "max_depth_m": 0.037505388259887695,
+  "logs": "/tmp/hydromining_ros_test_3m2b2e11"
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>hydromining_robot</name>
+  <version>0.1.0</version>
+  <description>Hydromining robot with water gun for coal wall spraying</description>
+
+  <maintainer email="tbxrelive@github.com">Star</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+  <exec_depend>hydromining_sim</exec_depend>
+  <exec_depend>python3-scipy</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>gz_ros2_control</exec_depend>
+  <exec_depend>control_msgs</exec_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>rcl_interfaces</depend>
+  <depend>lifecycle_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>action_msgs</depend>
+  <depend>trajectory_msgs</depend>
+
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>controller_manager</depend>
+  <depend>joint_trajectory_controller</depend>
+  <depend>joint_state_broadcaster</depend>
+
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+  <depend>gz_transport_vendor</depend>
+  <depend>gz_msgs_vendor</depend>
+  <build_depend>libprotobuf-dev</build_depend>
+
+  <depend>xacro</depend>
+  <depend>urdf</depend>
+
+  <!-- 阶段 3 新增：点云处理依赖 -->
+  <depend>std_srvs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_sensor_msgs</depend>
+  <depend>sensor_msgs_py</depend>
+  <exec_depend>python3-open3d</exec_depend>
+
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

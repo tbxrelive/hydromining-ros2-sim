@@ -1,0 +1,10 @@
+{
+  "GUI_started": false,
+  "native_run": "/tmp/hydromining_phase5_release/session",
+  "keep_open_exit_run": "/tmp/hydromining_phase5_release",
+  "phase4_run": "/tmp/hydromining_phase4_after_phase5",
+  "clean_build_install": "/tmp/hydromining_phase5_clean_release/install",
+  "sigint_preparing_run": "/tmp/hydromining_phase5_safe_bridge_preparing2",
+  "sigint_spraying_run": "/tmp/hydromining_phase5_safe_bridge_spraying",
+  "notes": "Final bridge library wrapper: full business chain + keep-open/SIGINT, preparing/SIGINT, spraying/SIGINT. Gazebo SIGTERM escalation is recorded explicitly."
+}

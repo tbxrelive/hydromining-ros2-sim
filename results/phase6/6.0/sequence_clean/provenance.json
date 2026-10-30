@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "frames_per_view": 12,
+  "source_hashes": {
+    "/home/star/SCI/hydromining_ws/test_scripts/phase6_record.py": "a7af4e181e0a5dd7f642bc7b7647d4c5036f697c40f97ad159497e1cc6a9f86e",
+    "/home/star/SCI/hydromining_ws/scripts/run_phase6_record.sh": "67d8db44b066b8738c36fa7777b9597bc4130dd735c8c93ef442791557f47efb",
+    "/home/star/SCI/hydromining_ws/install/hydromining_robot/share/hydromining_robot/config/viewpoints.yaml": "b2c6842dc5ca72b3f27069ac88f42f4e27f73fe832edd5092bb64c8899e0a529",
+    "/home/star/SCI/hydromining_ws/install/hydromining_robot/share/hydromining_robot/config/spray_acceptance.yaml": "31ae88ca60e9622eca59d44fc0a7f11e49858d1c3fc39a0747f813ab5b669ea3"
+  },
+  "viewpoints": {
+    "front_0p8": {
+      "distance_m": 0.8,
+      "azimuth_deg": 0,
+      "elevation_deg": 0,
+      "reachable": true,
+      "position_error_m": 3.962358017483726e-10,
+      "orientation_error_rad": 7.526844621439196e-10,
+      "joints": [
+        -1.437941417376479,
+        -0.9448827256641623,
+        1.4006391016403388,
+        -2.43993976867333,
+        -2.9144878909779757,
+        2.158926316864126,
+        1.5783628883005871
+      ],
+      "camera_position_world": [
+        0.7652459033712731,
+        0.011,
+        0.4203838853394651
+      ]
+    }
+  },
+  "raw_noise_stddev_m": {
+    "depth": 0.0,
+    "lidar": 0.0
+  },
+  "native_jet_effects": "off",
+  "scope": "sensor snapshots, not rosbag and not native particle observations",
+  "collision_free_paths_verified": false
+}

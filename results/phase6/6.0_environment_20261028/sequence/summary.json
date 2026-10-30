@@ -1,0 +1,3338 @@
+{
+  "schema_version": 1,
+  "completed": true,
+  "calibrated": false,
+  "source_snapshot_count": 24,
+  "case_count": 8,
+  "generated_snapshot_count": 192,
+  "cases": [
+    {
+      "id": "clean_noise0",
+      "environment": "clean",
+      "visibility_m": null,
+      "noise_scale": 0.0,
+      "frames": [
+        {
+          "snapshot": "baseline/baseline_front_0p8_f000.npz",
+          "observation_sha256": "ff1aab08700682e551d6b9d8a1c61ea33e89ef62314ce1008a25d14a2f660658",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f001.npz",
+          "observation_sha256": "c128c12d865ad20d08cbc0e22409568f84e3179d34c6f299759e52508828fdbc",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f002.npz",
+          "observation_sha256": "053eb1357dd37a32e2dff47f4bc68415fd8085a0343970cc0930f469fd10d8b7",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f003.npz",
+          "observation_sha256": "a8ed8972656c205731cf02d22adf3d8ad915ab418eac774271b6fe6bbfc218c2",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f004.npz",
+          "observation_sha256": "aa338bf056f1536627b8441230aa25f15efad423b93fee9deebffe93e05df7cd",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f005.npz",
+          "observation_sha256": "c81e80f7d15e8449563b80cc2f6a901b6929e94e767b1e16753803faedfbf6ce",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f006.npz",
+          "observation_sha256": "b51ef2614466c0518f00d9894ca250caec7bd4c53e65bddd1820b75c94cc80ca",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f007.npz",
+          "observation_sha256": "a3afbbc9ee96e7731d829156e6a8793b3009524da7a5bbb530d9085173cdbc93",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f008.npz",
+          "observation_sha256": "dff890c037da65b56e5b78ad5ee32b7cc88a11380b35daa691a7422ee3ad8ef5",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f009.npz",
+          "observation_sha256": "bd459bb17ac69a74f76c3c5c62cccb7ece81b7b19ee10b2f8f3b4f45ad480b7b",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f010.npz",
+          "observation_sha256": "f7567163936e1f5f271d5b0c904728b0c0f921b0778d2c3f4911e03fa4b76bd1",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f011.npz",
+          "observation_sha256": "1277ceca817a3e8d619de424a6cbdf543eeee4f5e17931ea43bd2d3c5c818ae4",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f000.npz",
+          "observation_sha256": "019541be9324dc86e2b1134a2c1cd96d7d1959f117f0a71febed795b0ee1cd44",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f001.npz",
+          "observation_sha256": "ea28923068f7a09c1f8349275c2231c6855fdfb67e56b1fe94ccd45fc288fd83",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f002.npz",
+          "observation_sha256": "2fc254277f74652a64fa5fd456a7cfdcbe2325aa182ac8e8ededfcfacf082917",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f003.npz",
+          "observation_sha256": "a63fc05b2f02f89ad963104137ccd75881f7f02e5af15218d67f8fdf559b0406",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f004.npz",
+          "observation_sha256": "b24bd678d4b5862ca05fac245a53b49909104a5c034101871d0c93a1202d3e8c",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f005.npz",
+          "observation_sha256": "187e8d085e3e4498adf09f037b188c97cdc00b4f57046bb50df236e8e6c85b30",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f006.npz",
+          "observation_sha256": "834bd444f6beb19fba777fc04fa9ef188716ca882066dc9c79ce67838dd90c8b",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f007.npz",
+          "observation_sha256": "431a9b9bbc1e0151cad93158bf0bdd718e375242c84a8e61a659442f47bbadfc",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f008.npz",
+          "observation_sha256": "37f4b95c184e52c4ec9b6638ef11a690642dd5c69ae02545d0eff1c25ee8fc62",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f009.npz",
+          "observation_sha256": "dcbd3e691e0a4b8a5b4a866a35f6fd158b38c38fbf57a28a81d64e01f03ccdbf",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f010.npz",
+          "observation_sha256": "4611ca6c1230b8a9d7b63f14d32cf1591177466c151d9e8196248b71f0e0d8b9",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f011.npz",
+          "observation_sha256": "2311c3932f79f71e245b385e84244a2034c1dc59ebdd6903907f28d1f2ca72d7",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        }
+      ]
+    },
+    {
+      "id": "clean_noise1",
+      "environment": "clean",
+      "visibility_m": null,
+      "noise_scale": 1.0,
+      "frames": [
+        {
+          "snapshot": "baseline/baseline_front_0p8_f000.npz",
+          "observation_sha256": "3cfd92eebd807fe6624a3a9a0ad8bb7d75cb9680b8abd59f1a1b772b97d84e14",
+          "labels_sha256": "5abc86485418dd37ba5fc5786e38786cebe8796f4dbf9ed2c01b6f28a33634d1",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9433,
+            "dropped": 1,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f001.npz",
+          "observation_sha256": "fe52fb551448a1456dafa1c1c8c6eef34db70e37afc4edd9fa1c3c6930a38757",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f002.npz",
+          "observation_sha256": "144068767972ced940318574244bdba54f8002e78d0ce7fd5eab18fd5f28fe38",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f003.npz",
+          "observation_sha256": "0c23803eb8b88d820318693ba07e504c6f6290d750c4e0b4dfc9aaecd1082abe",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f004.npz",
+          "observation_sha256": "3ba4ecff55341f2f655df79b7f0467c5e7ef1f93b57c63c441832c9fef43d898",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f005.npz",
+          "observation_sha256": "891b691eefc9d3113e56da33c8b1c8110e522aca30af02d313ad08c868f4e326",
+          "labels_sha256": "827c179a594090472882e114cce593ceea80741b3e6ea5103b911bf7582e4d18",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9433,
+            "dropped": 1,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f006.npz",
+          "observation_sha256": "821cbc2ba441e2adb4c8080f093907dd4d8ce3eba0f3365fb03d16d28f5f8733",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f007.npz",
+          "observation_sha256": "04608c3d80fa3fd5878d80a1a4e6f9cf32a2b9ad47403dd90c1a93b258c14c09",
+          "labels_sha256": "d05c930b90099136fd03c40f6ee03c9ee9d659ffe85da06eb16b6115c44d11fa",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9433,
+            "dropped": 1,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f008.npz",
+          "observation_sha256": "e6f3c546c9d3b47b7a6c83f7a0d0429c3cedacefb8ce1ef88b767925412e979e",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f009.npz",
+          "observation_sha256": "2b7a28844aec48d6ac1e303a7f85ede7b3eb4f1b91296c6ce8d2421a537ce936",
+          "labels_sha256": "0872301890466701b0f23fbf575526ddabe3f0edb710a04a122c69786f0f4b51",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9433,
+            "dropped": 1,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f010.npz",
+          "observation_sha256": "288555b10398c9e47aa798acc7d35eecd8d9a9ea4aaec900332f0e15f99e5457",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f011.npz",
+          "observation_sha256": "d3e2de0d50c0314fb54e5338a9a2a55775b71c00bfbec2587cc97a2471e077ff",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f000.npz",
+          "observation_sha256": "776a435c7cf8d4f634de26db8492d8c47039fe2d798a240d07f7bbd97d0651e3",
+          "labels_sha256": "34adc69944f1243bd7e07a4f46ee7ae0ff8148a90a5e15c568ae3b4aef6127fd",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9433,
+            "dropped": 1,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f001.npz",
+          "observation_sha256": "4ec29ce6dc5d74dd24bc21c0850c13697c2e2ac3bba73303d3838895228baf67",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f002.npz",
+          "observation_sha256": "bc2a1d90a5be49e7cf3d47af6be58976d4449cf3848e04c0a1ae2912b1136f5d",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f003.npz",
+          "observation_sha256": "8dfc369e75594e73069709689ef3edb88f9d715235355f1d4154c40b3cbbc4f8",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f004.npz",
+          "observation_sha256": "4a58a2570cb7e923c234830ff0d4b3d89ad9b6690bc64995c58658e4272b5e9f",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f005.npz",
+          "observation_sha256": "d585950beed6483e018a006054cea8a05386a557c63d0455f3c845dd8d77b6d1",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f006.npz",
+          "observation_sha256": "bc05bec9bbf3ea3427131b3ac5693b7342ef42c3fb0c1f2d3f5352fa6b5efde5",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f007.npz",
+          "observation_sha256": "432c044cfe5543e5c38076886a33060e009361fa1d816a53217e58d1c0078286",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f008.npz",
+          "observation_sha256": "279c048bb046e242fcad9d38dda8fb6eca10ceaf8fc8a9c80e4f18ef6ab2d112",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f009.npz",
+          "observation_sha256": "66f9c7a0aaf86e3edcd4f6d45906c7c8c624c2e7dba0fccfecc14a31bf86582e",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f010.npz",
+          "observation_sha256": "7c9a15a8ec9ef2b9114d3a48d6e5e8a2cf974e8b444200a538f66797aed22042",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f011.npz",
+          "observation_sha256": "2da08ebd55c9dea3a2e373176cb9410b3f27af267aa6121023aba73f0a36236f",
+          "labels_sha256": "c0a5a20eb7abec53083b5575e56a6a612ab29903a9cfd7cbd71318424c544321",
+          "depth": {
+            "valid": 71756,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 9434,
+            "dropped": 0,
+            "false_return": 0,
+            "invalid": 6950
+          }
+        }
+      ]
+    },
+    {
+      "id": "dim_dust_light_noise0",
+      "environment": "dim_dust_light",
+      "visibility_m": 8.0,
+      "noise_scale": 0.0,
+      "frames": [
+        {
+          "snapshot": "baseline/baseline_front_0p8_f000.npz",
+          "observation_sha256": "77e1a1c0405cad91c59d8c974ee08749510e5354488f847d9911c0d471cde5c9",
+          "labels_sha256": "3e91491709cbb8a14c5df6fcd814c4c2287d51c12b5c8106171da841fe1399f2",
+          "depth": {
+            "valid": 25060,
+            "dropped": 43666,
+            "false_return": 3030,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1890,
+            "dropped": 7314,
+            "false_return": 230,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f001.npz",
+          "observation_sha256": "338fc0dc60261484f2cb2d93c0f909c66de6e1873035e0506ad3b8041deac2fb",
+          "labels_sha256": "53b7d5fd2cb4b438e2581d02f7f306045460a911fcef15e7ae70df6afe1c0e82",
+          "depth": {
+            "valid": 24915,
+            "dropped": 43688,
+            "false_return": 3153,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2012,
+            "dropped": 7210,
+            "false_return": 212,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f002.npz",
+          "observation_sha256": "4aea9c802b2a66e25e1b4d205fb6cecb9edda278aa061ce7ed3320e3796c7397",
+          "labels_sha256": "5bad8d8d3cdda176bb60a515184aa4b46f25e23d28dd6a174d4ec7837997093e",
+          "depth": {
+            "valid": 24913,
+            "dropped": 43745,
+            "false_return": 3098,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1960,
+            "dropped": 7286,
+            "false_return": 188,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f003.npz",
+          "observation_sha256": "336fd10b2daf13a72d3a8f94b534df62c872d307580b59cac464bb070b73084f",
+          "labels_sha256": "2ea4c08eac3b3e8d3768cad1b9d5985e898779c259124bc81f33b23b48688f69",
+          "depth": {
+            "valid": 24925,
+            "dropped": 43739,
+            "false_return": 3092,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1973,
+            "dropped": 7274,
+            "false_return": 187,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f004.npz",
+          "observation_sha256": "4b9f21547ea2b48268f8376ad412c9338971d8a735a3b761a8aa4feda69ea854",
+          "labels_sha256": "f0ddb0a0f3f1241a894a6e1765e39fcbed2bbff5cc1ed89a8b5c251ec888f45e",
+          "depth": {
+            "valid": 24903,
+            "dropped": 43738,
+            "false_return": 3115,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1962,
+            "dropped": 7300,
+            "false_return": 172,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f005.npz",
+          "observation_sha256": "3449226d87f178239c07608a36016ed869fffbadef9b3a86d3d6e4e8b1a3a95a",
+          "labels_sha256": "778d3cd2d9accaf1520ab39a102fedd340157fa80e3b7225c2b42cec71bd370e",
+          "depth": {
+            "valid": 24789,
+            "dropped": 43949,
+            "false_return": 3018,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2001,
+            "dropped": 7238,
+            "false_return": 195,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f006.npz",
+          "observation_sha256": "3ed1d6a026c9bf7fabac12094c4667c80f70eafec76aad6fe3d9d3fbf1d73022",
+          "labels_sha256": "5968e95c3b604ed4ddc47fc99c33d5fcc7bca70f07249c6d6ef6b6d0da40af13",
+          "depth": {
+            "valid": 24848,
+            "dropped": 43764,
+            "false_return": 3144,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1995,
+            "dropped": 7249,
+            "false_return": 190,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f007.npz",
+          "observation_sha256": "48cfa677c67ab4c028cf420967b4d6c55403d08bf10ed3c6b2c4203a0cd9b6ae",
+          "labels_sha256": "c92d1a77f1e2e1837feb4698e1191ea0be343caf6d0c7ae549c2040d9d541f22",
+          "depth": {
+            "valid": 24878,
+            "dropped": 43773,
+            "false_return": 3105,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1924,
+            "dropped": 7306,
+            "false_return": 204,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f008.npz",
+          "observation_sha256": "66746b75f03e401a45942716c5b1c956466a9fede4c9e7b954e9d1e01b811dba",
+          "labels_sha256": "5cc6ad7794c9587c60b72788fbfcc20caafdade19c14f0891acfddd4ad485dd8",
+          "depth": {
+            "valid": 24839,
+            "dropped": 43719,
+            "false_return": 3198,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1924,
+            "dropped": 7325,
+            "false_return": 185,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f009.npz",
+          "observation_sha256": "e72b4fa44215524fd80774721d9b8742a0dcacc94a1f3b1986bf5d7b30f02775",
+          "labels_sha256": "f9b81f63ccd2f876102c6f9cece3b74ae288f452d39275ace16dd25698c9ee76",
+          "depth": {
+            "valid": 24903,
+            "dropped": 43752,
+            "false_return": 3101,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2020,
+            "dropped": 7222,
+            "false_return": 192,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f010.npz",
+          "observation_sha256": "2ae8ea9769e8fbd1b8f80a5616d8b6ed7cc72dd4ec2eed30121615356b04e09a",
+          "labels_sha256": "2358ba4e2356342a28354def13b983f959fa6ff85004e017ea85604a3ba733e4",
+          "depth": {
+            "valid": 25088,
+            "dropped": 43616,
+            "false_return": 3052,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1918,
+            "dropped": 7327,
+            "false_return": 189,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f011.npz",
+          "observation_sha256": "2deeb30101b8c6131c070a24ab103b6decd35a7a9153e5b2937c9604f712621b",
+          "labels_sha256": "d13d7eb3d591d831a6c619ba5672adb7b1e25b6e396e7b3f3c40d538f7acdba7",
+          "depth": {
+            "valid": 24810,
+            "dropped": 43882,
+            "false_return": 3064,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1988,
+            "dropped": 7248,
+            "false_return": 198,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f000.npz",
+          "observation_sha256": "b80301340a20460fa52ce7c1a3ba1eeefb260bf90ed88fae31b02831bf0e307e",
+          "labels_sha256": "1bd5f288f6cadbff1e74bdc43e2ec8c4ed810323bbfb6ed01cc12f80ace2f1b0",
+          "depth": {
+            "valid": 24789,
+            "dropped": 43838,
+            "false_return": 3129,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1986,
+            "dropped": 7237,
+            "false_return": 211,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f001.npz",
+          "observation_sha256": "e781a3a18102b918f3a688ccb942ad174d70abb8479ccc4fc38981b7579d6bd9",
+          "labels_sha256": "7e160587b8956c6bafc39c4dd6a358b7355ec3011e01326ce4a081eb5c8e9bb4",
+          "depth": {
+            "valid": 24913,
+            "dropped": 43779,
+            "false_return": 3064,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1932,
+            "dropped": 7297,
+            "false_return": 205,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f002.npz",
+          "observation_sha256": "37470e95de7c337ecb12b6a715eedc2ece359ac6e3704a3b65d1ef4736a707d4",
+          "labels_sha256": "f0de006a1912e4fdbf9a3aaf62116f61fd86d334f593e04dad5793b148c3e66a",
+          "depth": {
+            "valid": 25052,
+            "dropped": 43663,
+            "false_return": 3041,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1962,
+            "dropped": 7257,
+            "false_return": 215,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f003.npz",
+          "observation_sha256": "3b28a07e36b193852dcdbbd7ebf76880fff9d51975bf5be50e79dcae63c614b4",
+          "labels_sha256": "b7388b780f32c7cc1958cb505ed21b9c91806946bcb3bd2dfd72f5094050853e",
+          "depth": {
+            "valid": 25082,
+            "dropped": 43530,
+            "false_return": 3144,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1990,
+            "dropped": 7260,
+            "false_return": 184,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f004.npz",
+          "observation_sha256": "8449beada0463f2a311e5d1c71da04e77950be94de8a901189abe56544a401c4",
+          "labels_sha256": "0727eafe46faa5d3d994af12881199e331dc657a5c8a4ff320d9429682695f65",
+          "depth": {
+            "valid": 25061,
+            "dropped": 43643,
+            "false_return": 3052,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2056,
+            "dropped": 7164,
+            "false_return": 214,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f005.npz",
+          "observation_sha256": "44c40243b4d04fd99a87d270b9cc7f769d3d5ad8c2996855c130b945540aabe7",
+          "labels_sha256": "5092cc2d56801badda418a085971d54a4aed068f8d75bf9fc4df2c8fb09f5b3d",
+          "depth": {
+            "valid": 24882,
+            "dropped": 43682,
+            "false_return": 3192,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2017,
+            "dropped": 7207,
+            "false_return": 210,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f006.npz",
+          "observation_sha256": "6371537838f18d0cca5c3c9426e942bb6086dba93ddea5a059d6a3045b303622",
+          "labels_sha256": "36273555d10d058035d1260170e205da8516cf6d7f97b04930950bf4162d1a9c",
+          "depth": {
+            "valid": 24824,
+            "dropped": 43784,
+            "false_return": 3148,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1979,
+            "dropped": 7255,
+            "false_return": 200,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f007.npz",
+          "observation_sha256": "cab4b6504802eb44d8a6f349014d6d31fc66485b7785f71d742b0d1d20adc24c",
+          "labels_sha256": "6c08af38f42f2770a00bd17e41effbfcedb811c285e3caac191aa960b6252619",
+          "depth": {
+            "valid": 24889,
+            "dropped": 43716,
+            "false_return": 3151,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1962,
+            "dropped": 7252,
+            "false_return": 220,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f008.npz",
+          "observation_sha256": "6ba6e2a80949b9998479d01f5edf01565439d0666e67e39339df3ba0bf4fcce5",
+          "labels_sha256": "e0c41622ee13442edddbd29b82a400b64c10828b19d7022613bd4fa4bfaef731",
+          "depth": {
+            "valid": 24945,
+            "dropped": 43649,
+            "false_return": 3162,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1977,
+            "dropped": 7258,
+            "false_return": 199,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f009.npz",
+          "observation_sha256": "17261003e6ea83761e930f8a090106836fa90c49bfd03a0256608a486030cd14",
+          "labels_sha256": "9b547401e09683acff7e7efb22abfa1ed08e2c4d439dda0b26be7408937646fd",
+          "depth": {
+            "valid": 24739,
+            "dropped": 43854,
+            "false_return": 3163,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1970,
+            "dropped": 7284,
+            "false_return": 180,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f010.npz",
+          "observation_sha256": "624f6bbaab2744a1d88bdd057f81ee6ae18c63228cab39e75cb7bf4eae12179b",
+          "labels_sha256": "c1084a8f77154c520050e8c0aca84e9020955ed39f27ac61e37d4da541152d22",
+          "depth": {
+            "valid": 24934,
+            "dropped": 43728,
+            "false_return": 3094,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1921,
+            "dropped": 7323,
+            "false_return": 190,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f011.npz",
+          "observation_sha256": "a135d0b77e3ccb8c2e77f6b598346f817bd97e42bedfed723e99f4e527eb7a8b",
+          "labels_sha256": "6fc8b6b71b5b1857e56a7d614ce9f15d3be1e233b5616a4421c88538d97f67c9",
+          "depth": {
+            "valid": 25100,
+            "dropped": 43506,
+            "false_return": 3150,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2012,
+            "dropped": 7250,
+            "false_return": 172,
+            "invalid": 6950
+          }
+        }
+      ]
+    },
+    {
+      "id": "dim_dust_light_noise1",
+      "environment": "dim_dust_light",
+      "visibility_m": 8.0,
+      "noise_scale": 1.0,
+      "frames": [
+        {
+          "snapshot": "baseline/baseline_front_0p8_f000.npz",
+          "observation_sha256": "d818e8c28c4cfdfebc8a060d3828b93e3dd7dd098ea29469d91b8090c18d9bc4",
+          "labels_sha256": "3e91491709cbb8a14c5df6fcd814c4c2287d51c12b5c8106171da841fe1399f2",
+          "depth": {
+            "valid": 25060,
+            "dropped": 43666,
+            "false_return": 3030,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1890,
+            "dropped": 7314,
+            "false_return": 230,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f001.npz",
+          "observation_sha256": "c731bb3c5de37aff5a78e530849f208dc8f7fe1f3d1d9c8f4fe184b3d2a67e07",
+          "labels_sha256": "53b7d5fd2cb4b438e2581d02f7f306045460a911fcef15e7ae70df6afe1c0e82",
+          "depth": {
+            "valid": 24915,
+            "dropped": 43688,
+            "false_return": 3153,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2012,
+            "dropped": 7210,
+            "false_return": 212,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f002.npz",
+          "observation_sha256": "cf0db2978963a0812589646e1fc08121ae1198c70b5575aa68ce483b3e8d7e0e",
+          "labels_sha256": "f785d9f7bc21fdf5cd9b70d86281c232a58a23294da50b49534193404024e6eb",
+          "depth": {
+            "valid": 24913,
+            "dropped": 43745,
+            "false_return": 3098,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1958,
+            "dropped": 7288,
+            "false_return": 188,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f003.npz",
+          "observation_sha256": "686747e6d0afd7f4088c0e011d209be9d811a51e5f620e9bb362eb75df62ca07",
+          "labels_sha256": "2ea4c08eac3b3e8d3768cad1b9d5985e898779c259124bc81f33b23b48688f69",
+          "depth": {
+            "valid": 24925,
+            "dropped": 43739,
+            "false_return": 3092,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1973,
+            "dropped": 7274,
+            "false_return": 187,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f004.npz",
+          "observation_sha256": "94512f54ebdca4528abaeccf8b91d2bd8fd9de616b4924985da3f1131b004b66",
+          "labels_sha256": "f0ddb0a0f3f1241a894a6e1765e39fcbed2bbff5cc1ed89a8b5c251ec888f45e",
+          "depth": {
+            "valid": 24903,
+            "dropped": 43738,
+            "false_return": 3115,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1962,
+            "dropped": 7300,
+            "false_return": 172,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f005.npz",
+          "observation_sha256": "0da0ef8c2e7109b6e3c209cd002ab789e7565c9c14be6969d3453416fa314a01",
+          "labels_sha256": "b4f0799be2f922979d82c90ac5e5167af0fa11a53a320d73f5722ab8ce17f472",
+          "depth": {
+            "valid": 24789,
+            "dropped": 43949,
+            "false_return": 3018,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2000,
+            "dropped": 7239,
+            "false_return": 195,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f006.npz",
+          "observation_sha256": "47c98672e7cc0a0744360c4ac97aeb02b6d51910e316a949f478491efafa9fdb",
+          "labels_sha256": "0a8ffdb31be465b53457735b270b9376ae9520e5d6bb222a781a4c47c8ac0adf",
+          "depth": {
+            "valid": 24848,
+            "dropped": 43764,
+            "false_return": 3144,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1994,
+            "dropped": 7250,
+            "false_return": 190,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f007.npz",
+          "observation_sha256": "0bc083385da48711728dc1749023fc8a74fa1326499484647f628b2adaeba619",
+          "labels_sha256": "0f0291e9ff9dc508a6b5d4fa859be4f21802e4bb19c5183ceb63388b31047f65",
+          "depth": {
+            "valid": 24878,
+            "dropped": 43773,
+            "false_return": 3105,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1922,
+            "dropped": 7308,
+            "false_return": 204,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f008.npz",
+          "observation_sha256": "a91138cd735a53aba60de1a9cf6786ef349fcbf9aa8c2f7cbf962cc06d5fc0d8",
+          "labels_sha256": "03a9ffba49edfc3c3e5c95089309217834dccd32067a719bf5459758be4a5e29",
+          "depth": {
+            "valid": 24839,
+            "dropped": 43719,
+            "false_return": 3198,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1921,
+            "dropped": 7328,
+            "false_return": 185,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f009.npz",
+          "observation_sha256": "1918c8ea93ebe3ff72c221827d7d4418b7331d0211f56c49f8a2409a8f9272c0",
+          "labels_sha256": "4f1e09da3ae73bfc4b610f65afc62897c8044a6b489c8313b7c63d55dd836a41",
+          "depth": {
+            "valid": 24903,
+            "dropped": 43752,
+            "false_return": 3101,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2018,
+            "dropped": 7224,
+            "false_return": 192,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f010.npz",
+          "observation_sha256": "dc76eac2fddaea225a335cf5aa16a7fac8d0639df9132c037cbcea8656197b09",
+          "labels_sha256": "2358ba4e2356342a28354def13b983f959fa6ff85004e017ea85604a3ba733e4",
+          "depth": {
+            "valid": 25088,
+            "dropped": 43616,
+            "false_return": 3052,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1918,
+            "dropped": 7327,
+            "false_return": 189,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f011.npz",
+          "observation_sha256": "d4d9becde0ecba7de95a8ad418d14c95963cc5db29092027d53fb5b423042868",
+          "labels_sha256": "4091bc1197a62c2980108355bb4be9c889025bffdbbd3d9e84c1043b2aea00f2",
+          "depth": {
+            "valid": 24810,
+            "dropped": 43882,
+            "false_return": 3064,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1987,
+            "dropped": 7249,
+            "false_return": 198,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f000.npz",
+          "observation_sha256": "2eb31b8ca12c4d309b07fc2d5e696d5fca469291e4e95cfe1a6f759636a17372",
+          "labels_sha256": "339a75d9f1b163e7eb584043327ea6bb75b7bf16c42903dc4226d3ced9f9b374",
+          "depth": {
+            "valid": 24789,
+            "dropped": 43838,
+            "false_return": 3129,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1984,
+            "dropped": 7239,
+            "false_return": 211,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f001.npz",
+          "observation_sha256": "934eac43e725c888c5907238ee4c192c7aa00da7a36b8688ae55306ab39e57fa",
+          "labels_sha256": "7e160587b8956c6bafc39c4dd6a358b7355ec3011e01326ce4a081eb5c8e9bb4",
+          "depth": {
+            "valid": 24913,
+            "dropped": 43779,
+            "false_return": 3064,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1932,
+            "dropped": 7297,
+            "false_return": 205,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f002.npz",
+          "observation_sha256": "b5840de8ec7cba5612170774b910e21e419d77fa4525581c443529cca4543d93",
+          "labels_sha256": "f0de006a1912e4fdbf9a3aaf62116f61fd86d334f593e04dad5793b148c3e66a",
+          "depth": {
+            "valid": 25052,
+            "dropped": 43663,
+            "false_return": 3041,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1962,
+            "dropped": 7257,
+            "false_return": 215,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f003.npz",
+          "observation_sha256": "4dff99495c65ff89cb373bb1381035c3a6ed3f98f8afedf3b597524b8c61378a",
+          "labels_sha256": "b7388b780f32c7cc1958cb505ed21b9c91806946bcb3bd2dfd72f5094050853e",
+          "depth": {
+            "valid": 25082,
+            "dropped": 43530,
+            "false_return": 3144,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1990,
+            "dropped": 7260,
+            "false_return": 184,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f004.npz",
+          "observation_sha256": "8383b3f9ef902c752cadeaf9140157e3dd0137d905b06b080ca9a1bb7cc9bf9c",
+          "labels_sha256": "29c84a8ed449207a33286e067c7612e594509fd5a420365e8aa08cf27ebf9884",
+          "depth": {
+            "valid": 25061,
+            "dropped": 43643,
+            "false_return": 3052,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2055,
+            "dropped": 7165,
+            "false_return": 214,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f005.npz",
+          "observation_sha256": "7e138eb1e36479daafb0e1d322d99cf41e13dfe6dc07943fda74412bf8f11eba",
+          "labels_sha256": "5092cc2d56801badda418a085971d54a4aed068f8d75bf9fc4df2c8fb09f5b3d",
+          "depth": {
+            "valid": 24882,
+            "dropped": 43682,
+            "false_return": 3192,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2017,
+            "dropped": 7207,
+            "false_return": 210,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f006.npz",
+          "observation_sha256": "cd2fd49b99a9c15b1f786cddb27a8fdc74772048cf39edbcc259fdc68a5ce57c",
+          "labels_sha256": "36273555d10d058035d1260170e205da8516cf6d7f97b04930950bf4162d1a9c",
+          "depth": {
+            "valid": 24824,
+            "dropped": 43784,
+            "false_return": 3148,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1979,
+            "dropped": 7255,
+            "false_return": 200,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f007.npz",
+          "observation_sha256": "f47d9434424982c400872dd54bc3515505bc705239de691b70757b14d66acaae",
+          "labels_sha256": "77068116b76f5487e98aff9d6cbad2c723817af3988fc2e530b5a8fe31676bb9",
+          "depth": {
+            "valid": 24889,
+            "dropped": 43716,
+            "false_return": 3151,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1961,
+            "dropped": 7253,
+            "false_return": 220,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f008.npz",
+          "observation_sha256": "b6210356cb7150f9768ef5124adc35e6790846eaa7be3e37f2fecbc5df48f493",
+          "labels_sha256": "e0c41622ee13442edddbd29b82a400b64c10828b19d7022613bd4fa4bfaef731",
+          "depth": {
+            "valid": 24945,
+            "dropped": 43649,
+            "false_return": 3162,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1977,
+            "dropped": 7258,
+            "false_return": 199,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f009.npz",
+          "observation_sha256": "5939a764c8beecdba22222f0c9aafe1cb630d841231d689d16fc805d7d0ba30b",
+          "labels_sha256": "9796ac2e0f33acb1c5a62c6dcc6677a7e5cf9b668b83caa432321cada2499068",
+          "depth": {
+            "valid": 24739,
+            "dropped": 43854,
+            "false_return": 3163,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1969,
+            "dropped": 7285,
+            "false_return": 180,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f010.npz",
+          "observation_sha256": "da641b5e2a9b60f90d8e78edd36c82189960746636a23daaa3c98380db60c9b3",
+          "labels_sha256": "c1084a8f77154c520050e8c0aca84e9020955ed39f27ac61e37d4da541152d22",
+          "depth": {
+            "valid": 24934,
+            "dropped": 43728,
+            "false_return": 3094,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 1921,
+            "dropped": 7323,
+            "false_return": 190,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f011.npz",
+          "observation_sha256": "818752f24df4811c2d978fe108adca712c5e3d5a7630222add1c3788d5da8566",
+          "labels_sha256": "6360b1b3b9cb94f28aa4ea3149f1991d61bacdecf286c8be69d08824f7635cf7",
+          "depth": {
+            "valid": 25100,
+            "dropped": 43506,
+            "false_return": 3150,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 2011,
+            "dropped": 7251,
+            "false_return": 172,
+            "invalid": 6950
+          }
+        }
+      ]
+    },
+    {
+      "id": "dim_dust_heavy_noise0",
+      "environment": "dim_dust_heavy",
+      "visibility_m": 3.0,
+      "noise_scale": 0.0,
+      "frames": [
+        {
+          "snapshot": "baseline/baseline_front_0p8_f000.npz",
+          "observation_sha256": "6f09bf8dd2350be5f96eab56b7ef1a922efda24899c2fde9568f7be4fd400097",
+          "labels_sha256": "3bb20caf72bba06894f2110510d8e9fe23da6168692844bda803c72a9ab1aa57",
+          "depth": {
+            "valid": 4976,
+            "dropped": 65527,
+            "false_return": 1253,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 806,
+            "dropped": 8525,
+            "false_return": 103,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f001.npz",
+          "observation_sha256": "20d13dfc384d6b205041b7bde53cfa13e8f145ae0258809a669643785f383eb7",
+          "labels_sha256": "d25a05853391cd5fbccf016378cf1366e13aab59874cfceb1f091ac1b0057c7d",
+          "depth": {
+            "valid": 4828,
+            "dropped": 65628,
+            "false_return": 1300,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 865,
+            "dropped": 8479,
+            "false_return": 90,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f002.npz",
+          "observation_sha256": "7a8fc04892a21afef5d33c1ff3446b77b3ccbe9128d85394d14f9235189c5151",
+          "labels_sha256": "55e5b81c17dfddf06428b37ce67da911e3a2407e6269bcc689c208d378438d9f",
+          "depth": {
+            "valid": 4960,
+            "dropped": 65490,
+            "false_return": 1306,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 849,
+            "dropped": 8493,
+            "false_return": 92,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f003.npz",
+          "observation_sha256": "0f88f08e2956572ebdedad546d9d1f53e94f353cf1e57b6cd26770837a2027a7",
+          "labels_sha256": "5f9a3042eaa7e25c882830ae70d6ef111ce43f7ad02ca663bdf0cce965721db1",
+          "depth": {
+            "valid": 4829,
+            "dropped": 65620,
+            "false_return": 1307,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 839,
+            "dropped": 8508,
+            "false_return": 87,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f004.npz",
+          "observation_sha256": "af68335022240c688dbe1623065f42ca301a040d99d90a73741c5d49f491f21f",
+          "labels_sha256": "b2f6df78eb325629fbea05d150e7af6960e5cf1f60ad9c6b1942dd742240b8b2",
+          "depth": {
+            "valid": 4977,
+            "dropped": 65475,
+            "false_return": 1304,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 869,
+            "dropped": 8488,
+            "false_return": 77,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f005.npz",
+          "observation_sha256": "d425a84cf0586d26c99d58d8447d75b091c967d32ab7a101d0cfb5bdb6e0f72b",
+          "labels_sha256": "955033dc2026b66923a64730d31c4181918a7c7e945f906feffd6f50f89ff5ad",
+          "depth": {
+            "valid": 4848,
+            "dropped": 65633,
+            "false_return": 1275,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 830,
+            "dropped": 8515,
+            "false_return": 89,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f006.npz",
+          "observation_sha256": "e54974be86334831c5915f3ee0e722b7d1b4e5f13e1f956eb528f3756cd97519",
+          "labels_sha256": "cbdacad5ad2745a48029a2a4e3542a51b58c792e39e859dd33e5f8a4b51192c1",
+          "depth": {
+            "valid": 4907,
+            "dropped": 65573,
+            "false_return": 1276,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 837,
+            "dropped": 8514,
+            "false_return": 83,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f007.npz",
+          "observation_sha256": "3f2f9f46dd0b2b95fa0dbde0c0cc946c2a6d3ef5766eced1aa580deb4e29fd77",
+          "labels_sha256": "cdab394fb7bb760daa466da72825adf35def8f2a8c5dccd56cc3c60bcde5a7ae",
+          "depth": {
+            "valid": 4969,
+            "dropped": 65482,
+            "false_return": 1305,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 839,
+            "dropped": 8497,
+            "false_return": 98,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f008.npz",
+          "observation_sha256": "387a134fcde2afe3478bd546f75ee1d8df1bf801afd3b2eaab2d97c298ca2815",
+          "labels_sha256": "6e48cd7086fcd5b50cc929a10782a46797cdaa5a74390eceec0ffdfba31c8508",
+          "depth": {
+            "valid": 4959,
+            "dropped": 65508,
+            "false_return": 1289,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 841,
+            "dropped": 8502,
+            "false_return": 91,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f009.npz",
+          "observation_sha256": "8767ba87ce221e81c9bdb202e328a6b05cea5dc060161ea0d1a9e28fae628b1e",
+          "labels_sha256": "59a6f46b3245be40c0f663fcae773456f717a54da2c800f02a0437d0e00f6ca6",
+          "depth": {
+            "valid": 4864,
+            "dropped": 65582,
+            "false_return": 1310,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 825,
+            "dropped": 8513,
+            "false_return": 96,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f010.npz",
+          "observation_sha256": "f8e2002f25692499e9e5a8c2a1831b8fcac72bf1d17f0ef2cb582f08a5f8c742",
+          "labels_sha256": "8481d8325812cf766b6c7ed2ced08c4040496000bb693dd55714828c0651f805",
+          "depth": {
+            "valid": 5009,
+            "dropped": 65471,
+            "false_return": 1276,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 822,
+            "dropped": 8519,
+            "false_return": 93,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f011.npz",
+          "observation_sha256": "62633f987c0bb60975410e630ba1003a6403d0dd0e4c5c5bd5132588560f71aa",
+          "labels_sha256": "89b63c6d256fb5a78a27bec29a403a50a1a48c3304cb6850195b7b7267c5b2e3",
+          "depth": {
+            "valid": 4871,
+            "dropped": 65587,
+            "false_return": 1298,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 851,
+            "dropped": 8491,
+            "false_return": 92,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f000.npz",
+          "observation_sha256": "462753c880cce2e20c5618a02ee280ba94453fb0341c4464d8fb996ae41522ff",
+          "labels_sha256": "3dcdf8ec2688b6f6f700623544edb746349911de346c4b9ad557cef28cc8c68a",
+          "depth": {
+            "valid": 4811,
+            "dropped": 65628,
+            "false_return": 1317,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 853,
+            "dropped": 8482,
+            "false_return": 99,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f001.npz",
+          "observation_sha256": "bf3ff08ab2a650e6bb739de4bfd7a761085ad26db4dafa15b450d5bb5e136e25",
+          "labels_sha256": "3e38fa72aa41d1aa1316be791cd0ee20bfa8b795758c815c7454c9ce4c9cbfbc",
+          "depth": {
+            "valid": 4866,
+            "dropped": 65561,
+            "false_return": 1329,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 816,
+            "dropped": 8518,
+            "false_return": 100,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f002.npz",
+          "observation_sha256": "6c698e5d34dba26724046dcb1674e03e44ebc9ba3a4f7f24f3fd8c77b015608a",
+          "labels_sha256": "daf7c2d4b2bdc7565b4b41f03f01b1d2f1036375ba93c5e09945f3c60592eafc",
+          "depth": {
+            "valid": 4944,
+            "dropped": 65480,
+            "false_return": 1332,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 870,
+            "dropped": 8467,
+            "false_return": 97,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f003.npz",
+          "observation_sha256": "78a329aa0f23c77c6605ac11c833ca373e99a70116ad202c32f54064968e8132",
+          "labels_sha256": "214e3163435aa3eca601d4fd9c203f347e2d26be797a86fbd7182ecf795e1eeb",
+          "depth": {
+            "valid": 5014,
+            "dropped": 65452,
+            "false_return": 1290,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 826,
+            "dropped": 8517,
+            "false_return": 91,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f004.npz",
+          "observation_sha256": "366018400d43fe737b9cec453f74df85b6625f4de370e0484f34cf663f263592",
+          "labels_sha256": "6d9747aea56b63a33e41783692fb2e077d669b9976a468d06aaa38dd1982bc57",
+          "depth": {
+            "valid": 4860,
+            "dropped": 65584,
+            "false_return": 1312,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 885,
+            "dropped": 8452,
+            "false_return": 97,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f005.npz",
+          "observation_sha256": "d41a7e3f0ee60c814612c1748153c47b88cbc48d08440870868f18e4b1c191eb",
+          "labels_sha256": "402a820ba74f41da197bd62cb454ee9a67a77d3a2606e8c97d8129f92c0c012a",
+          "depth": {
+            "valid": 4860,
+            "dropped": 65609,
+            "false_return": 1287,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 832,
+            "dropped": 8504,
+            "false_return": 98,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f006.npz",
+          "observation_sha256": "e630bfa37f5db592ebb92d85c76ab3525aa592efd8f2783d812c6527d50183aa",
+          "labels_sha256": "826be01868b89dff1693498684373c613d612747bb09b6c6b1cc4c95f4aa9b86",
+          "depth": {
+            "valid": 4930,
+            "dropped": 65500,
+            "false_return": 1326,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 802,
+            "dropped": 8539,
+            "false_return": 93,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f007.npz",
+          "observation_sha256": "f29eeb182c7e594c97d07ae7f195bd680b4fd8ab043ebf301c09041e3a149006",
+          "labels_sha256": "94737e2dd70527033aa805f3da3efc78d4ab7d3cd0d28285728cd5782edc93b4",
+          "depth": {
+            "valid": 5002,
+            "dropped": 65492,
+            "false_return": 1262,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 830,
+            "dropped": 8506,
+            "false_return": 98,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f008.npz",
+          "observation_sha256": "7b879c57e305d19cddb228ac9f8422d9e7a25a69cd6a2e5dcaf094b0b93c9044",
+          "labels_sha256": "b973d499ee419d6b12d91c4236896bcd1a898b074cd7c336248d96f4061c1b70",
+          "depth": {
+            "valid": 4786,
+            "dropped": 65659,
+            "false_return": 1311,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 818,
+            "dropped": 8516,
+            "false_return": 100,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f009.npz",
+          "observation_sha256": "79b39d220fda1a5ebc108a4f5ecee6055123ec35dd04e28961db489f1a7d827f",
+          "labels_sha256": "917dfcc26d24b267c5751df821f467cb83fff8e3181ae35af51553dd0f12e901",
+          "depth": {
+            "valid": 4818,
+            "dropped": 65644,
+            "false_return": 1294,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 848,
+            "dropped": 8511,
+            "false_return": 75,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f010.npz",
+          "observation_sha256": "40bb869854fcb8314b81febad8e2fa6b36cd5ce3bfebb363fde2ff51b921cbf6",
+          "labels_sha256": "c71008ba01c838df7147075552fa927ba783b386cfd9eda849e3bc361262561f",
+          "depth": {
+            "valid": 4923,
+            "dropped": 65551,
+            "false_return": 1282,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 795,
+            "dropped": 8536,
+            "false_return": 103,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f011.npz",
+          "observation_sha256": "620ed8cccf5f6ac956aa427f5483a412e6687682fccb9e8fde1f910c61f87034",
+          "labels_sha256": "2506adfccfebf51b8d2909c3db4b74c0b1263dc6cd90f206702c19e302208be2",
+          "depth": {
+            "valid": 4942,
+            "dropped": 65540,
+            "false_return": 1274,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 858,
+            "dropped": 8490,
+            "false_return": 86,
+            "invalid": 6950
+          }
+        }
+      ]
+    },
+    {
+      "id": "dim_dust_heavy_noise1",
+      "environment": "dim_dust_heavy",
+      "visibility_m": 3.0,
+      "noise_scale": 1.0,
+      "frames": [
+        {
+          "snapshot": "baseline/baseline_front_0p8_f000.npz",
+          "observation_sha256": "0fc648c994e0c12f8d834dd280339d7983ff76b7261fbc47ad6a4289914a77f8",
+          "labels_sha256": "0c2c518227d6d21fb9fb49b953632203b0859ad267d72b38bd51c5da59b7f88e",
+          "depth": {
+            "valid": 4976,
+            "dropped": 65527,
+            "false_return": 1253,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 803,
+            "dropped": 8528,
+            "false_return": 103,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f001.npz",
+          "observation_sha256": "19781d8fbf3fb81c7b8aa173e68ba427648ee266036b4d59f24866edf123e2ce",
+          "labels_sha256": "3bef4ffcd5d3df777242af95fc07429e06134142ae1d40a4550f4b787082082d",
+          "depth": {
+            "valid": 4828,
+            "dropped": 65628,
+            "false_return": 1300,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 862,
+            "dropped": 8482,
+            "false_return": 90,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f002.npz",
+          "observation_sha256": "3a6ccf1b85aec7836f78ac158942677da6974cbcbc2d8817a861576367bb2720",
+          "labels_sha256": "f1c9d6351b405d412f193c1094b3cbba060fd79c6238f21ada9e1b2afded013b",
+          "depth": {
+            "valid": 4960,
+            "dropped": 65490,
+            "false_return": 1306,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 847,
+            "dropped": 8495,
+            "false_return": 92,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f003.npz",
+          "observation_sha256": "43dedfa8616914469491f5e8d5079d5dfe5e2a4627f6022fcd4562af5d02e78f",
+          "labels_sha256": "4571559ccf3de23899578786e4cab5152e0a0da15b0f81ee568fa1fa401b593a",
+          "depth": {
+            "valid": 4829,
+            "dropped": 65620,
+            "false_return": 1307,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 836,
+            "dropped": 8511,
+            "false_return": 87,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f004.npz",
+          "observation_sha256": "bbbf4599cb19a66cdf32306a41d13ead9cbe002a8b5413cd4436f1f823164034",
+          "labels_sha256": "cd36164d3a4c7bb6bb9d25d6fca0f73b5dde895d96530fef8fd341130ea5ab59",
+          "depth": {
+            "valid": 4977,
+            "dropped": 65475,
+            "false_return": 1304,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 867,
+            "dropped": 8490,
+            "false_return": 77,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f005.npz",
+          "observation_sha256": "35540b3e08d373fa923a5b69d08b4690b915141bcc6bd7302223c06bad7d3d4c",
+          "labels_sha256": "328fcc26461b3a3bede9bde0df1153c953e82eea8d29ca061e567a3fa5ae5ddd",
+          "depth": {
+            "valid": 4848,
+            "dropped": 65633,
+            "false_return": 1275,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 827,
+            "dropped": 8518,
+            "false_return": 89,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f006.npz",
+          "observation_sha256": "e04dd87642763ee589c5a9c4a7a8f657e6680cfb607dfd82977bb43db6b83297",
+          "labels_sha256": "e051604814f026ef07a3febd7f44531f17d92498f737631ea003799d731e560b",
+          "depth": {
+            "valid": 4907,
+            "dropped": 65573,
+            "false_return": 1276,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 834,
+            "dropped": 8517,
+            "false_return": 83,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f007.npz",
+          "observation_sha256": "ddc86ea986154fb4ed32da5002fb2bbe74ee33a9d683e144d10cc11c4e1c4271",
+          "labels_sha256": "c245cd1135c7410c953808b6e44aee343a07cfd2766bd9b311d37e89c7263753",
+          "depth": {
+            "valid": 4969,
+            "dropped": 65482,
+            "false_return": 1305,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 836,
+            "dropped": 8500,
+            "false_return": 98,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f008.npz",
+          "observation_sha256": "102520c208a556322ba162777b992d65b07c2844fc02fac65b620f2d21012a36",
+          "labels_sha256": "1bd6dd16ecf33671369eb46fbae945aa247be1ab2dfdaae9c80c88b3fd6b1fec",
+          "depth": {
+            "valid": 4959,
+            "dropped": 65508,
+            "false_return": 1289,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 836,
+            "dropped": 8507,
+            "false_return": 91,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f009.npz",
+          "observation_sha256": "a4e6fdf007beefaf4103dfbcdabf7100fa9a216b251c298d53509e65c9e84a55",
+          "labels_sha256": "d95f10d0e749bd812dca26d178c51541e90dc5acc1a6677269fd682aa1da831a",
+          "depth": {
+            "valid": 4864,
+            "dropped": 65582,
+            "false_return": 1310,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 823,
+            "dropped": 8515,
+            "false_return": 96,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f010.npz",
+          "observation_sha256": "b2b4aaa04369c85105cd02399ede17fba6860e67ec4cd2c333d4cd18e4a1ec0f",
+          "labels_sha256": "28e7a4aacdf57d4dc81c44d77c7247c97aba2e0e1696a950989c905d661f8d76",
+          "depth": {
+            "valid": 5009,
+            "dropped": 65471,
+            "false_return": 1276,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 820,
+            "dropped": 8521,
+            "false_return": 93,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f011.npz",
+          "observation_sha256": "2740ea67bfcb338c1a7bc934b0155f54f655984eace4c719cb49ded1fe09d0f5",
+          "labels_sha256": "5673c1257b1ced7097a7875f8f8c1061678a438da2a4b7a7e137c98670d51cd0",
+          "depth": {
+            "valid": 4871,
+            "dropped": 65587,
+            "false_return": 1298,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 846,
+            "dropped": 8496,
+            "false_return": 92,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f000.npz",
+          "observation_sha256": "e1ee013f436f81bb11534226084cff00e5e3e765bc025671832ba36f859f75c7",
+          "labels_sha256": "61f19d92f6532652f4976c33b1a18314ce2d5d12965bb205e9b8090b0ba00195",
+          "depth": {
+            "valid": 4811,
+            "dropped": 65628,
+            "false_return": 1317,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 850,
+            "dropped": 8485,
+            "false_return": 99,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f001.npz",
+          "observation_sha256": "2352056f0dddeaaaa679e1bd0edba287adefd7efb9aeee3a2d8a1649611b6c9f",
+          "labels_sha256": "460e618c04a5e364ec2e69214d57d7f1f4fcd8da72735f3c67b166dbbc2a28d2",
+          "depth": {
+            "valid": 4866,
+            "dropped": 65561,
+            "false_return": 1329,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 815,
+            "dropped": 8519,
+            "false_return": 100,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f002.npz",
+          "observation_sha256": "2e10d9dd69cf64da1ae299f82ef5468e90ddf6e9510e8d4319abb14529d69b81",
+          "labels_sha256": "3132df0f6aa6b257c6a0f55fafa2747b78be5cfceb47cb3779d76025a596ca4f",
+          "depth": {
+            "valid": 4944,
+            "dropped": 65480,
+            "false_return": 1332,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 868,
+            "dropped": 8469,
+            "false_return": 97,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f003.npz",
+          "observation_sha256": "604b3788dd257a02d1986d01555042f1e170fd384bf005a3cc615aebff9868bc",
+          "labels_sha256": "d3ef69b43550eaf16b0a62f283c09defcfa3876fc469c911499e9c902517cc35",
+          "depth": {
+            "valid": 5014,
+            "dropped": 65452,
+            "false_return": 1290,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 825,
+            "dropped": 8518,
+            "false_return": 91,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f004.npz",
+          "observation_sha256": "cc48da8affbe815c761068fd0aa29e63e7cc19791330cdd057549d16f6701661",
+          "labels_sha256": "a114884862d2c4f39fd49137c165bbc4855420beb5a3d4c13a88e988b7fa180e",
+          "depth": {
+            "valid": 4860,
+            "dropped": 65584,
+            "false_return": 1312,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 882,
+            "dropped": 8455,
+            "false_return": 97,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f005.npz",
+          "observation_sha256": "9fbce1edb509c0eafd944459128b459272d58f6f0aeede761f0cc411221a0c26",
+          "labels_sha256": "d3bdeb211567dc79ab5db0caf75fa04927ed479a5d99db87db8dfbbd79f98c66",
+          "depth": {
+            "valid": 4860,
+            "dropped": 65609,
+            "false_return": 1287,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 828,
+            "dropped": 8508,
+            "false_return": 98,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f006.npz",
+          "observation_sha256": "38173e522fafe3d51f4c44798546341ea7a4400d6205c1180baf17c80f6c6168",
+          "labels_sha256": "9c12591ccca66a4b6636821f890b36f0ae973918c42c7af26d15d6ac01049027",
+          "depth": {
+            "valid": 4930,
+            "dropped": 65500,
+            "false_return": 1326,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 801,
+            "dropped": 8540,
+            "false_return": 93,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f007.npz",
+          "observation_sha256": "5fb493ad7dd7cb04f2d309d8cf3f63026f720c539768f933d26dfc8e30a06838",
+          "labels_sha256": "24c0835c05ed41791afd2a76cd8ee01cb95ed08c354ac6b67003db313dc015e9",
+          "depth": {
+            "valid": 5002,
+            "dropped": 65492,
+            "false_return": 1262,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 828,
+            "dropped": 8508,
+            "false_return": 98,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f008.npz",
+          "observation_sha256": "5cba8ccd4a2f826590df7db3f9c80c47d03d095ecd769be069c94c4d61616d89",
+          "labels_sha256": "c75f07272c1149a7c4595deda274f82eac0e6a62194966ebbdc06cc4a48ca12c",
+          "depth": {
+            "valid": 4786,
+            "dropped": 65659,
+            "false_return": 1311,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 816,
+            "dropped": 8518,
+            "false_return": 100,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f009.npz",
+          "observation_sha256": "21db3c42ca648ebd3601b0243841f85a72dca33ca358d704570817cb811aad60",
+          "labels_sha256": "4fa64e0beb326aed2c8f62b53b539e19c8b6bd88122b2844fe9fc59b14bd9da2",
+          "depth": {
+            "valid": 4818,
+            "dropped": 65644,
+            "false_return": 1294,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 844,
+            "dropped": 8515,
+            "false_return": 75,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f010.npz",
+          "observation_sha256": "6cbd96ada25803fb2765c1fcc48bce0e6512281e725c3acba85b67a3a4feaaf9",
+          "labels_sha256": "c71008ba01c838df7147075552fa927ba783b386cfd9eda849e3bc361262561f",
+          "depth": {
+            "valid": 4923,
+            "dropped": 65551,
+            "false_return": 1282,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 795,
+            "dropped": 8536,
+            "false_return": 103,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f011.npz",
+          "observation_sha256": "f56497b90f0f86aa2aa0a98d1c90f8f5b0fe93e02ac681349c33c2c3c4c98d8d",
+          "labels_sha256": "05ecfc60d87576260f8b7f521e734d677ae9b8ead8ee44a20c40f72437ef41d5",
+          "depth": {
+            "valid": 4942,
+            "dropped": 65540,
+            "false_return": 1274,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 856,
+            "dropped": 8492,
+            "false_return": 86,
+            "invalid": 6950
+          }
+        }
+      ]
+    },
+    {
+      "id": "dim_dust_extreme_noise0",
+      "environment": "dim_dust_extreme",
+      "visibility_m": 1.5,
+      "noise_scale": 0.0,
+      "frames": [
+        {
+          "snapshot": "baseline/baseline_front_0p8_f000.npz",
+          "observation_sha256": "06af3e33a424a97578efd27e1f636f72b613284706eec3630df6ae865b1b47be",
+          "labels_sha256": "34b78bf27886eb097b261d285d45ae29cc5368bf74ce6ce77f476eadbd387cfa",
+          "depth": {
+            "valid": 472,
+            "dropped": 71129,
+            "false_return": 155,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 366,
+            "dropped": 8991,
+            "false_return": 77,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f001.npz",
+          "observation_sha256": "528ef67b7db7544f029680f8e193de9d525b08447467942fcc2a058211701bb5",
+          "labels_sha256": "c8cd1cda1ef74076b63d4b87bc0ef88a18405ae4987fe0f3aa6625885f08e18c",
+          "depth": {
+            "valid": 437,
+            "dropped": 71154,
+            "false_return": 165,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 416,
+            "dropped": 8962,
+            "false_return": 56,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f002.npz",
+          "observation_sha256": "c66c72374f55ea7d1a8047e61c88ba60d419f9e4edd4767020772d9f2708eead",
+          "labels_sha256": "550a631a4641159afeeffa9078dec9f3b49d9964d9bf6787e10548fca83cca4c",
+          "depth": {
+            "valid": 476,
+            "dropped": 71130,
+            "false_return": 150,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 402,
+            "dropped": 8966,
+            "false_return": 66,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f003.npz",
+          "observation_sha256": "b41c17de6542ca5b5fae3ba9ad2d7dac5ca0fcce16b11ba8755fa78a03c73ec3",
+          "labels_sha256": "715b6940d7402ede6dfc962a4081b9379530f60a55c5a6329f5dd33bb1802923",
+          "depth": {
+            "valid": 446,
+            "dropped": 71159,
+            "false_return": 151,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 398,
+            "dropped": 8969,
+            "false_return": 67,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f004.npz",
+          "observation_sha256": "660d16f571723895c63b6de0bdfb49947a5c53b7e7265501a472fc706238eeca",
+          "labels_sha256": "aaa6154d8413a0452752d3c5e622e87a1163a72bbf0cdac106fe51f9bbfad4db",
+          "depth": {
+            "valid": 510,
+            "dropped": 71051,
+            "false_return": 195,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 373,
+            "dropped": 9001,
+            "false_return": 60,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f005.npz",
+          "observation_sha256": "d0ff3915ff2ece4d5e935b81b794fa4b870f153d80ebf53c60b979997ffdb74c",
+          "labels_sha256": "dea2742856b7aed18e969950e09f01b98c99c67c89b8e07da10714c71e658bc6",
+          "depth": {
+            "valid": 479,
+            "dropped": 71117,
+            "false_return": 160,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 386,
+            "dropped": 8984,
+            "false_return": 64,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f006.npz",
+          "observation_sha256": "fb348dcdff47fd8eb026ccf96a2c1ba9a41b16b8ec121c8173816169be6f5edb",
+          "labels_sha256": "ab909c3dbb4f886bcf0680953514b1855a11638d2834b32a34389f6eab2764c3",
+          "depth": {
+            "valid": 461,
+            "dropped": 71130,
+            "false_return": 165,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 389,
+            "dropped": 9000,
+            "false_return": 45,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f007.npz",
+          "observation_sha256": "a212eb23491a4aaf53f8631266d52962660bd94f392e941451189c098dbc6d51",
+          "labels_sha256": "daf30cda10aea1bbde071f2b308f3a11c30661a169a1768b1af9b2e98a401c10",
+          "depth": {
+            "valid": 464,
+            "dropped": 71113,
+            "false_return": 179,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 383,
+            "dropped": 8983,
+            "false_return": 68,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f008.npz",
+          "observation_sha256": "5889a45ec1ad9f3d8f5f43e1e64068d103e6bc90056aa902e0643fcb23593733",
+          "labels_sha256": "836f6a710bdbeb63bd589a3e09517ddbec19aaa8d9d911940a5c58117ff9a835",
+          "depth": {
+            "valid": 455,
+            "dropped": 71143,
+            "false_return": 158,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 384,
+            "dropped": 8985,
+            "false_return": 65,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f009.npz",
+          "observation_sha256": "0c28a8c0706312e0ec02e6302e9d21d1ccb1127c20d43f7c9c361fce6cb43fb3",
+          "labels_sha256": "37ba051b58d9196f696895fb0368e529b3752f73fc4f643bac2feb6847ecc565",
+          "depth": {
+            "valid": 454,
+            "dropped": 71133,
+            "false_return": 169,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 355,
+            "dropped": 9011,
+            "false_return": 68,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f010.npz",
+          "observation_sha256": "f37e776db2828bb044bb433fc378152f70abaf358709852d7ba42a823f1a14e1",
+          "labels_sha256": "2da094901ca2777bdfee555a92fd3f958f9d6581068649be42fb77ef6cc4b7c8",
+          "depth": {
+            "valid": 448,
+            "dropped": 71152,
+            "false_return": 156,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 378,
+            "dropped": 8991,
+            "false_return": 65,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f011.npz",
+          "observation_sha256": "e1bebbb2d87232d45d77232fa8d2117e05d7d172349287c96befb60e11a80c31",
+          "labels_sha256": "811486dbfc94f783e64d136965ec8d693135d47f6d084f934772316012edad23",
+          "depth": {
+            "valid": 472,
+            "dropped": 71148,
+            "false_return": 136,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 384,
+            "dropped": 8995,
+            "false_return": 55,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f000.npz",
+          "observation_sha256": "5aa16b883f612b3ad031fb88c1bbe00dad1b6aa8ab71a7642a2c7f3fd0b3e1ec",
+          "labels_sha256": "9adac6f7c32d2e187db06f74cf0ce57bd8282e3c0be84fd2e9e16634a536e3ea",
+          "depth": {
+            "valid": 451,
+            "dropped": 71161,
+            "false_return": 144,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 384,
+            "dropped": 8989,
+            "false_return": 61,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f001.npz",
+          "observation_sha256": "b300efbc0dc9036b691b2419f592e94d599af259aa878fbcb453bd4b7d7c24b9",
+          "labels_sha256": "d1082f37a6e99bc55795d4908faecdb5dad0a482587aa0557fb865751e2596ad",
+          "depth": {
+            "valid": 473,
+            "dropped": 71108,
+            "false_return": 175,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 383,
+            "dropped": 8988,
+            "false_return": 63,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f002.npz",
+          "observation_sha256": "c2ad091f3209d5aa34fcc18336fc1daf53715e3b88a653efef022d9b164209fc",
+          "labels_sha256": "a72b477274674f70312342510fc8f1b84fffcf12b5254f87963cc1d0907d8795",
+          "depth": {
+            "valid": 514,
+            "dropped": 71076,
+            "false_return": 166,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 393,
+            "dropped": 8982,
+            "false_return": 59,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f003.npz",
+          "observation_sha256": "f413088e21a1868d7a63a85800014e6c61ffe0a0da2a146c7b0c0ae568441dc0",
+          "labels_sha256": "2fcc967aade4608b9d9d61b91cbd5f61a5a5804b8292bd2c00eb72c96165302b",
+          "depth": {
+            "valid": 541,
+            "dropped": 71061,
+            "false_return": 154,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 367,
+            "dropped": 9002,
+            "false_return": 65,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f004.npz",
+          "observation_sha256": "4afec26ee5562576b6f3f5c658719d4904430053e256d7c22f33bdae724acdc8",
+          "labels_sha256": "f808c13e82a38b41733c195b45c7009e2d44945913d1d7e808ea76bf28d938e4",
+          "depth": {
+            "valid": 485,
+            "dropped": 71096,
+            "false_return": 175,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 384,
+            "dropped": 8989,
+            "false_return": 61,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f005.npz",
+          "observation_sha256": "01ed20d1bf5f356c51816a7ea2bcfe8baf06180e0176c114ec460cc6627a67e6",
+          "labels_sha256": "3ea200ca877ecac7f2252f695f7f6456a3204613039643234c9a99bfb1849a61",
+          "depth": {
+            "valid": 476,
+            "dropped": 71142,
+            "false_return": 138,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 372,
+            "dropped": 8996,
+            "false_return": 66,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f006.npz",
+          "observation_sha256": "68a640643a07229640a0f887202d4a6d2162234681b38785668c26fcf1de2740",
+          "labels_sha256": "0cceabc00ccb993dc3aa56725adb88b71f3f3fe52ae3bbfe2ba6b5adeaf363f8",
+          "depth": {
+            "valid": 459,
+            "dropped": 71109,
+            "false_return": 188,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 352,
+            "dropped": 9020,
+            "false_return": 62,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f007.npz",
+          "observation_sha256": "cb2ea9deeb5a95e6bcfa55c88e1856d16a9202cddc47af2445477acf1378b4b7",
+          "labels_sha256": "aad8e70674b7b1a2fc5e6444fffb4898d54e022e72799d5dd1f15f97cf61dd3e",
+          "depth": {
+            "valid": 486,
+            "dropped": 71111,
+            "false_return": 159,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 374,
+            "dropped": 8995,
+            "false_return": 65,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f008.npz",
+          "observation_sha256": "85124e367a16fadc49f5893e014b5798549428e2543d66bf13fa625ab0530f89",
+          "labels_sha256": "1363ceeff5c5035059ee28913698c4cd57e7c9859b9b316129be67c3f1d8ad6d",
+          "depth": {
+            "valid": 479,
+            "dropped": 71096,
+            "false_return": 181,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 395,
+            "dropped": 8970,
+            "false_return": 69,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f009.npz",
+          "observation_sha256": "5c2e65fec91e24b3fb2b312d73df5592d228fa5dd515edd676169eaebea9ba33",
+          "labels_sha256": "84f7940daf509d24ced400880f27283d73b67f36ec826da96c2aa291539ca5d0",
+          "depth": {
+            "valid": 427,
+            "dropped": 71191,
+            "false_return": 138,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 382,
+            "dropped": 9002,
+            "false_return": 50,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f010.npz",
+          "observation_sha256": "9a2ef39e5d17491c6cb4532b9bf6fe9a1a001235c7406f11e337c37549e49022",
+          "labels_sha256": "30ac87df2196b3166173f5c6755aba89ee3f096f6d0d138d910100c314d4ae32",
+          "depth": {
+            "valid": 479,
+            "dropped": 71133,
+            "false_return": 144,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 360,
+            "dropped": 9014,
+            "false_return": 60,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f011.npz",
+          "observation_sha256": "0db93699cefc2a6e26575d630107fe521359620ea4151d153bbbd4d7009fc4a3",
+          "labels_sha256": "5c05acb1e67a0b56a5c4f4be61f1d6fdfad6f3463634f0fbf676c9b27f37660b",
+          "depth": {
+            "valid": 471,
+            "dropped": 71094,
+            "false_return": 191,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 384,
+            "dropped": 8987,
+            "false_return": 63,
+            "invalid": 6950
+          }
+        }
+      ]
+    },
+    {
+      "id": "dim_dust_extreme_noise1",
+      "environment": "dim_dust_extreme",
+      "visibility_m": 1.5,
+      "noise_scale": 1.0,
+      "frames": [
+        {
+          "snapshot": "baseline/baseline_front_0p8_f000.npz",
+          "observation_sha256": "67537658c73f2cb7e1aef06be1221793bf0f0074be3b90ec4e25a2ecb8fe8dce",
+          "labels_sha256": "851685d8c3fda524789fd555b94a49f7ed559bd2a5c75dc9e7f7b9d10df1cdba",
+          "depth": {
+            "valid": 472,
+            "dropped": 71129,
+            "false_return": 155,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 364,
+            "dropped": 8993,
+            "false_return": 77,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f001.npz",
+          "observation_sha256": "d80447aa344f426a34d548aa46052a15256ec307e69c256f579902ae14ed3eaa",
+          "labels_sha256": "ce676ef40fc254940ba0a85d375c3ea3074401884c864b642dcaec966728b3c9",
+          "depth": {
+            "valid": 437,
+            "dropped": 71154,
+            "false_return": 165,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 414,
+            "dropped": 8964,
+            "false_return": 56,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f002.npz",
+          "observation_sha256": "45e8157705ee7fec10cce52f40f69aa49db06d2d35fc730cb14698468bd28422",
+          "labels_sha256": "a1451c732ebc7bb25623301ed53be5ec73d58ae28542b2f62df666fee768124a",
+          "depth": {
+            "valid": 476,
+            "dropped": 71130,
+            "false_return": 150,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 397,
+            "dropped": 8971,
+            "false_return": 66,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f003.npz",
+          "observation_sha256": "a93ba3e18a26c36d75d96348812bde5c1edc869360566762efc8426166d826ca",
+          "labels_sha256": "9757711585a7fab618555e090cf86e78568fac6895173b0a7bc525b2ee836224",
+          "depth": {
+            "valid": 446,
+            "dropped": 71159,
+            "false_return": 151,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 391,
+            "dropped": 8976,
+            "false_return": 67,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f004.npz",
+          "observation_sha256": "0804fa982d1dc2c4677a3915a7cbc4be45b5f14bbf78b786a9af1cc6f916881f",
+          "labels_sha256": "7f2353d197088e043bd317fdcb0f9b5b8e715fad6ae0ff760c208ef6b1781347",
+          "depth": {
+            "valid": 510,
+            "dropped": 71051,
+            "false_return": 195,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 368,
+            "dropped": 9006,
+            "false_return": 60,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f005.npz",
+          "observation_sha256": "54c1f993ceb9934412778d9e3b8e988996928a498b5cf3e6123724962f965845",
+          "labels_sha256": "cff1beac82dcf8c10aaa61d783bc00ca9bd0613991c871d380b40cb3a03040d9",
+          "depth": {
+            "valid": 479,
+            "dropped": 71117,
+            "false_return": 160,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 379,
+            "dropped": 8991,
+            "false_return": 64,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f006.npz",
+          "observation_sha256": "077c41e8890df4b0e8f42ab360c8edbb07b051f4e95222651f6e85d3c77a4a94",
+          "labels_sha256": "566bf2d964303a27187fa7ceb1246f5e0f493b74f7e12c7d48b0c6556eb4e50d",
+          "depth": {
+            "valid": 461,
+            "dropped": 71130,
+            "false_return": 165,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 380,
+            "dropped": 9009,
+            "false_return": 45,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f007.npz",
+          "observation_sha256": "14a3589c58f785be81cf9f0a49c27363d06522b16f97a4c783108cbbe3e579ec",
+          "labels_sha256": "ca8a3681ba5a13444aa61184cd3ec7dc214b8248ef51b2a93a92ad189705c412",
+          "depth": {
+            "valid": 464,
+            "dropped": 71113,
+            "false_return": 179,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 379,
+            "dropped": 8987,
+            "false_return": 68,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f008.npz",
+          "observation_sha256": "845ca7d07c7e1baf99f82d03e95f6beab02ce31d1041c7f90842ffae5c3a6584",
+          "labels_sha256": "a8cb5c76b21f1ac4edda161763f88f190b72692f7763afa936c9e143dcb46eb8",
+          "depth": {
+            "valid": 455,
+            "dropped": 71143,
+            "false_return": 158,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 373,
+            "dropped": 8996,
+            "false_return": 65,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f009.npz",
+          "observation_sha256": "47426fabd09acb1de261d6e2af75a2473cce7c7b3e7824837014724da7cb223c",
+          "labels_sha256": "355779111f1abc62ad6d551e1f292f95a63c7adca69b444e541aef149b056c77",
+          "depth": {
+            "valid": 454,
+            "dropped": 71133,
+            "false_return": 169,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 348,
+            "dropped": 9018,
+            "false_return": 68,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f010.npz",
+          "observation_sha256": "97987a87dfe4216655a2a9f7bc7692a07b3023fe6d17fca2f899bcc86e2df362",
+          "labels_sha256": "c65e9c6f08d622e91ad33fb841e6bea58b9783346c216812ac4bb6004092645f",
+          "depth": {
+            "valid": 448,
+            "dropped": 71152,
+            "false_return": 156,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 374,
+            "dropped": 8995,
+            "false_return": 65,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "baseline/baseline_front_0p8_f011.npz",
+          "observation_sha256": "34b9f7d67e11c5330af7bcce9a4c323d58423ec428bbe64dd76d5cd6a77fb52a",
+          "labels_sha256": "5a50b0c530d78205a7183fafedab7d4d8b1436eb3e097b7dc3f40fa93000d00f",
+          "depth": {
+            "valid": 472,
+            "dropped": 71148,
+            "false_return": 136,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 372,
+            "dropped": 9007,
+            "false_return": 55,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f000.npz",
+          "observation_sha256": "ebe58ced7610ed24eaf4adb1e3d0431521fd3dae22a5f0fbbaea3467a393d2b5",
+          "labels_sha256": "a9009cb66dff7224549557a68e73063bf187de0b0462bbf66e6fc2c778935ec2",
+          "depth": {
+            "valid": 451,
+            "dropped": 71161,
+            "false_return": 144,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 375,
+            "dropped": 8998,
+            "false_return": 61,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f001.npz",
+          "observation_sha256": "a90695ab4b236b395b5aba29eb81d20350d26787ad5046c58bc772ecb6cd20cb",
+          "labels_sha256": "4a737563909a5669b9027da7eb827443611f037131b21a9c9b5b3af9a594247e",
+          "depth": {
+            "valid": 473,
+            "dropped": 71108,
+            "false_return": 175,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 379,
+            "dropped": 8992,
+            "false_return": 63,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f002.npz",
+          "observation_sha256": "00f30b54a83029824f06292a5d0b3a815aee396bc41995bdd43d0cac1a180f92",
+          "labels_sha256": "450c80b3104c8c61b8283beffda49ca0e12d49f2b0a017bcb24cd5744b9a6757",
+          "depth": {
+            "valid": 514,
+            "dropped": 71076,
+            "false_return": 166,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 386,
+            "dropped": 8989,
+            "false_return": 59,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f003.npz",
+          "observation_sha256": "ed9e7933ed78db6f4fcf32a233a2895b6844deb001c5ffc8c350f59b7ac38aa2",
+          "labels_sha256": "ade65158a03d63f8126102203757f155e9b108b6830f78344cbe35df19f06d74",
+          "depth": {
+            "valid": 541,
+            "dropped": 71061,
+            "false_return": 154,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 360,
+            "dropped": 9009,
+            "false_return": 65,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f004.npz",
+          "observation_sha256": "e4f87c13d438e7a400c1efe6f229f73fada43e811e22d907f44055b3eb4c18e2",
+          "labels_sha256": "1b83fd5f369d0c09d18609063950601bb523b87399d284e0332f014c9f462c2d",
+          "depth": {
+            "valid": 485,
+            "dropped": 71096,
+            "false_return": 175,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 378,
+            "dropped": 8995,
+            "false_return": 61,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f005.npz",
+          "observation_sha256": "d01406f073947c2ab9fb177c404ae40652c5cbbb4df48274e8b8d7de85d534de",
+          "labels_sha256": "dfccfd86d89daf4db0f03261ef34f179fb7bd9df8364d877289203eb9ca05bf4",
+          "depth": {
+            "valid": 476,
+            "dropped": 71142,
+            "false_return": 138,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 364,
+            "dropped": 9004,
+            "false_return": 66,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f006.npz",
+          "observation_sha256": "b328c9cd8c7a4d43a762ed18ead43086ef6bb4a89229751ec330d7edc2502245",
+          "labels_sha256": "0f1c3fd3c9206a6bab8065c2c6ff175585de60859639bf156743e10bf87bf6ea",
+          "depth": {
+            "valid": 459,
+            "dropped": 71109,
+            "false_return": 188,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 347,
+            "dropped": 9025,
+            "false_return": 62,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f007.npz",
+          "observation_sha256": "329343b630ddf4c2d5db6888b3a0935aa726dc1589aecc75e1f730b30daa6b07",
+          "labels_sha256": "f49bcae5f2fd2c01aa734578e13fb43f4365f3cb35d2f7acbc58cdb6bdeaf2b5",
+          "depth": {
+            "valid": 486,
+            "dropped": 71111,
+            "false_return": 159,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 369,
+            "dropped": 9000,
+            "false_return": 65,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f008.npz",
+          "observation_sha256": "23033cdd2538d28b1d54822da502c3b5aaf42e4a3ea014ec26039416d564df25",
+          "labels_sha256": "f5dfbf6618aa32216bf9f2d874976602b9f396812ffea677387ccbe5b1801705",
+          "depth": {
+            "valid": 479,
+            "dropped": 71096,
+            "false_return": 181,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 391,
+            "dropped": 8974,
+            "false_return": 69,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f009.npz",
+          "observation_sha256": "b1122bca3b33625a4795198e221dad3ff487455f5aa56592211109f0e0c82ec8",
+          "labels_sha256": "f9042bead6cb1b5be17118354070ae6cc5790fa3717cbde5790593f8ad26ad7a",
+          "depth": {
+            "valid": 427,
+            "dropped": 71191,
+            "false_return": 138,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 368,
+            "dropped": 9016,
+            "false_return": 50,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f010.npz",
+          "observation_sha256": "582176f50378be71d96dec200f46464298e80b9653d54d119a335624856f89c8",
+          "labels_sha256": "1ab3be6dbe3b1346b55bd844f76099241e301a81ed0ad22767e1c6e7381457d4",
+          "depth": {
+            "valid": 479,
+            "dropped": 71133,
+            "false_return": 144,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 358,
+            "dropped": 9016,
+            "false_return": 60,
+            "invalid": 6950
+          }
+        },
+        {
+          "snapshot": "none/none_front_0p8_f011.npz",
+          "observation_sha256": "10e5b52dfc38f2d26eed59aa5ec9928bd383c9c9372698ca803e042670d416ee",
+          "labels_sha256": "539fbbec62347f48883a65ef3855bebac9fbdbabe48d791d352b732c914c45b4",
+          "depth": {
+            "valid": 471,
+            "dropped": 71094,
+            "false_return": 191,
+            "invalid": 5044
+          },
+          "lidar": {
+            "valid": 378,
+            "dropped": 8993,
+            "false_return": 63,
+            "invalid": 6950
+          }
+        }
+      ]
+    }
+  ]
+}

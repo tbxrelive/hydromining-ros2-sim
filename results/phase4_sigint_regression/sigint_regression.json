@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "GUI_started": false,
+  "interrupted_after_six_steps": true,
+  "exit_code": 0,
+  "double_shutdown_error": false,
+  "remaining_owned_processes": [],
+  "aggregate_peak_rss_mib": 1978.77734375
+}

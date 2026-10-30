@@ -1,0 +1,21 @@
+{
+  "scope": "completion-time hashes, not a claim that all recordings used this exact recorder version",
+  "sha256": {
+    "src/hydromining_sim/scripts/algorithms/perception/frames.py": "ff70b2f6f37a4b54537299db996b54d8bc2a8d2147f4820d6dec748933f20f75",
+    "src/hydromining_sim/scripts/algorithms/perception/sensor_model.py": "08d905bb798b3a5c870ef41df39865c333b4408fa789e433f068cf11af98fb75",
+    "src/hydromining_sim/scripts/algorithms/perception/kinematics.py": "b7da922b95c62a604d981567538e7b4b2fe57578b3343566b342b31cf1c86406",
+    "src/hydromining_sim/scripts/algorithms/perception/__init__.py": "e0a78c8509399045f25d1b40f8514e839052190f7f3ca8a8e57388d24af5b20f",
+    "test_scripts/phase6_record.py": "a7af4e181e0a5dd7f642bc7b7647d4c5036f697c40f97ad159497e1cc6a9f86e",
+    "test_scripts/audit_phase6_dataset.py": "8f444190e96ecee8fdb16e54412de213a1d6c89d7e72b88cc2cffa2234ad4531",
+    "test_scripts/audit_phase6_noise.py": "bca0c508bffecdc71acd3c10615c0a5d8e4deb24f18e0be4f8bebfc1c627a676",
+    "test_scripts/measure_resolution.py": "fee2a2f236312488a3237d0a63e17776f48d570c718e35a0b7b61f53b8cb51ea",
+    "test_scripts/design_shot_plans.py": "dd857a051cb9bdcb08810a5c3d4d2e7eaa0c95fceac3510fa8953085fc2b1269",
+    "scripts/run_phase6_record.sh": "67d8db44b066b8738c36fa7777b9597bc4130dd735c8c93ef442791557f47efb",
+    "src/hydromining_robot/config/viewpoints.yaml": "b2c6842dc5ca72b3f27069ac88f42f4e27f73fe832edd5092bb64c8899e0a529",
+    "src/hydromining_robot/urdf/sensors.urdf.xacro": "a4c3545a9864c524c2971eb3ba573e7f5be8b303ad4778056de411f63f58810b",
+    "src/hydromining_robot/launch/robot_simulation.launch.py": "28670c379a53a31821d5aa6d4c65712c7e39082d012be6d1040bde6a9b7cb568"
+  },
+  "original_clean_dataset_recorder": "one snapshot per viewpoint; produced before multi-frame recording changes",
+  "sequence_runs_have_start_time_provenance": true,
+  "calibrated": false
+}

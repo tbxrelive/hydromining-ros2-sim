@@ -1,0 +1,138 @@
+{
+  "normal_world": [
+    -0.9829830456368807,
+    0.17991869300059618,
+    -0.03706205471097864
+  ],
+  "origin_world": [
+    1.517,
+    0.011,
+    0.694
+  ],
+  "axes_world": [
+    [
+      -0.03645641821464183,
+      0.18004238823510837,
+      -0.9829830456368807
+    ],
+    [
+      0.006672740843064843,
+      0.98365885267129,
+      0.17991869300059618
+    ],
+    [
+      0.9993129660424709,
+      0.0,
+      -0.03706205471097864
+    ]
+  ],
+  "baseline_plane_residual_m": 0.004870582404606684,
+  "calibrated": false,
+  "scope": "fixed simulator meshes, not physical coal truth",
+  "scenarios": {
+    "none": [
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.0,
+        "sampled_area_m2": 0.031616,
+        "removed_volume_m3": 0.0,
+        "maximum_retreat_m": 0.0,
+        "resolution_m": 0.004
+      },
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.0,
+        "sampled_area_m2": 0.031439999999999996,
+        "removed_volume_m3": 0.0,
+        "maximum_retreat_m": 0.0,
+        "resolution_m": 0.002
+      },
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.0,
+        "sampled_area_m2": 0.031428,
+        "removed_volume_m3": 0.0,
+        "maximum_retreat_m": 0.0,
+        "resolution_m": 0.001
+      }
+    ],
+    "single": [
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.22469635627530365,
+        "sampled_area_m2": 0.031616,
+        "removed_volume_m3": 0.00035325885009765623,
+        "maximum_retreat_m": 0.056596457958221436,
+        "resolution_m": 0.004
+      },
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.2223918575063613,
+        "sampled_area_m2": 0.031439999999999996,
+        "removed_volume_m3": 0.00035309445190429684,
+        "maximum_retreat_m": 0.05686163902282715,
+        "resolution_m": 0.002
+      },
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.22339951635484281,
+        "sampled_area_m2": 0.031428,
+        "removed_volume_m3": 0.0003530887451171875,
+        "maximum_retreat_m": 0.05702662467956543,
+        "resolution_m": 0.001
+      }
+    ],
+    "tri_r5": [
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.694838056680162,
+        "sampled_area_m2": 0.031616,
+        "removed_volume_m3": 0.0009692677001953124,
+        "maximum_retreat_m": 0.057630836963653564,
+        "resolution_m": 0.004
+      },
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.6968193384223919,
+        "sampled_area_m2": 0.031439999999999996,
+        "removed_volume_m3": 0.00096723974609375,
+        "maximum_retreat_m": 0.05819135904312134,
+        "resolution_m": 0.002
+      },
+      {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.6962899325442281,
+        "sampled_area_m2": 0.031428,
+        "removed_volume_m3": 0.0009670738525390625,
+        "maximum_retreat_m": 0.05816292762756348,
+        "resolution_m": 0.001
+      }
+    ],
+    "hex_r6": [
+      {
+        "status": "achieved",
+        "fraction_ge_threshold": 0.9883603238866396,
+        "sampled_area_m2": 0.031616,
+        "removed_volume_m3": 0.0022535244140625,
+        "maximum_retreat_m": 0.10175925493240356,
+        "resolution_m": 0.004
+      },
+      {
+        "status": "achieved",
+        "fraction_ge_threshold": 0.9888040712468193,
+        "sampled_area_m2": 0.031439999999999996,
+        "removed_volume_m3": 0.0022475654296875,
+        "maximum_retreat_m": 0.10219830274581909,
+        "resolution_m": 0.002
+      },
+      {
+        "status": "achieved",
+        "fraction_ge_threshold": 0.988863433880616,
+        "sampled_area_m2": 0.031428,
+        "removed_volume_m3": 0.00224716259765625,
+        "maximum_retreat_m": 0.10212665796279907,
+        "resolution_m": 0.001
+      }
+    ]
+  }
+}

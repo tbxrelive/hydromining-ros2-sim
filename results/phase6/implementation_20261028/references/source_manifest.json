@@ -1,0 +1,28 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/ros2/rclpy/jazzy/rclpy/rclpy/action/server.py",
+    "file": "rclpy_jazzy_action_server.py.txt",
+    "sha256": "0fca48f56058906b421dcdedcdf5ae41bfa85946ab460e6a47feb127c4cb0f03",
+    "bytes": 26361
+  },
+  {
+    "url": "https://raw.githubusercontent.com/ros2/rclpy/jazzy/rclpy/rclpy/lifecycle/node.py",
+    "file": "rclpy_jazzy_lifecycle_node.py.txt",
+    "sha256": "05c51ac7f20d145980397a3a10f3f1a23c90e46514ddc97e21d5325846d88a41",
+    "bytes": 19073
+  },
+  {
+    "url": "https://www.intelrealsense.com/wp-content/uploads/2024/10/Intel-RealSense-D400-Series-Datasheet-October-2024.pdf",
+    "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)>"
+  },
+  {
+    "url": "https://www.mapix.com/wp-content/uploads/2018/07/63-9229_Rev-H_Puck-_Datasheet_Web.pdf",
+    "file": "VLP16_datasheet.pdf",
+    "sha256": "40443954b204b2d13b5e46ae1511be1e4a3572e21e068825fa566f9e21856998",
+    "bytes": 323996
+  },
+  {
+    "url": "https://api.github.com/repos/3dgeo-heidelberg/py4dgeo/contents/doc",
+    "error": "HTTP Error 403: rate limit exceeded"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "url": "https://docs.ros.org/en/jazzy/p/rclpy/rclpy.action.server.html",
+    "file": "ros_jazzy_actions.html",
+    "sha256": "d3f91667eee1d2ba43a3bedc1486a6e7dd75b830adb0a1cf0da4a96447cbbe22",
+    "bytes": 7441
+  },
+  {
+    "url": "https://docs.ros.org/en/jazzy/p/rclpy/rclpy.lifecycle.node.html",
+    "file": "ros_jazzy_lifecycle.html",
+    "sha256": "d3831efc5ffb2372057f42865df19135d98c3a8a98a8c9743d9aaf7af91a6e81",
+    "bytes": 7441
+  },
+  {
+    "url": "https://gazebosim.org/docs/harmonic/sensors/",
+    "file": "gazebo_harmonic_sensors.html",
+    "sha256": "2fd4225120c91d5a857a615c30cd4904cc837c1efb350f051dae6fed66fc0218",
+    "bytes": 79283
+  },
+  {
+    "url": "https://www.open3d.org/docs/release/tutorial/pipelines/rgbd_integration.html",
+    "file": "open3d_tsdf.html",
+    "sha256": "fd74520b483cd57840f8815192ad9006b06fa1bee688a913c61c2e072b1dc301",
+    "bytes": 147002
+  },
+  {
+    "url": "https://py4dgeo.readthedocs.io/en/stable/m3c2ep.html",
+    "error": "HTTP Error 403: Forbidden"
+  }
+]

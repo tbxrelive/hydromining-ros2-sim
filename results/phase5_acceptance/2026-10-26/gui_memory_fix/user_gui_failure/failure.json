@@ -1,0 +1,1 @@
+{"error": "Memory guard: aggregate RSS >3 GiB or available RAM <1 GiB", "peak_rss_mib": 3081.23828125}

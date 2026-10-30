@@ -1,0 +1,10 @@
+{
+  "py4dgeo_version": "1.2.0",
+  "corepoints": 62,
+  "comparable_corepoints": 62,
+  "m3c2ep_grid_rmse_m": 0.0027297108638985983,
+  "tsdf_vertices": 14855,
+  "tsdf_triangles": 29147,
+  "calibrated": false,
+  "scope": "clean original point-cloud crosscheck; EP scanning sigma is an engineering assumption"
+}

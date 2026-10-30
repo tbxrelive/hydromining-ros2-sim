@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "GUI_started": false,
+  "faults_are_injected": true,
+  "real_server": true,
+  "scenarios": [
+    {
+      "fault": "none",
+      "confirmed_mesh": "/tmp/hydromining_coal_transport_release/none.obj",
+      "create_calls": 1
+    },
+    {
+      "fault": "create_ack",
+      "confirmed_mesh": "/tmp/hydromining_coal_transport_release/create_ack.obj",
+      "create_calls": 1
+    },
+    {
+      "fault": "remove_ack",
+      "confirmed_mesh": "/tmp/hydromining_coal_transport_release/remove_ack.obj",
+      "create_calls": 1
+    },
+    {
+      "fault": "scene_reply",
+      "confirmed_mesh": "/tmp/hydromining_coal_transport_release/scene_reply.obj",
+      "create_calls": 1
+    },
+    {
+      "fault": "not_delivered",
+      "confirmed_mesh": "/tmp/hydromining_coal_transport_release/not_delivered.obj",
+      "create_calls": 2
+    },
+    {
+      "fault": "late_confirmation",
+      "confirmed_mesh": "/tmp/hydromining_coal_transport_release/late_confirmation.obj",
+      "create_calls": 1
+    },
+    {
+      "fault": "initial_read",
+      "confirmed_mesh": "/tmp/hydromining_coal_transport_release/initial_read.obj",
+      "create_calls": 1
+    }
+  ]
+}

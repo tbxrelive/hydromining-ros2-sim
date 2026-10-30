@@ -1,0 +1,39 @@
+{
+  "volume_removed_m3": 0.00013653281013095936,
+  "cumulative_volume_m3": 0.00013653281013095936,
+  "max_depth_m": 0.028175950050354004,
+  "cumulative_depth_m": 0.028175950050354004,
+  "elapsed_s": 11.99999999999999,
+  "steps": 60,
+  "max_speed_m_s": 0.003050462109968066,
+  "spacing_m": 0.04086978418918919,
+  "shot": 1,
+  "calibrated": false,
+  "output_mesh_path": "/tmp/phase4_tests/coal_wall_after_spray_seed42.obj",
+  "resolution": [
+    80,
+    80,
+    56
+  ],
+  "mesh_vertices": 18566,
+  "mesh_faces": 37128,
+  "reproducible": true,
+  "pressure_scan": [
+    {
+      "P": 5.0,
+      "volume_removed": 6.826640506547968e-05
+    },
+    {
+      "P": 10.0,
+      "volume_removed": 0.00013653281013095936
+    },
+    {
+      "P": 15.0,
+      "volume_removed": 0.00013653281013095936
+    },
+    {
+      "P": 20.0,
+      "volume_removed": 0.0003413320253273984
+    }
+  ]
+}

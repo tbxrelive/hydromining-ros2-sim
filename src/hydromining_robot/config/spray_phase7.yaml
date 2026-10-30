@@ -1,0 +1,12 @@
+# Same erosion model and original coal asset; upright scene for near-normal incidence.
+# Temporary R_c / b are NOT experimentally calibrated.
+spray_controller_node:
+  ros__parameters:
+    voxel_resolution: [96, 96, 64]
+    dt: 0.2
+    update_gazebo: true
+    world_name: hydromining_world
+    coal_pose: [1.5, 0.0, 1.5, 0.0, -1.9198621771937625, 0.0]
+    tcp_frame: tcp
+    output_mesh_dir: /tmp/hydromining_phase7/meshes
+    solve_budget_s: 120.0

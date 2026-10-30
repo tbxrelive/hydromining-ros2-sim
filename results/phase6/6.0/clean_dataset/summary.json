@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "scenarios": [
+    "none",
+    "single",
+    "tri_r5",
+    "hex_r6"
+  ],
+  "viewpoints": [
+    "front_0p6",
+    "front_0p7",
+    "front_0p8",
+    "front_1p0",
+    "left_0p8",
+    "right_0p8",
+    "up_0p8",
+    "down_0p8"
+  ],
+  "max_fk_tf_position_mm": 3.741315596882729e-09,
+  "max_fk_tf_rotation_rad": 1.206191690287171e-11,
+  "aggregate_peak_rss_mib": 1887.78125,
+  "noise": "off",
+  "effects": "off",
+  "calibrated": false,
+  "owned_processes_remaining": [],
+  "cleanup_errors": []
+}

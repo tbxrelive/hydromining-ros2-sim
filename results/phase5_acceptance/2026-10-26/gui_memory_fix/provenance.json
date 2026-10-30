@@ -1,0 +1,10 @@
+{
+  "GUI_started": false,
+  "final_command": "python3 test_scripts/test_phase5_sigint.py --phase COMPLETE --no-overview --output /tmp/hydromining_phase5_final_memory",
+  "baseline_source": "/tmp/hydromining_phase5_memory_baseline",
+  "final_source": "/tmp/hydromining_phase5_final_memory",
+  "user_GUI_failure_source": "/tmp/hydromining_phase5_gui",
+  "baseline_peak_rss_mib": 2626.72265625,
+  "final_peak_rss_mib": 1952.6328125,
+  "comparison": "Combined allocator and extra-camera changes; not a single-variable or GUI memory comparison"
+}

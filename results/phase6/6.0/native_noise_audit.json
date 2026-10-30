@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "checks": {
+    "clean_depth_stable": true,
+    "clean_lidar_stable": true,
+    "native_depth_noise_detected": true,
+    "native_lidar_noise_detected": true
+  },
+  "clean": {
+    "frame_count": 12,
+    "depth_std_m": 3.894349731581315e-08,
+    "lidar_std_m": 1.437819037164445e-07,
+    "depth_pixel_count": 71630,
+    "lidar_ray_count": 7811
+  },
+  "noisy": {
+    "frame_count": 12,
+    "depth_std_m": 0.009819413535296917,
+    "lidar_std_m": 0.01943618431687355,
+    "depth_pixel_count": 71630,
+    "lidar_ray_count": 7710
+  },
+  "configured_sigma_m": {
+    "depth": 0.01,
+    "lidar": 0.02
+  },
+  "scope": "native stationary temporal noise, not calibrated mine dust"
+}

@@ -1,0 +1,92 @@
+{
+  "scope": "fixed simulator meshes only",
+  "calibrated": false,
+  "scenarios": {
+    "hex_r6": {
+      "truth": {
+        "status": "achieved",
+        "fraction_ge_threshold": 0.990506329113924,
+        "sampled_area_m2": 0.0316,
+        "removed_volume_m3": 0.0022546821594238283,
+        "maximum_retreat_m": 0.10131394863128662,
+        "resolution_m": 0.01
+      },
+      "predicted": "insufficient_evidence",
+      "false_pass": false,
+      "coverage": 0.2723012996198391,
+      "evaluated_cells": 94,
+      "height_rmse_m": 0.003225609051286738,
+      "retreat_rmse_m": 0.0027684618898018796,
+      "normal_median_error_deg": 17.37815207862005,
+      "height_95pct_interval_coverage": 1.0,
+      "effective_truth_volume_m3": 0.0006398463259968492,
+      "volume_absolute_error_m3": 1.0952850348175717e-05,
+      "volume_relative_error": 0.017117938953719415
+    },
+    "none": {
+      "truth": {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.0,
+        "sampled_area_m2": 0.0316,
+        "removed_volume_m3": 0.0,
+        "maximum_retreat_m": 0.0,
+        "resolution_m": 0.01
+      },
+      "predicted": "not_achieved",
+      "false_pass": false,
+      "coverage": 0.5067191229776324,
+      "evaluated_cells": 178,
+      "height_rmse_m": 0.0014282502662329641,
+      "retreat_rmse_m": 0.0010727945128760053,
+      "normal_median_error_deg": 20.13623748236934,
+      "height_95pct_interval_coverage": 1.0,
+      "effective_truth_volume_m3": 0.0,
+      "volume_absolute_error_m3": 6.094090200043909e-06,
+      "volume_relative_error": null
+    },
+    "single": {
+      "truth": {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.21835443037974683,
+        "sampled_area_m2": 0.0316,
+        "removed_volume_m3": 0.0003536888360977173,
+        "maximum_retreat_m": 0.05691641569137573,
+        "resolution_m": 0.01
+      },
+      "predicted": "not_achieved",
+      "false_pass": false,
+      "coverage": 0.4586685527362745,
+      "evaluated_cells": 161,
+      "height_rmse_m": 0.0018057344766603115,
+      "retreat_rmse_m": 0.001375285211501324,
+      "normal_median_error_deg": 19.547707063626824,
+      "height_95pct_interval_coverage": 1.0,
+      "effective_truth_volume_m3": 0.00016790718705289893,
+      "volume_absolute_error_m3": 5.308114023658121e-06,
+      "volume_relative_error": 0.03161338187379559
+    },
+    "tri_r5": {
+      "truth": {
+        "status": "not_achieved",
+        "fraction_ge_threshold": 0.6930379746835443,
+        "sampled_area_m2": 0.0316,
+        "removed_volume_m3": 0.0009690423011779785,
+        "maximum_retreat_m": 0.05681896209716797,
+        "resolution_m": 0.01
+      },
+      "predicted": "insufficient_evidence",
+      "false_pass": false,
+      "coverage": 0.4240120236937495,
+      "evaluated_cells": 146,
+      "height_rmse_m": 0.0020537952567900334,
+      "retreat_rmse_m": 0.001807859604459832,
+      "normal_median_error_deg": 21.8236676069629,
+      "height_95pct_interval_coverage": 1.0,
+      "effective_truth_volume_m3": 0.0004030858320080572,
+      "volume_absolute_error_m3": 5.339246465832536e-06,
+      "volume_relative_error": 0.0132459293824195
+    }
+  },
+  "false_pass_count": 0,
+  "passed_safety_for_tested_cases": true
+}

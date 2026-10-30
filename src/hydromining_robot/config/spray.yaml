@@ -1,0 +1,9 @@
+spray_controller_node:
+  ros__parameters:
+    voxel_resolution: [96, 96, 64]
+    dt: 0.2
+    update_gazebo: true
+    world_name: hydromining_world
+    coal_pose: [2.5, 0.0, 1.5, 0.0, 0.0, 0.0]
+    tcp_frame: tcp
+    output_mesh_dir: /tmp/hydromining_meshes

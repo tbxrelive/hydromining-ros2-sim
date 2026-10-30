@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "source_recording": "/home/star/SCI/hydromining_ws/results/phase6/6.0/sequence_clean",
+  "config": {
+    "schema_version": 1,
+    "seed": 20261028,
+    "environments": [
+      "clean",
+      "dim_dust_light",
+      "dim_dust_heavy",
+      "dim_dust_extreme"
+    ],
+    "noise_scales": [
+      0.0,
+      1.0
+    ],
+    "r_min_m": 0.1
+  },
+  "calibrated": false,
+  "scope": "offline synthetic ranges only; no RGB darkness or native particles",
+  "counts_scope": "full sensor field of view, not task region coverage",
+  "source_start_provenance_available": true,
+  "rng": "PCG64; SHA256(seed/snapshot/sensor) first 128 bits little-endian",
+  "common_random_numbers_across_cases": true,
+  "software_hashes": {
+    "/home/star/SCI/hydromining_ws/test_scripts/phase6_degrade.py": "83e0a2a27764655cb3fcaa6e6e517aafa48097c8ceae0cc59758e56630ebb0c2",
+    "/home/star/SCI/hydromining_ws/src/hydromining_robot/config/phase6_environment.yaml": "684a4e9cb2fba832a1a125f18bf8f3c21b5e5686f180f81a8fada54da60f359e",
+    "/home/star/SCI/hydromining_ws/src/hydromining_sim/scripts/algorithms/perception/__init__.py": "e0a78c8509399045f25d1b40f8514e839052190f7f3ca8a8e57388d24af5b20f",
+    "/home/star/SCI/hydromining_ws/src/hydromining_sim/scripts/algorithms/perception/environment.py": "b435aef730e2b313fa229c30c73c1706fc0e483f6178507037d94d5d185d085c",
+    "/home/star/SCI/hydromining_ws/src/hydromining_sim/scripts/algorithms/perception/frames.py": "ff70b2f6f37a4b54537299db996b54d8bc2a8d2147f4820d6dec748933f20f75",
+    "/home/star/SCI/hydromining_ws/src/hydromining_sim/scripts/algorithms/perception/kinematics.py": "b7da922b95c62a604d981567538e7b4b2fe57578b3343566b342b31cf1c86406",
+    "/home/star/SCI/hydromining_ws/src/hydromining_sim/scripts/algorithms/perception/sensor_model.py": "08d905bb798b3a5c870ef41df39865c333b4408fa789e433f068cf11af98fb75"
+  },
+  "source_hashes": {
+    "summary.json": "675ddfc068544ce8fba59859eed0deed423ed8e52442ef83b034867dac7e33c4",
+    "provenance.json": "212443f22aa5f0e4781eb5d308209ef9639de9814a9428ad7c42df64c058315f",
+    "dataset/truth/baseline.obj": "5bc886804565c44fa0dc17aa7d109ce95a5bc640da5036fccef429a4059f95a9",
+    "dataset/truth/none.obj": "5bc886804565c44fa0dc17aa7d109ce95a5bc640da5036fccef429a4059f95a9",
+    "dataset/truth/truth.json": "307573585cca8c49adde80e80601c8053db20aa30e67ec5eac77cd85a7a30b4d",
+    "dataset/baseline/baseline_front_0p8_f000.npz": "56ed56b8c0d23db1d82a04bfd343daa88784992c6c974f36f2dc8cc47cfeaa72",
+    "dataset/baseline/baseline_front_0p8_f001.npz": "915355d357219b482d748033532afb4384b6100e992e768d637810cd1ea5fa0d",
+    "dataset/baseline/baseline_front_0p8_f002.npz": "2b9f6e4fa5fb076966249123a11658a99cabd10e88d5aab44e1c690eec5a8f60",
+    "dataset/baseline/baseline_front_0p8_f003.npz": "3ee39d2d23b475076bbedb1bf13682daa86d36efa80af101c33a434cf5d6f909",
+    "dataset/baseline/baseline_front_0p8_f004.npz": "f1620946bda73cab6677557c06f55df7de0d0d5591d97cfa091912871d1840d4",
+    "dataset/baseline/baseline_front_0p8_f005.npz": "952988cbe6071a69cf6e55de59e989c3f32fcafdf8de000c6222ad4e391b415a",
+    "dataset/baseline/baseline_front_0p8_f006.npz": "0026e06972174a11ababb92d0399d1d8c16d8d043415c17c082f98186c9b9422",
+    "dataset/baseline/baseline_front_0p8_f007.npz": "645bddfaa183f34f5300e2df9a41c2d502afb3af718269ba30814eaa3281743c",
+    "dataset/baseline/baseline_front_0p8_f008.npz": "a7283abe025f3dc292707021ae8365d58b4eb1daa79f0ff3452e60a27f0b5e93",
+    "dataset/baseline/baseline_front_0p8_f009.npz": "03acdc94e541e081ee834375b786f0cbe06293c85c1d1763ed7e657758df4659",
+    "dataset/baseline/baseline_front_0p8_f010.npz": "39b7763969f5ae1b7aa33f740f560a57ff343ee080e335545541caa96d2661f3",
+    "dataset/baseline/baseline_front_0p8_f011.npz": "ecce98bccd2a245b0207c5fbe3f7587c6bd165cba5bc090adb94a07922201bdb",
+    "dataset/none/none_front_0p8_f000.npz": "58c24456dc71fafd33d9db6c912a014af6a77fc423f256fb6c62084d2103abe3",
+    "dataset/none/none_front_0p8_f001.npz": "fe404b6d0e1240496cafc3ace0fed76d999451614897ad9c879608c7c594c12f",
+    "dataset/none/none_front_0p8_f002.npz": "6428d5e071cc3336812e66e5af0ff41a81daa4ff980d74bc38d2d5ab9f1994fd",
+    "dataset/none/none_front_0p8_f003.npz": "261b8a622c4b5e6f58193303d1ca47b3ee783314cd3bcb17b4ffaab175b35a50",
+    "dataset/none/none_front_0p8_f004.npz": "9a53ba4fec48845e0574b0f801bb80c6de73d9e3bd9033d21d82fe6d9f770cc4",
+    "dataset/none/none_front_0p8_f005.npz": "78e36a2f67daa729a6f5831c78fa99f39f20a788905bc7b82730f99789bef82f",
+    "dataset/none/none_front_0p8_f006.npz": "586127c8fa992ad861d321ef29a89eeebf14c5f7f22db60ca03a785fb6272d53",
+    "dataset/none/none_front_0p8_f007.npz": "8663af2cfffd4ebb4611e417c8bca3e7382d42d7cf537965635820600a81c7e6",
+    "dataset/none/none_front_0p8_f008.npz": "139e5e5f2c7c4d9b1c2e1c83d3c4bea99bd4f665820ee4280f7b02022a5e22d7",
+    "dataset/none/none_front_0p8_f009.npz": "40ad0216197d19b3020e6eaf71bae0fc529d2f0a5a4346a0a0d56e8e8fa2f66c",
+    "dataset/none/none_front_0p8_f010.npz": "73315c91e93f0f68f2f3d5fad17245d157501fb8b437287b531dde72b2e6e241",
+    "dataset/none/none_front_0p8_f011.npz": "1244b1797d0e31292ced3a263b51211a4ba58b1f161d93f3b4ba4d8c353ae992"
+  }
+}

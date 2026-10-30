@@ -1,0 +1,1273 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="RGBD Odometry" href="rgbd_odometry.html" /><link rel="prev" title="Multiway registration" href="multiway_registration.html" />
+
+    <link rel="shortcut icon" href="../../_static/open3d_logo.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2023.09.10 -->
+        <title>RGBD integration - Open3D 0.19.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/furo_overrides.css?v=72ac6ce7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Open3D 0.19.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Open3D 0.19.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compilation.html">Build from source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_project.html">Link Open3D in C++ projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../builddocs.html">Build documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arm.html">ARM support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sycl.html">Cross-platform GPU support (SYCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../open3d_ml.html">Open3D-ML</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../core/index.html">Core</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Core</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../core/tensor.html">Tensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core/hashmap.html">Hash map</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../geometry/index.html">Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Geometry</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/pointcloud.html">Point cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/mesh.html">Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/rgbd_image.html">RGBD images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/kdtree.html">KDTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/file_io.html">File IO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/pointcloud_outlier_removal.html">Point cloud outlier removal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/voxelization.html">Voxelization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/octree.html">Octree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/surface_reconstruction.html">Surface reconstruction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/transformation.html">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/mesh_deformation.html">Mesh deformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/iss_keypoint_detector.html">Intrinsic shape signatures (ISS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/ray_casting.html">Ray Casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/distance_queries.html">Distance Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/uvmaps.html">UV Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/python_interface.html">Python Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geometry/working_with_numpy.html">Working with NumPy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../t_geometry/index.html">Geometry (Tensor)</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Geometry (Tensor)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../t_geometry/pointcloud.html">PointCloud</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data/index.html">Dataset</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../visualization/index.html">Visualization</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Visualization</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/visualization.html">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/customized_visualization.html">Customized visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/interactive_visualization.html">Interactive visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/non_blocking_visualization.html">Non-blocking visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/headless_rendering.html">Headless rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/cpu_rendering.html">CPU (Software) Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/web_visualizer.html">Web visualizer and Jupyter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/tensorboard_plugin.html">Open3D for TensorBoard</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Pipelines</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="icp_registration.html">ICP registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robust_kernels.html">Robust kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colored_pointcloud_registration.html">Colored point cloud registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="global_registration.html">Global registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiway_registration.html">Multiway registration</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">RGBD integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rgbd_odometry.html">RGBD Odometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="color_map_optimization.html">Color Map Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../t_pipelines/index.html">Pipelines (Tensor)</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Pipelines (Tensor)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../t_pipelines/t_icp_registration.html">ICP registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t_pipelines/t_robust_kernel.html">Robust Kernel</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../reconstruction_system/index.html">Reconstruction system</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of Reconstruction system</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reconstruction_system/system_overview.html">System overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reconstruction_system/make_fragments.html">Make fragments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reconstruction_system/register_fragments.html">Register fragments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reconstruction_system/refine_registration.html">Refine registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reconstruction_system/integrate_scene.html">Integrate scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reconstruction_system/capture_your_own_dataset.html">Capture your own dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../t_reconstruction_system/index.html">Reconstruction system (Tensor)</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Reconstruction system (Tensor)</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../t_reconstruction_system/voxel_block_grid.html">Voxel Block Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t_reconstruction_system/integration.html">TSDF Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t_reconstruction_system/customized_integration.html">Customized Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t_reconstruction_system/ray_casting.html">Ray Casting in a Voxel Block Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../t_reconstruction_system/dense_slam.html">Dense RGB-D SLAM</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../sensor/index.html">Sensor</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Sensor</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sensor/azure_kinect.html">Azure Kinect with Open3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sensor/realsense.html">RealSense with Open3D</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference.html">Reference</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python API</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.camera.html">open3d.camera</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of open3d.camera</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.camera.PinholeCameraIntrinsic.html">PinholeCameraIntrinsic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.camera.PinholeCameraIntrinsicParameters.html">PinholeCameraIntrinsicParameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.camera.PinholeCameraParameters.html">PinholeCameraParameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.camera.PinholeCameraTrajectory.html">PinholeCameraTrajectory</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.core.html">open3d.core</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of open3d.core</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.Blob.html">Blob</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.Device.html">Device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.Dtype.html">Dtype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.DynamicSizeVector.html">DynamicSizeVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.HashMap.html">HashMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.HashSet.html">HashSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.Scalar.html">Scalar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.SizeVector.html">SizeVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.Tensor.html">Tensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.capsule.html">capsule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.addmm.html">addmm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.append.html">append</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.concatenate.html">concatenate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.det.html">det</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.inv.html">inv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.lstsq.html">lstsq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.lu.html">lu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.lu_ipiv.html">lu_ipiv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.matmul.html">matmul</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.maximum.html">maximum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.minimum.html">minimum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.solve.html">solve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.svd.html">svd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.sycl_demo.html">sycl_demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.tril.html">tril</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.triu.html">triu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.core.triul.html">triul</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.core.nns.html">nns</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of nns</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.core.nns.NearestNeighborSearch.html">NearestNeighborSearch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.data.html">open3d.data</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of open3d.data</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.ArmadilloMesh.html">ArmadilloMesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.AvocadoModel.html">AvocadoModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.BedroomRGBDImages.html">BedroomRGBDImages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.BunnyMesh.html">BunnyMesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.CrateModel.html">CrateModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DamagedHelmetModel.html">DamagedHelmetModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DataDescriptor.html">DataDescriptor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.Dataset.html">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DemoColoredICPPointClouds.html">DemoColoredICPPointClouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DemoCropPointCloud.html">DemoCropPointCloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DemoCustomVisualization.html">DemoCustomVisualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DemoDopplerICPSequence.html">DemoDopplerICPSequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DemoFeatureMatchingPointClouds.html">DemoFeatureMatchingPointClouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DemoICPPointClouds.html">DemoICPPointClouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DemoPoseGraphOptimization.html">DemoPoseGraphOptimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.DownloadDataset.html">DownloadDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.EaglePointCloud.html">EaglePointCloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.FlightHelmetModel.html">FlightHelmetModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.JackJackL515Bag.html">JackJackL515Bag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.JuneauImage.html">JuneauImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.KnotMesh.html">KnotMesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.LivingRoomPointClouds.html">LivingRoomPointClouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.LoungeRGBDImages.html">LoungeRGBDImages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.MetalTexture.html">MetalTexture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.MonkeyModel.html">MonkeyModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.OfficePointClouds.html">OfficePointClouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.PCDPointCloud.html">PCDPointCloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.PLYPointCloud.html">PLYPointCloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.PaintedPlasterTexture.html">PaintedPlasterTexture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.RedwoodIndoorLivingRoom1.html">RedwoodIndoorLivingRoom1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.RedwoodIndoorLivingRoom2.html">RedwoodIndoorLivingRoom2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.RedwoodIndoorOffice1.html">RedwoodIndoorOffice1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.RedwoodIndoorOffice2.html">RedwoodIndoorOffice2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.SampleFountainRGBDImages.html">SampleFountainRGBDImages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.SampleL515Bag.html">SampleL515Bag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.SampleNYURGBDImage.html">SampleNYURGBDImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.SampleRedwoodRGBDImages.html">SampleRedwoodRGBDImages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.SampleSUNRGBDImage.html">SampleSUNRGBDImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.SampleTUMRGBDImage.html">SampleTUMRGBDImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.SwordModel.html">SwordModel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.TerrazzoTexture.html">TerrazzoTexture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.TilesTexture.html">TilesTexture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.WoodFloorTexture.html">WoodFloorTexture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.data.WoodTexture.html">WoodTexture</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.geometry.html">open3d.geometry</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of open3d.geometry</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.AxisAlignedBoundingBox.html">AxisAlignedBoundingBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.DeformAsRigidAsPossibleEnergy.html">DeformAsRigidAsPossibleEnergy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.FilterScope.html">FilterScope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.Geometry.html">Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.Geometry2D.html">Geometry2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.Geometry3D.html">Geometry3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.HalfEdge.html">HalfEdge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.HalfEdgeTriangleMesh.html">HalfEdgeTriangleMesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.Image.html">Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.ImageFilterType.html">ImageFilterType</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.KDTreeFlann.html">KDTreeFlann</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.KDTreeSearchParam.html">KDTreeSearchParam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.KDTreeSearchParamHybrid.html">KDTreeSearchParamHybrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.KDTreeSearchParamKNN.html">KDTreeSearchParamKNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.KDTreeSearchParamRadius.html">KDTreeSearchParamRadius</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.LineSet.html">LineSet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.MeshBase.html">MeshBase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.Octree.html">Octree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.OctreeColorLeafNode.html">OctreeColorLeafNode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.OctreeInternalNode.html">OctreeInternalNode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.OctreeInternalPointNode.html">OctreeInternalPointNode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.OctreeLeafNode.html">OctreeLeafNode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.OctreeNode.html">OctreeNode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.OctreeNodeInfo.html">OctreeNodeInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.OctreePointColorLeafNode.html">OctreePointColorLeafNode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.OrientedBoundingBox.html">OrientedBoundingBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.PointCloud.html">PointCloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.RGBDImage.html">RGBDImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.SimplificationContraction.html">SimplificationContraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.TetraMesh.html">TetraMesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.TriangleMesh.html">TriangleMesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.Voxel.html">Voxel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.VoxelGrid.html">VoxelGrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.get_rotation_matrix_from_axis_angle.html">get_rotation_matrix_from_axis_angle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.get_rotation_matrix_from_quaternion.html">get_rotation_matrix_from_quaternion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.get_rotation_matrix_from_xyz.html">get_rotation_matrix_from_xyz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.get_rotation_matrix_from_xzy.html">get_rotation_matrix_from_xzy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.get_rotation_matrix_from_yxz.html">get_rotation_matrix_from_yxz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.get_rotation_matrix_from_yzx.html">get_rotation_matrix_from_yzx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.get_rotation_matrix_from_zxy.html">get_rotation_matrix_from_zxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.geometry.get_rotation_matrix_from_zyx.html">get_rotation_matrix_from_zyx</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.io.html">open3d.io</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of open3d.io</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.AzureKinectMKVMetadata.html">AzureKinectMKVMetadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.AzureKinectMKVReader.html">AzureKinectMKVReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.AzureKinectRecorder.html">AzureKinectRecorder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.AzureKinectSensor.html">AzureKinectSensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.AzureKinectSensorConfig.html">AzureKinectSensorConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.FileGeometry.html">FileGeometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_azure_kinect_mkv_metadata.html">read_azure_kinect_mkv_metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_azure_kinect_sensor_config.html">read_azure_kinect_sensor_config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_feature.html">read_feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_file_geometry_type.html">read_file_geometry_type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_image.html">read_image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_line_set.html">read_line_set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_octree.html">read_octree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_pinhole_camera_intrinsic.html">read_pinhole_camera_intrinsic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_pinhole_camera_parameters.html">read_pinhole_camera_parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_pinhole_camera_trajectory.html">read_pinhole_camera_trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_point_cloud.html">read_point_cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_point_cloud_from_bytes.html">read_point_cloud_from_bytes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_pose_graph.html">read_pose_graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_triangle_mesh.html">read_triangle_mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_triangle_model.html">read_triangle_model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.read_voxel_grid.html">read_voxel_grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_azure_kinect_mkv_metadata.html">write_azure_kinect_mkv_metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_azure_kinect_sensor_config.html">write_azure_kinect_sensor_config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_feature.html">write_feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_image.html">write_image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_line_set.html">write_line_set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_octree.html">write_octree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_pinhole_camera_intrinsic.html">write_pinhole_camera_intrinsic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_pinhole_camera_parameters.html">write_pinhole_camera_parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_pinhole_camera_trajectory.html">write_pinhole_camera_trajectory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_point_cloud.html">write_point_cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_point_cloud_to_bytes.html">write_point_cloud_to_bytes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_pose_graph.html">write_pose_graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_triangle_mesh.html">write_triangle_mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.io.write_voxel_grid.html">write_voxel_grid</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.io.rpc.html">rpc</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of rpc</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.BufferConnection.html">BufferConnection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.Connection.html">Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.destroy_zmq_context.html">destroy_zmq_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.data_buffer_to_meta_geometry.html">data_buffer_to_meta_geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.set_active_camera.html">set_active_camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.set_legacy_camera.html">set_legacy_camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.set_mesh_data.html">set_mesh_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.set_point_cloud.html">set_point_cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.set_time.html">set_time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.io.rpc.set_triangle_mesh.html">set_triangle_mesh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.t.html">open3d.t</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of open3d.t</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.t.geometry.html">geometry</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of geometry</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.AxisAlignedBoundingBox.html">AxisAlignedBoundingBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.DrawableGeometry.html">DrawableGeometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.Geometry.html">Geometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.Image.html">Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.InterpType.html">InterpType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.LineSet.html">LineSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.Metric.html">Metric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.MetricParameters.html">MetricParameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.OrientedBoundingBox.html">OrientedBoundingBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.PointCloud.html">PointCloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.RGBDImage.html">RGBDImage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.RaycastingScene.html">RaycastingScene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.TensorMap.html">TensorMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.TriangleMesh.html">TriangleMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.VectorMetric.html">VectorMetric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.geometry.VoxelBlockGrid.html">VoxelBlockGrid</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.t.io.html">io</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of io</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.DepthNoiseSimulator.html">DepthNoiseSimulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.RGBDSensor.html">RGBDSensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.RGBDVideoMetadata.html">RGBDVideoMetadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.RGBDVideoReader.html">RGBDVideoReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.RSBagReader.html">RSBagReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.RealSenseSensor.html">RealSenseSensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.RealSenseSensorConfig.html">RealSenseSensorConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.RealSenseValidConfigs.html">RealSenseValidConfigs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.SensorType.html">SensorType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.read_image.html">read_image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.read_point_cloud.html">read_point_cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.read_triangle_mesh.html">read_triangle_mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.write_image.html">write_image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.write_point_cloud.html">write_point_cloud</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.t.io.write_triangle_mesh.html">write_triangle_mesh</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.t.pipelines.html">pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.html">odometry</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of odometry</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.Method.html">Method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.OdometryConvergenceCriteria.html">OdometryConvergenceCriteria</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.OdometryLossParams.html">OdometryLossParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.OdometryResult.html">OdometryResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.compute_odometry_information_matrix.html">compute_odometry_information_matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.compute_odometry_result_hybrid.html">compute_odometry_result_hybrid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.compute_odometry_result_intensity.html">compute_odometry_result_intensity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.compute_odometry_result_point_to_plane.html">compute_odometry_result_point_to_plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.odometry.rgbd_odometry_multi_scale.html">rgbd_odometry_multi_scale</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.html">registration</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of registration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.ICPConvergenceCriteria.html">ICPConvergenceCriteria</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.RegistrationResult.html">RegistrationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.TransformationEstimation.html">TransformationEstimation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.TransformationEstimationForColoredICP.html">TransformationEstimationForColoredICP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.TransformationEstimationForDopplerICP.html">TransformationEstimationForDopplerICP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.TransformationEstimationPointToPlane.html">TransformationEstimationPointToPlane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.TransformationEstimationPointToPoint.html">TransformationEstimationPointToPoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.compute_fpfh_feature.html">compute_fpfh_feature</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.correspondences_from_features.html">correspondences_from_features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.evaluate_registration.html">evaluate_registration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.get_information_matrix.html">get_information_matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.icp.html">icp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.registration.multi_scale_icp.html">multi_scale_icp</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slac.html">slac</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle navigation of slac</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slac.control_grid.html">control_grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slac.slac_debug_option.html">slac_debug_option</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slac.slac_optimizer_params.html">slac_optimizer_params</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slac.run_rigid_optimizer_for_fragments.html">run_rigid_optimizer_for_fragments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slac.run_slac_optimizer_for_fragments.html">run_slac_optimizer_for_fragments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slac.save_correspondences_for_pointclouds.html">save_correspondences_for_pointclouds</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slam.html">slam</a><input class="toctree-checkbox" id="toctree-checkbox-24" name="toctree-checkbox-24" role="switch" type="checkbox"/><label for="toctree-checkbox-24"><div class="visually-hidden">Toggle navigation of slam</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slam.Frame.html">Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.t.pipelines.slam.Model.html">Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.ml.html">open3d.ml</a><input class="toctree-checkbox" id="toctree-checkbox-25" name="toctree-checkbox-25" role="switch" type="checkbox"/><label for="toctree-checkbox-25"><div class="visually-hidden">Toggle navigation of open3d.ml</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.html">tf</a><input class="toctree-checkbox" id="toctree-checkbox-26" name="toctree-checkbox-26" role="switch" type="checkbox"/><label for="toctree-checkbox-26"><div class="visually-hidden">Toggle navigation of tf</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.dataloaders.html">dataloaders</a><input class="toctree-checkbox" id="toctree-checkbox-27" name="toctree-checkbox-27" role="switch" type="checkbox"/><label for="toctree-checkbox-27"><div class="visually-hidden">Toggle navigation of dataloaders</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.dataloaders.TFDataloader.html">TFDataloader</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.html">datasets</a><input class="toctree-checkbox" id="toctree-checkbox-28" name="toctree-checkbox-28" role="switch" type="checkbox"/><label for="toctree-checkbox-28"><div class="visually-hidden">Toggle navigation of datasets</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.Argoverse.html">Argoverse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.Custom3D.html">Custom3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.InferenceDummySplit.html">InferenceDummySplit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.KITTI.html">KITTI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.Lyft.html">Lyft</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.MatterportObjects.html">MatterportObjects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.NuScenes.html">NuScenes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.ParisLille3D.html">ParisLille3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.S3DIS.html">S3DIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.Scannet.html">Scannet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.SemSegRandomSampler.html">SemSegRandomSampler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.SemSegSpatiallyRegularSampler.html">SemSegSpatiallyRegularSampler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.Semantic3D.html">Semantic3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.SemanticKITTI.html">SemanticKITTI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.ShapeNet.html">ShapeNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.SunRGBD.html">SunRGBD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.TUMFacade.html">TUMFacade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.Toronto3D.html">Toronto3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.Waymo.html">Waymo</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.augment.html">augment</a><input class="toctree-checkbox" id="toctree-checkbox-29" name="toctree-checkbox-29" role="switch" type="checkbox"/><label for="toctree-checkbox-29"><div class="visually-hidden">Toggle navigation of augment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.augment.ObjdetAugmentation.html">ObjdetAugmentation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.augment.SemsegAugmentation.html">SemsegAugmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.html">utils</a><input class="toctree-checkbox" id="toctree-checkbox-30" name="toctree-checkbox-30" role="switch" type="checkbox"/><label for="toctree-checkbox-30"><div class="visually-hidden">Toggle navigation of utils</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.BEVBox3D.html">BEVBox3D</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.DataProcessing.html">DataProcessing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.ObjdetAugmentation.html">ObjdetAugmentation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.create_3D_rotations.html">create_3D_rotations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.get_min_bbox.html">get_min_bbox</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.trans_augment.html">trans_augment</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.trans_crop_pc.html">trans_crop_pc</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.datasets.utils.trans_normalize.html">trans_normalize</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.layers.html">layers</a><input class="toctree-checkbox" id="toctree-checkbox-31" name="toctree-checkbox-31" role="switch" type="checkbox"/><label for="toctree-checkbox-31"><div class="visually-hidden">Toggle navigation of layers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.layers.ContinuousConv.html">ContinuousConv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.layers.FixedRadiusSearch.html">FixedRadiusSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.layers.KNNSearch.html">KNNSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.layers.RadiusSearch.html">RadiusSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.layers.SparseConv.html">SparseConv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.layers.SparseConvTranspose.html">SparseConvTranspose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.layers.VoxelPooling.html">VoxelPooling</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.models.html">models</a><input class="toctree-checkbox" id="toctree-checkbox-32" name="toctree-checkbox-32" role="switch" type="checkbox"/><label for="toctree-checkbox-32"><div class="visually-hidden">Toggle navigation of models</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.models.KPFCNN.html">KPFCNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.models.PVCNN.html">PVCNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.models.PointPillars.html">PointPillars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.models.PointRCNN.html">PointRCNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.models.PointTransformer.html">PointTransformer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.models.RandLANet.html">RandLANet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.models.SparseConvUnet.html">SparseConvUnet</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.modules.html">modules</a><input class="toctree-checkbox" id="toctree-checkbox-33" name="toctree-checkbox-33" role="switch" type="checkbox"/><label for="toctree-checkbox-33"><div class="visually-hidden">Toggle navigation of modules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.modules.losses.html">losses</a><input class="toctree-checkbox" id="toctree-checkbox-34" name="toctree-checkbox-34" role="switch" type="checkbox"/><label for="toctree-checkbox-34"><div class="visually-hidden">Toggle navigation of losses</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.modules.losses.CrossEntropyLoss.html">CrossEntropyLoss</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.modules.losses.FocalLoss.html">FocalLoss</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.modules.losses.SemSegLoss.html">SemSegLoss</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.modules.losses.SmoothL1Loss.html">SmoothL1Loss</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.modules.metrics.html">metrics</a><input class="toctree-checkbox" id="toctree-checkbox-35" name="toctree-checkbox-35" role="switch" type="checkbox"/><label for="toctree-checkbox-35"><div class="visually-hidden">Toggle navigation of metrics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.tf.modules.metrics.SemSegMetric.html">SemSegMetric</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.html">ops</a><input class="toctree-checkbox" id="toctree-checkbox-36" name="toctree-checkbox-36" role="switch" type="checkbox"/><label for="toctree-checkbox-36"><div class="visually-hidden">Toggle navigation of ops</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.build_spatial_hash_table.html">build_spatial_hash_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.continuous_conv.html">continuous_conv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.continuous_conv_backprop_filter.html">continuous_conv_backprop_filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.continuous_conv_transpose.html">continuous_conv_transpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.continuous_conv_transpose_backprop_filter.html">continuous_conv_transpose_backprop_filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.fixed_radius_search.html">fixed_radius_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.invert_neighbors_list.html">invert_neighbors_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.knn_search.html">knn_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.nms.html">nms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.radius_search.html">radius_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.reduce_subarrays_sum.html">reduce_subarrays_sum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.voxel_pooling.html">voxel_pooling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.voxel_pooling_grad.html">voxel_pooling_grad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.ops.voxelize.html">voxelize</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.pipelines.html">pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-37" name="toctree-checkbox-37" role="switch" type="checkbox"/><label for="toctree-checkbox-37"><div class="visually-hidden">Toggle navigation of pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.pipelines.ObjectDetection.html">ObjectDetection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.pipelines.SemanticSegmentation.html">SemanticSegmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.html">vis</a><input class="toctree-checkbox" id="toctree-checkbox-38" name="toctree-checkbox-38" role="switch" type="checkbox"/><label for="toctree-checkbox-38"><div class="visually-hidden">Toggle navigation of vis</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.BoundingBox3D.html">BoundingBox3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.Colormap.html">Colormap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.DataModel.html">DataModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.DatasetModel.html">DatasetModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.LabelLUT.html">LabelLUT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.Model.html">Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.Visualizer.html">Visualizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.deque.html">deque</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.tf.vis.rgb_to_yiq.html">rgb_to_yiq</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.html">torch</a><input class="toctree-checkbox" id="toctree-checkbox-39" name="toctree-checkbox-39" role="switch" type="checkbox"/><label for="toctree-checkbox-39"><div class="visually-hidden">Toggle navigation of torch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.classes.html">classes</a><input class="toctree-checkbox" id="toctree-checkbox-40" name="toctree-checkbox-40" role="switch" type="checkbox"/><label for="toctree-checkbox-40"><div class="visually-hidden">Toggle navigation of classes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.classes.RaggedTensor.html">RaggedTensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.dataloaders.html">dataloaders</a><input class="toctree-checkbox" id="toctree-checkbox-41" name="toctree-checkbox-41" role="switch" type="checkbox"/><label for="toctree-checkbox-41"><div class="visually-hidden">Toggle navigation of dataloaders</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.dataloaders.ConcatBatcher.html">ConcatBatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.dataloaders.DefaultBatcher.html">DefaultBatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.dataloaders.TorchDataloader.html">TorchDataloader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.dataloaders.get_sampler.html">get_sampler</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.html">datasets</a><input class="toctree-checkbox" id="toctree-checkbox-42" name="toctree-checkbox-42" role="switch" type="checkbox"/><label for="toctree-checkbox-42"><div class="visually-hidden">Toggle navigation of datasets</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.Argoverse.html">Argoverse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.Custom3D.html">Custom3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.InferenceDummySplit.html">InferenceDummySplit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.KITTI.html">KITTI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.Lyft.html">Lyft</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.MatterportObjects.html">MatterportObjects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.NuScenes.html">NuScenes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.ParisLille3D.html">ParisLille3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.S3DIS.html">S3DIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.Scannet.html">Scannet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.SemSegRandomSampler.html">SemSegRandomSampler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.SemSegSpatiallyRegularSampler.html">SemSegSpatiallyRegularSampler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.Semantic3D.html">Semantic3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.SemanticKITTI.html">SemanticKITTI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.ShapeNet.html">ShapeNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.SunRGBD.html">SunRGBD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.TUMFacade.html">TUMFacade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.Toronto3D.html">Toronto3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.Waymo.html">Waymo</a></li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.augment.html">augment</a><input class="toctree-checkbox" id="toctree-checkbox-43" name="toctree-checkbox-43" role="switch" type="checkbox"/><label for="toctree-checkbox-43"><div class="visually-hidden">Toggle navigation of augment</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.augment.ObjdetAugmentation.html">ObjdetAugmentation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.augment.SemsegAugmentation.html">SemsegAugmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.samplers.html">samplers</a><input class="toctree-checkbox" id="toctree-checkbox-44" name="toctree-checkbox-44" role="switch" type="checkbox"/><label for="toctree-checkbox-44"><div class="visually-hidden">Toggle navigation of samplers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.samplers.SemSegRandomSampler.html">SemSegRandomSampler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.samplers.SemSegSpatiallyRegularSampler.html">SemSegSpatiallyRegularSampler</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.html">utils</a><input class="toctree-checkbox" id="toctree-checkbox-45" name="toctree-checkbox-45" role="switch" type="checkbox"/><label for="toctree-checkbox-45"><div class="visually-hidden">Toggle navigation of utils</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.BEVBox3D.html">BEVBox3D</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.DataProcessing.html">DataProcessing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.ObjdetAugmentation.html">ObjdetAugmentation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.create_3D_rotations.html">create_3D_rotations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.get_min_bbox.html">get_min_bbox</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.trans_augment.html">trans_augment</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.trans_crop_pc.html">trans_crop_pc</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.datasets.utils.trans_normalize.html">trans_normalize</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.layers.html">layers</a><input class="toctree-checkbox" id="toctree-checkbox-46" name="toctree-checkbox-46" role="switch" type="checkbox"/><label for="toctree-checkbox-46"><div class="visually-hidden">Toggle navigation of layers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.layers.ContinuousConv.html">ContinuousConv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.layers.FixedRadiusSearch.html">FixedRadiusSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.layers.KNNSearch.html">KNNSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.layers.RadiusSearch.html">RadiusSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.layers.SparseConv.html">SparseConv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.layers.SparseConvTranspose.html">SparseConvTranspose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.layers.VoxelPooling.html">VoxelPooling</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.models.html">models</a><input class="toctree-checkbox" id="toctree-checkbox-47" name="toctree-checkbox-47" role="switch" type="checkbox"/><label for="toctree-checkbox-47"><div class="visually-hidden">Toggle navigation of models</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.models.KPFCNN.html">KPFCNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.models.PVCNN.html">PVCNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.models.PointPillars.html">PointPillars</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.models.PointRCNN.html">PointRCNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.models.PointTransformer.html">PointTransformer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.models.RandLANet.html">RandLANet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.models.SparseConvUnet.html">SparseConvUnet</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.html">modules</a><input class="toctree-checkbox" id="toctree-checkbox-48" name="toctree-checkbox-48" role="switch" type="checkbox"/><label for="toctree-checkbox-48"><div class="visually-hidden">Toggle navigation of modules</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.losses.html">losses</a><input class="toctree-checkbox" id="toctree-checkbox-49" name="toctree-checkbox-49" role="switch" type="checkbox"/><label for="toctree-checkbox-49"><div class="visually-hidden">Toggle navigation of losses</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.losses.CrossEntropyLoss.html">CrossEntropyLoss</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.losses.FocalLoss.html">FocalLoss</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.losses.SemSegLoss.html">SemSegLoss</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.losses.SmoothL1Loss.html">SmoothL1Loss</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.losses.filter_valid_label.html">filter_valid_label</a></li>
+</ul>
+</li>
+<li class="toctree-l4 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.metrics.html">metrics</a><input class="toctree-checkbox" id="toctree-checkbox-50" name="toctree-checkbox-50" role="switch" type="checkbox"/><label for="toctree-checkbox-50"><div class="visually-hidden">Toggle navigation of metrics</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../python_api/open3d.ml.torch.modules.metrics.SemSegMetric.html">SemSegMetric</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.html">ops</a><input class="toctree-checkbox" id="toctree-checkbox-51" name="toctree-checkbox-51" role="switch" type="checkbox"/><label for="toctree-checkbox-51"><div class="visually-hidden">Toggle navigation of ops</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.build_spatial_hash_table.html">build_spatial_hash_table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.continuous_conv.html">continuous_conv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.continuous_conv_transpose.html">continuous_conv_transpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.fixed_radius_search.html">fixed_radius_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.invert_neighbors_list.html">invert_neighbors_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.knn_search.html">knn_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.nms.html">nms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.radius_search.html">radius_search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.reduce_subarrays_sum.html">reduce_subarrays_sum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.voxel_pooling.html">voxel_pooling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.ops.voxelize.html">voxelize</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.pipelines.html">pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-52" name="toctree-checkbox-52" role="switch" type="checkbox"/><label for="toctree-checkbox-52"><div class="visually-hidden">Toggle navigation of pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.pipelines.ObjectDetection.html">ObjectDetection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.pipelines.SemanticSegmentation.html">SemanticSegmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.html">vis</a><input class="toctree-checkbox" id="toctree-checkbox-53" name="toctree-checkbox-53" role="switch" type="checkbox"/><label for="toctree-checkbox-53"><div class="visually-hidden">Toggle navigation of vis</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.BoundingBox3D.html">BoundingBox3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.Colormap.html">Colormap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.DataModel.html">DataModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.DatasetModel.html">DatasetModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.LabelLUT.html">LabelLUT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.Model.html">Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.Visualizer.html">Visualizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.deque.html">deque</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python_api/open3d.ml.torch.vis.rgb_to_yiq.html">rgb_to_yiq</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.pipelines.html">open3d.pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-54" name="toctree-checkbox-54" role="switch" type="checkbox"/><label for="toctree-checkbox-54"><div class="visually-hidden">Toggle navigation of open3d.pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.pipelines.color_map.html">color_map</a><input class="toctree-checkbox" id="toctree-checkbox-55" name="toctree-checkbox-55" role="switch" type="checkbox"/><label for="toctree-checkbox-55"><div class="visually-hidden">Toggle navigation of color_map</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.color_map.NonRigidOptimizerOption.html">NonRigidOptimizerOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.color_map.RigidOptimizerOption.html">RigidOptimizerOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.color_map.run_non_rigid_optimizer.html">run_non_rigid_optimizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.color_map.run_rigid_optimizer.html">run_rigid_optimizer</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.pipelines.integration.html">integration</a><input class="toctree-checkbox" id="toctree-checkbox-56" name="toctree-checkbox-56" role="switch" type="checkbox"/><label for="toctree-checkbox-56"><div class="visually-hidden">Toggle navigation of integration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.integration.ScalableTSDFVolume.html">ScalableTSDFVolume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.integration.TSDFVolume.html">TSDFVolume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.integration.TSDFVolumeColorType.html">TSDFVolumeColorType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.integration.UniformTSDFVolume.html">UniformTSDFVolume</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.pipelines.odometry.html">odometry</a><input class="toctree-checkbox" id="toctree-checkbox-57" name="toctree-checkbox-57" role="switch" type="checkbox"/><label for="toctree-checkbox-57"><div class="visually-hidden">Toggle navigation of odometry</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.odometry.OdometryOption.html">OdometryOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.odometry.RGBDOdometryJacobian.html">RGBDOdometryJacobian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.odometry.RGBDOdometryJacobianFromColorTerm.html">RGBDOdometryJacobianFromColorTerm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.odometry.RGBDOdometryJacobianFromHybridTerm.html">RGBDOdometryJacobianFromHybridTerm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.odometry.compute_correspondence.html">compute_correspondence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.odometry.compute_rgbd_odometry.html">compute_rgbd_odometry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.html">registration</a><input class="toctree-checkbox" id="toctree-checkbox-58" name="toctree-checkbox-58" role="switch" type="checkbox"/><label for="toctree-checkbox-58"><div class="visually-hidden">Toggle navigation of registration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.CauchyLoss.html">CauchyLoss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.CorrespondenceChecker.html">CorrespondenceChecker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.CorrespondenceCheckerBasedOnDistance.html">CorrespondenceCheckerBasedOnDistance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.CorrespondenceCheckerBasedOnEdgeLength.html">CorrespondenceCheckerBasedOnEdgeLength</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.CorrespondenceCheckerBasedOnNormal.html">CorrespondenceCheckerBasedOnNormal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.FastGlobalRegistrationOption.html">FastGlobalRegistrationOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.Feature.html">Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.GMLoss.html">GMLoss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.GlobalOptimizationConvergenceCriteria.html">GlobalOptimizationConvergenceCriteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.GlobalOptimizationGaussNewton.html">GlobalOptimizationGaussNewton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.GlobalOptimizationLevenbergMarquardt.html">GlobalOptimizationLevenbergMarquardt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.GlobalOptimizationMethod.html">GlobalOptimizationMethod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.GlobalOptimizationOption.html">GlobalOptimizationOption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.HuberLoss.html">HuberLoss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.ICPConvergenceCriteria.html">ICPConvergenceCriteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.L1Loss.html">L1Loss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.L2Loss.html">L2Loss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.PoseGraph.html">PoseGraph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.PoseGraphEdge.html">PoseGraphEdge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.PoseGraphEdgeVector.html">PoseGraphEdgeVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.PoseGraphNode.html">PoseGraphNode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.PoseGraphNodeVector.html">PoseGraphNodeVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.RANSACConvergenceCriteria.html">RANSACConvergenceCriteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.RegistrationResult.html">RegistrationResult</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.RobustKernel.html">RobustKernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.TransformationEstimation.html">TransformationEstimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.TransformationEstimationForColoredICP.html">TransformationEstimationForColoredICP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.TransformationEstimationForGeneralizedICP.html">TransformationEstimationForGeneralizedICP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.TransformationEstimationPointToPlane.html">TransformationEstimationPointToPlane</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.TransformationEstimationPointToPoint.html">TransformationEstimationPointToPoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.TukeyLoss.html">TukeyLoss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.compute_fpfh_feature.html">compute_fpfh_feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.correspondences_from_features.html">correspondences_from_features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.evaluate_registration.html">evaluate_registration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.get_information_matrix_from_point_clouds.html">get_information_matrix_from_point_clouds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.global_optimization.html">global_optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.registration_colored_icp.html">registration_colored_icp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.registration_fgr_based_on_correspondence.html">registration_fgr_based_on_correspondence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.registration_fgr_based_on_feature_matching.html">registration_fgr_based_on_feature_matching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.registration_generalized_icp.html">registration_generalized_icp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.registration_icp.html">registration_icp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.registration_ransac_based_on_correspondence.html">registration_ransac_based_on_correspondence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.pipelines.registration.registration_ransac_based_on_feature_matching.html">registration_ransac_based_on_feature_matching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.utility.html">open3d.utility</a><input class="toctree-checkbox" id="toctree-checkbox-59" name="toctree-checkbox-59" role="switch" type="checkbox"/><label for="toctree-checkbox-59"><div class="visually-hidden">Toggle navigation of open3d.utility</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.DoubleVector.html">DoubleVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.IntVector.html">IntVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.Matrix3dVector.html">Matrix3dVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.Matrix4dVector.html">Matrix4dVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.Vector2dVector.html">Vector2dVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.Vector2iVector.html">Vector2iVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.Vector3dVector.html">Vector3dVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.Vector3iVector.html">Vector3iVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.Vector4iVector.html">Vector4iVector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.VerbosityContextManager.html">VerbosityContextManager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.VerbosityLevel.html">VerbosityLevel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.get_verbosity_level.html">get_verbosity_level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.reset_print_function.html">reset_print_function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.utility.set_verbosity_level.html">set_verbosity_level</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_api/open3d.visualization.html">open3d.visualization</a><input class="toctree-checkbox" id="toctree-checkbox-60" name="toctree-checkbox-60" role="switch" type="checkbox"/><label for="toctree-checkbox-60"><div class="visually-hidden">Toggle navigation of open3d.visualization</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.ExternalVisualizer.html">ExternalVisualizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.Material.html">Material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.MeshColorOption.html">MeshColorOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.MeshShadeOption.html">MeshShadeOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.O3DVisualizer.html">O3DVisualizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.PickedPoint.html">PickedPoint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.PointColorOption.html">PointColorOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.RenderOption.html">RenderOption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.ScalarProperties.html">ScalarProperties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.SelectedIndex.html">SelectedIndex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.SelectionPolygonVolume.html">SelectionPolygonVolume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.TextureMaps.html">TextureMaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.VectorProperties.html">VectorProperties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.ViewControl.html">ViewControl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.Visualizer.html">Visualizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.VisualizerWithEditing.html">VisualizerWithEditing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.VisualizerWithKeyCallback.html">VisualizerWithKeyCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.VisualizerWithVertexSelection.html">VisualizerWithVertexSelection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.draw.html">draw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.draw_geometries.html">draw_geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.draw_geometries_with_animation_callback.html">draw_geometries_with_animation_callback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.draw_geometries_with_custom_animation.html">draw_geometries_with_custom_animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.draw_geometries_with_editing.html">draw_geometries_with_editing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.draw_geometries_with_key_callbacks.html">draw_geometries_with_key_callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.draw_geometries_with_vertex_selection.html">draw_geometries_with_vertex_selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_api/open3d.visualization.read_selection_polygon_volume.html">read_selection_polygon_volume</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.visualization.gui.html">gui</a><input class="toctree-checkbox" id="toctree-checkbox-61" name="toctree-checkbox-61" role="switch" type="checkbox"/><label for="toctree-checkbox-61"><div class="visually-hidden">Toggle navigation of gui</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Application.html">Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Button.html">Button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.CheckableTextTreeCell.html">CheckableTextTreeCell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Checkbox.html">Checkbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.CollapsableVert.html">CollapsableVert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Color.html">Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.ColorEdit.html">ColorEdit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.ColormapTreeCell.html">ColormapTreeCell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Combobox.html">Combobox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Dialog.html">Dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.FileDialog.html">FileDialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.FontDescription.html">FontDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.FontStyle.html">FontStyle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Horiz.html">Horiz</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.ImageWidget.html">ImageWidget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.KeyEvent.html">KeyEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.KeyModifier.html">KeyModifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.KeyName.html">KeyName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.LUTTreeCell.html">LUTTreeCell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Label.html">Label</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Label3D.html">Label3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Layout1D.html">Layout1D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.LayoutContext.html">LayoutContext</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.ListView.html">ListView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Margins.html">Margins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Menu.html">Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.MouseButton.html">MouseButton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.MouseEvent.html">MouseEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.NumberEdit.html">NumberEdit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.ProgressBar.html">ProgressBar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.RadioButton.html">RadioButton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Rect.html">Rect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.SceneWidget.html">SceneWidget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.ScrollableVert.html">ScrollableVert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Size.html">Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Slider.html">Slider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.StackedWidget.html">StackedWidget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.TabControl.html">TabControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.TextEdit.html">TextEdit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Theme.html">Theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.ToggleSwitch.html">ToggleSwitch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.TreeView.html">TreeView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.UIImage.html">UIImage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.VGrid.html">VGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.VectorEdit.html">VectorEdit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Vert.html">Vert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Widget.html">Widget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.WidgetProxy.html">WidgetProxy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.WidgetStack.html">WidgetStack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.Window.html">Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.gui.WindowBase.html">WindowBase</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.html">rendering</a><input class="toctree-checkbox" id="toctree-checkbox-62" name="toctree-checkbox-62" role="switch" type="checkbox"/><label for="toctree-checkbox-62"><div class="visually-hidden">Toggle navigation of rendering</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.Camera.html">Camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.ColorGrading.html">ColorGrading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.Gradient.html">Gradient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.MaterialRecord.html">MaterialRecord</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.OffscreenRenderer.html">OffscreenRenderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.Open3DScene.html">Open3DScene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.Renderer.html">Renderer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.Scene.html">Scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.TextureHandle.html">TextureHandle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.TriangleMeshModel.html">TriangleMeshModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.rendering.View.html">View</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.visualization.webrtc_server.html">webrtc_server</a><input class="toctree-checkbox" id="toctree-checkbox-63" name="toctree-checkbox-63" role="switch" type="checkbox"/><label for="toctree-checkbox-63"><div class="visually-hidden">Toggle navigation of webrtc_server</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.webrtc_server.call_http_api.html">call_http_api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.webrtc_server.disable_http_handshake.html">disable_http_handshake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.webrtc_server.enable_webrtc.html">enable_webrtc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.webrtc_server.register_data_channel_message_callback.html">register_data_channel_message_callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../python_api/open3d.visualization.tensorboard_plugin.summary.html">tensorboard_plugin.summary</a><input class="toctree-checkbox" id="toctree-checkbox-64" name="toctree-checkbox-64" role="switch" type="checkbox"/><label for="toctree-checkbox-64"><div class="visually-hidden">Toggle navigation of tensorboard_plugin.summary</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../python_api/open3d.visualization.tensorboard_plugin.summary.add_3d.html">add_3d</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python_example/camera/index.html">Camera</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python_example/geometry/index.html">Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-65" name="toctree-checkbox-65" role="switch" type="checkbox"/><label for="toctree-checkbox-65"><div class="visually-hidden">Toggle navigation of Geometry</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python_example/geometry/image/index.html">Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_example/geometry/kd_tree/index.html">KD Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_example/geometry/octree/index.html">Octree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_example/geometry/point_cloud/index.html">Point Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_example/geometry/ray_casting/index.html">Ray Casting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_example/geometry/rgbd/index.html">RGBD Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_example/geometry/triangle_mesh/index.html">Triangle Mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python_example/geometry/voxel_grid/index.html">Voxel Grid</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../python_example/io/index.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python_example/pipelines/index.html">Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python_example/utility/index.html">Utility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python_example/visualization/index.html">Visualization</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++ API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api.html">C++ documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contribute</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute/contribute.html">Contributing to Open3D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute/contribution_recipes.html">Contribution methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contribute/styleguide.html">Open3D style guide</a></li>
+</ul>
+
+</div>
+</div>
+
+  <div id="furo-versions" class="rst-versions sidebar-tree" role="note" aria-label="versions" tabindex="0">
+      <p class="caption">Docs Version</p>
+      <input type="checkbox" id="checkbox_toggle" class="toctree-checkbox versions-checkbox" role="switch">
+      <label id="versions-label" class="versions-label" for="checkbox_toggle">
+          <div class="visually-hidden">Toggle child pages in navigation</div>
+          <i class="icon">
+            <svg>
+              <use href="#svg-arrow-right"></use>
+            </svg>
+          </i>
+      </label>
+
+    <!-- A hack to include an external page to get around CORS policy -->
+    <!-- https://stackoverflow.com/a/15250208/1255535 -->
+    <div class="rst-other-versions">
+        <script src="https://www.open3d.org/docs/versions.js"></script>
+    </div>
+  </div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="RGBD-integration">
+<h1>RGBD integration<a class="headerlink" href="#RGBD-integration" title="Permalink to this heading">#</a></h1>
+<p>Open3D implements a scalable RGBD image integration algorithm. The algorithm is based on the technique presented in <a class="reference external" href="../reference.html#curless1996">[Curless1996]</a> and <a class="reference external" href="../reference.html#newcombe2011">[Newcombe2011]</a>. In order to support large scenes, we use a hierarchical hashing structure introduced in <a class="reference external" href="https://github.com/qianyizh/ElasticReconstruction/tree/master/Integrate">Integrater in ElasticReconstruction</a>.</p>
+<section id="Read-trajectory-from-.log-file">
+<h2>Read trajectory from .log file<a class="headerlink" href="#Read-trajectory-from-.log-file" title="Permalink to this heading">#</a></h2>
+<p>This tutorial uses the function <code class="docutils literal notranslate"><span class="pre">read_trajectory</span></code> to read a camera trajectory from a <a class="reference external" href="http://redwood-data.org/indoor/fileformat.html">.log file</a>. A sample <code class="docutils literal notranslate"><span class="pre">.log</span></code> file is as follows.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># odometry.log
+0   0   1
+1   0   0   2
+0   1   0   2
+0   0   1 -0.3
+0   0   0   1
+1   1   2
+0.999988  3.08668e-005  0.0049181  1.99962
+-8.84184e-005  0.999932  0.0117022  1.97704
+-0.0049174  -0.0117024  0.999919  -0.300486
+0  0  0  1
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CameraPose</span><span class="p">:</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">meta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pose</span> <span class="o">=</span> <span class="n">mat</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Metadata : &#39;</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> \
+            <span class="s2">&quot;Pose : &quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pose</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">read_trajectory</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">traj</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">metastr</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">metastr</span><span class="p">:</span>
+            <span class="n">metadata</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">metastr</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+            <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">matstr</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">matstr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; </span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">traj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">CameraPose</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">mat</span><span class="p">))</span>
+            <span class="n">metastr</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">traj</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">redwood_rgbd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">SampleRedwoodRGBDImages</span><span class="p">()</span>
+<span class="n">camera_poses</span> <span class="o">=</span> <span class="n">read_trajectory</span><span class="p">(</span><span class="n">redwood_rgbd</span><span class="o">.</span><span class="n">odometry_log_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="TSDF-volume-integration">
+<h2>TSDF volume integration<a class="headerlink" href="#TSDF-volume-integration" title="Permalink to this heading">#</a></h2>
+<p>Open3D provides two types of TSDF volumes: <code class="docutils literal notranslate"><span class="pre">UniformTSDFVolume</span></code> and <code class="docutils literal notranslate"><span class="pre">ScalableTSDFVolume</span></code>. The latter is recommended since it uses a hierarchical structure and thus supports larger scenes.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ScalableTSDFVolume</span></code> has several parameters. <code class="docutils literal notranslate"><span class="pre">voxel_length</span> <span class="pre">=</span> <span class="pre">4.0</span> <span class="pre">/</span> <span class="pre">512.0</span></code> means a single voxel size for TSDF volume is <span class="math notranslate nohighlight">\(\frac{4.0\mathrm{m}}{512.0} = 7.8125\mathrm{mm}\)</span>. Lowering this value makes a high-resolution TSDF volume, but the integration result can be susceptible to depth noise. <code class="docutils literal notranslate"><span class="pre">sdf_trunc</span> <span class="pre">=</span> <span class="pre">0.04</span></code> specifies the truncation value for the signed distance function (SDF). When <code class="docutils literal notranslate"><span class="pre">color_type</span> <span class="pre">=</span> <span class="pre">TSDFVolumeColorType.RGB8</span></code>, 8 bit RGB color is also integrated as part of the TSDF
+volume. Float type intensity can be integrated with <code class="docutils literal notranslate"><span class="pre">color_type</span> <span class="pre">=</span> <span class="pre">TSDFVolumeColorType.Gray32</span></code> and <code class="docutils literal notranslate"><span class="pre">convert_rgb_to_intensity</span> <span class="pre">=</span> <span class="pre">True</span></code>. The color integration is inspired by <a class="reference external" href="http://pointclouds.org/">PCL</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">volume</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">ScalableTSDFVolume</span><span class="p">(</span>
+    <span class="n">voxel_length</span><span class="o">=</span><span class="mf">4.0</span> <span class="o">/</span> <span class="mf">512.0</span><span class="p">,</span>
+    <span class="n">sdf_trunc</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span>
+    <span class="n">color_type</span><span class="o">=</span><span class="n">o3d</span><span class="o">.</span><span class="n">pipelines</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">TSDFVolumeColorType</span><span class="o">.</span><span class="n">RGB8</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">camera_poses</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Integrate </span><span class="si">{:d}</span><span class="s2">-th image into the volume.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_image</span><span class="p">(</span><span class="n">redwood_rgbd</span><span class="o">.</span><span class="n">color_paths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_image</span><span class="p">(</span><span class="n">redwood_rgbd</span><span class="o">.</span><span class="n">depth_paths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">rgbd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">RGBDImage</span><span class="o">.</span><span class="n">create_from_color_and_depth</span><span class="p">(</span>
+        <span class="n">color</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">depth_trunc</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">convert_rgb_to_intensity</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">volume</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span>
+        <span class="n">rgbd</span><span class="p">,</span>
+        <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsic</span><span class="p">(</span>
+            <span class="n">o3d</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">PinholeCameraIntrinsicParameters</span><span class="o">.</span><span class="n">PrimeSenseDefault</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">camera_poses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">pose</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Integrate 0-th image into the volume.
+Integrate 1-th image into the volume.
+Integrate 2-th image into the volume.
+Integrate 3-th image into the volume.
+Integrate 4-th image into the volume.
+</pre></div></div>
+</div>
+</section>
+<section id="Extract-a-mesh">
+<h2>Extract a mesh<a class="headerlink" href="#Extract-a-mesh" title="Permalink to this heading">#</a></h2>
+<p>Mesh extraction uses the marching cubes algorithm <a class="reference external" href="../reference.html#lorensenandcline1987">[LorensenAndCline1987]</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extract a triangle mesh from the volume and visualize it.&quot;</span><span class="p">)</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">volume</span><span class="o">.</span><span class="n">extract_triangle_mesh</span><span class="p">()</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">compute_vertex_normals</span><span class="p">()</span>
+<span class="n">o3d</span><span class="o">.</span><span class="n">visualization</span><span class="o">.</span><span class="n">draw_geometries</span><span class="p">([</span><span class="n">mesh</span><span class="p">],</span>
+                                  <span class="n">front</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5297</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1873</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8272</span><span class="p">],</span>
+                                  <span class="n">lookat</span><span class="o">=</span><span class="p">[</span><span class="mf">2.0712</span><span class="p">,</span> <span class="mf">2.0312</span><span class="p">,</span> <span class="mf">1.7251</span><span class="p">],</span>
+                                  <span class="n">up</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.0558</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9809</span><span class="p">,</span> <span class="mf">0.1864</span><span class="p">],</span>
+                                  <span class="n">zoom</span><span class="o">=</span><span class="mf">0.47</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Extract a triangle mesh from the volume and visualize it.
+<span class="ansi-yellow-intense-fg ansi-bold">[Open3D WARNING] GLFW Error: Failed to detect any supported platform</span>
+<span class="ansi-yellow-intense-fg ansi-bold">[Open3D WARNING] GLFW initialized for headless rendering.</span>
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorial_pipelines_rgbd_integration_8_1.png" src="../../_images/tutorial_pipelines_rgbd_integration_8_1.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>Note:</strong></p>
+<p>TSDF volume works like a weighted average filter in 3D space. If more frames are integrated, the volume produces a smoother and nicer mesh. Please check <a class="reference internal" href="../reconstruction_system/make_fragments.html"><span class="doc">Make fragments</span></a> for more examples.</p>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="rgbd_odometry.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">RGBD Odometry</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="multiway_registration.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Multiway registration</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2018 - 2023, www.open3d.org
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">RGBD integration</a><ul>
+<li><a class="reference internal" href="#Read-trajectory-from-.log-file">Read trajectory from .log file</a></li>
+<li><a class="reference internal" href="#TSDF-volume-integration">TSDF volume integration</a></li>
+<li><a class="reference internal" href="#Extract-a-mesh">Extract a mesh</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3de8224"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3TQPKGV6Z3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3TQPKGV6Z3');</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

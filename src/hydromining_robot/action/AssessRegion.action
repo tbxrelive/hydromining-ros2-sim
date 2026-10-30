@@ -1,0 +1,34 @@
+# new_baseline=true 建立本轮基线；后续评估必须沿用该区域和初始法向。
+# accumulate=true 把本次观测并入当前轮次（补看）；每次喷射后的第一轮观测必须
+# 用 accumulate=false 以丢弃喷射前的表面证据。
+geometry_msgs/Point center
+float64 diameter
+float64 required_depth
+float64 required_fraction
+float64 confidence_k
+hydromining_robot/ObservationView[] viewpoints
+uint32 frames_per_view
+bool new_baseline
+bool accumulate
+---
+bool success
+string assessment
+string message
+float64 fraction_lower
+float64 fraction_upper
+float64 coverage
+float64 removed_volume_m3
+float64 volume_sigma_m3
+float64 removed_mass_kg
+bool external_alarm
+float64 external_change_area_m2
+string report_path
+string state_path
+bool uncertainty_calibrated
+---
+string stage
+uint32 completed_views
+uint32 total_views
+float64 coverage
+float64 fraction_lower
+float64 fraction_upper

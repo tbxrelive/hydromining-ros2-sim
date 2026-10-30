@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "GUI_started": false,
+  "interrupted_phase": "PREPARING",
+  "interrupted_during_spray": false,
+  "expected_exit_code": 130,
+  "actual_exit_code": 130,
+  "remaining_owned_processes": [],
+  "double_shutdown_error": false,
+  "spray_node_crashed": false
+}

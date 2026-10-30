@@ -1,0 +1,16 @@
+{
+  "src/hydromining_robot/scripts/spray_controller_node.py": "69d27887a66ac8271c4a6a105d72c033d0b8a8db73ea610b051856a8c53d220a",
+  "src/hydromining_robot/src/jet_bridge.cpp": "3eb81670d77bd634bb90d9b8bf6221f8321622ef8be2e318140439c212ee605a",
+  "src/hydromining_sim/plugins/WaterJetEffects.cc": "20c13a69f94c410860ef8b01aef108f67dd213729407b4d5b37e1f89c835395a",
+  "src/hydromining_sim/scripts/algorithms/jet_effects.py": "6161822b07c77337c678d9462f6c5f8b03f736ad8c1aed124c2456db139eb9ba",
+  "src/hydromining_sim/scripts/algorithms/spray_simulation.py": "8f338a3d8c0290f90d9db25283fb35653681f39b543e25618f14d51713e67e6e",
+  "src/hydromining_robot/msg/SprayStatus.msg": "dd01547cf59a2437cee79e4160cd3783dffe49c6252b0199be81e8f4fd70caa9",
+  "src/hydromining_robot/launch/robot_simulation.launch.py": "1051420ced1d145599165fef60df47e70a96f5ce0641c65cb488eb66a2cac9a1",
+  "src/hydromining_robot/config/jet_effects.yaml": "dc651bf35399f8efa50a94513d4f4f0864bfa07690d36295e9ee444263ce314b",
+  "test_scripts/test_phase5_acceptance.py": "6329749425dbb6c4799b738ba73a730cd369bc5fa40c4975b29846337d42e65b",
+  "test_scripts/test_phase5_sigint.py": "e0ef597527439eacb157627e6c7bbe00640ba1566c3ff11afd2350f263a25a90",
+  "test_scripts/test_phase4_acceptance.py": "50787b4f586f0cb26dabe26f0a7b6bcbfce9d7d55dcf9b630c2a43626f08b77d",
+  "src/hydromining_sim/models/water_jet/materials/textures/water.png": "06b2db29ecdd38f99b0fac183350f71c890f23477ac761f7b5eeccbf5299807b",
+  "src/hydromining_sim/models/water_jet/materials/textures/mist.png": "497e829e06a16dd44481b9bbdc8e8b6824fb4c1c50606bd84f77816a2b90c846",
+  "src/hydromining_sim/models/water_jet/materials/textures/fade.png": "dde5ef97a2b0f539c8b50ea9d25db132d3cb725c97dfff9d1e653971517449f8"
+}

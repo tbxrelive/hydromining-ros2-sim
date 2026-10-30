@@ -1,0 +1,20 @@
+{
+  "steps": 1,
+  "log": [
+    {
+      "step": 0,
+      "type": "finish",
+      "rationale": "\u7f6e\u4fe1\u4e0b\u754c 0.926 >= \u8981\u6c42 0.9\uff0c\u6536\u5c3e",
+      "assessment": {
+        "status": "achieved",
+        "coverage": 0.9968172575369111,
+        "fraction_lower": 0.9259128282203167,
+        "fraction_upper": 0.9874237467951553
+      }
+    }
+  ],
+  "verdict": "achieved",
+  "last_report": "/home/star/SCI/hydromining_ws/results/phase7/real_ring_r6.json/perception/2f3cad67d64841beb0b29278368ffa82/report.json",
+  "owned_processes_remaining": [],
+  "cleanup_errors": []
+}

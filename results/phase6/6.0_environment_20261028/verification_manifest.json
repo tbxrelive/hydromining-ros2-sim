@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-28",
+  "scope": "6.0 offline environment data only; phase 6 not complete",
+  "python": "3.12.3",
+  "numpy": "1.26.4",
+  "scipy": "1.11.4",
+  "pyyaml": "6.0.1",
+  "tests_passed": 88,
+  "derived_snapshots": 512,
+  "full_gazebo_regression_rerun": false,
+  "gui_verified": false,
+  "physically_calibrated": false,
+  "sha256": {
+    "src/hydromining_sim/scripts/algorithms/perception/environment.py": "b435aef730e2b313fa229c30c73c1706fc0e483f6178507037d94d5d185d085c",
+    "src/hydromining_robot/config/phase6_environment.yaml": "684a4e9cb2fba832a1a125f18bf8f3c21b5e5686f180f81a8fada54da60f359e",
+    "test_scripts/phase6_degrade.py": "83e0a2a27764655cb3fcaa6e6e517aafa48097c8ceae0cc59758e56630ebb0c2",
+    "test_scripts/audit_phase6_environment.py": "e9a30fb9e0322a0df896a2ca5daf8e35c800928862e95708299b666d878fe550",
+    "src/hydromining_sim/test/test_perception_environment.py": "9aa322fd409633c218eb607eb3ceb27296f914742d297633aeec8d29a5243553",
+    "test_scripts/test_phase6_degrade.py": "1d60c6ca840156205d8397776614226c17c1a5cddff4db92ebda849e2f588bdb",
+    "AGENTS.md": "b4f392ba3a758257dea96632ca6437a91429b47949624b9b9f0ca231e0a36c23",
+    "docs/阶段文档/阶段6-感知算法集成/00-进度交接.md": "08d6d959b0f74658bd9dbb22662c3551c31a14038a5217dfdb1fbc14398fefeb",
+    "docs/阶段文档/阶段6-感知算法集成/01-设计方案.md": "f82edee6f1defe99cc602f5de3050b2ce61f753d23fa78dd5171650c021f9bf1",
+    "docs/阶段文档/阶段6-感知算法集成/03-离线环境退化数据验证报告.md": "da3004212d7778d9dc24ee7aa110288ccecfbdc2024c6ca69d8ad499a493b47c"
+  }
+}

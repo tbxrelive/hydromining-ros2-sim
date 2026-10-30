@@ -1,0 +1,11 @@
+{
+  "source": "user GUI acceptance artifacts",
+  "five_capture_groups_present": true,
+  "summary_missing_due_to_cleanup_exception": true,
+  "reset_point_p95_error_m": 0.0,
+  "replay_point_p95_error_m": 0.0,
+  "reset_mesh_identical": true,
+  "replay_mesh_identical": true,
+  "first_mesh_changed": true,
+  "second_mesh_changed": true
+}

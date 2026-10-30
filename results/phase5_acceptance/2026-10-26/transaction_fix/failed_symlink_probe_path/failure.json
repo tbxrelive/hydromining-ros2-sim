@@ -1,0 +1,47 @@
+{
+  "error": "ROS future timed out",
+  "peak_rss_mib": 1466.21875,
+  "resources": {
+    "wall_time": 1793020914.8757288,
+    "rss_mib": 1122.36328125,
+    "available_mib": 4934.23828125,
+    "state": "UNKNOWN",
+    "processes": [
+      {
+        "pid": 232603,
+        "name": "ruby",
+        "rss_mib": 824.71484375
+      },
+      {
+        "pid": 232370,
+        "name": "python",
+        "rss_mib": 107.25
+      },
+      {
+        "pid": 232605,
+        "name": "parameter_bridge",
+        "rss_mib": 56.875
+      },
+      {
+        "pid": 232606,
+        "name": "jet_bridge",
+        "rss_mib": 53.0859375
+      },
+      {
+        "pid": 232582,
+        "name": "ros2",
+        "rss_mib": 43.98828125
+      },
+      {
+        "pid": 232602,
+        "name": "robot_state_publisher",
+        "rss_mib": 34.5703125
+      },
+      {
+        "pid": 232601,
+        "name": "sh",
+        "rss_mib": 1.87890625
+      }
+    ]
+  }
+}

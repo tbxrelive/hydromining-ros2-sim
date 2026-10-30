@@ -1,0 +1,8 @@
+{
+  "GUI_started": false,
+  "final_source": "/tmp/hydromining_phase5_transaction_release",
+  "final_command": "python3 test_scripts/test_phase5_sigint.py --phase COMPLETE --no-overview --output /tmp/hydromining_phase5_transaction_release",
+  "source_hashes_match_at_completion": true,
+  "faults_are_injected": true,
+  "user_GUI_failure_source": "/tmp/hydromining_phase5_gui_v2"
+}

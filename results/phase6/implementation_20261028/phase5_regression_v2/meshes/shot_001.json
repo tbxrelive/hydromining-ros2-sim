@@ -1,0 +1,22 @@
+{
+  "volume_removed_m3": 0.0,
+  "cumulative_volume_m3": 0.0,
+  "max_depth_m": 0.0,
+  "cumulative_depth_m": 0.0,
+  "elapsed_s": 4.0,
+  "steps": 20,
+  "max_speed_m_s": 0.0,
+  "spacing_m": 0.03360404477777778,
+  "shot": 1,
+  "calibrated": false,
+  "position_mesh": [
+    -0.4610369606053079,
+    -1.4578344607885096e-10,
+    1.0723548361037434
+  ],
+  "direction_mesh": [
+    0.34202018572081483,
+    -5.264315528635821e-10,
+    0.9396926053553363
+  ]
+}

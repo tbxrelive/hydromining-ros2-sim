@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "GUI_started": false,
+  "interrupted_phase": "COMPLETE",
+  "interrupted_during_spray": false,
+  "expected_exit_code": 0,
+  "actual_exit_code": 0,
+  "remaining_owned_processes": [],
+  "double_shutdown_error": false,
+  "spray_node_crashed": false,
+  "full_acceptance_passed": true
+}

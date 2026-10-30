@@ -1,0 +1,190 @@
+{
+  "steps": 15,
+  "log": [
+    {
+      "step": 0,
+      "type": "spray",
+      "rationale": "\u7f3a\u53e3\u6700\u5927 24.8 mm\uff0c\u4f4d\u4e8e [-0.095  0.005]\uff0c\u55b7\u5c04 7.4 s",
+      "assessment": {
+        "status": "not_achieved",
+        "coverage": 0.993634515073822,
+        "fraction_lower": 0.3246397312350809,
+        "fraction_upper": 0.5043762708867476
+      },
+      "spray_stats": {
+        "volume": 0.0003415208114352338,
+        "max_depth": 0.07373148202896118
+      }
+    },
+    {
+      "step": 1,
+      "type": "spray",
+      "rationale": "\u7f3a\u53e3\u6700\u5927 24.4 mm\uff0c\u4f4d\u4e8e [-0.045 -0.085]\uff0c\u55b7\u5c04 7.3 s",
+      "assessment": {
+        "status": "not_achieved",
+        "coverage": 0.993634515073822,
+        "fraction_lower": 0.5205994164972151,
+        "fraction_upper": 0.715608699496066
+      },
+      "spray_stats": {
+        "volume": 0.0004933078387397821,
+        "max_depth": 0.07688862085342407
+      }
+    },
+    {
+      "step": 2,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 front_0p6 \u9884\u671f \u03c3 \u6539\u5584 0.026 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.723874988948811,
+        "fraction_upper": 0.9085845636990543
+      }
+    },
+    {
+      "step": 3,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 front_0p7 \u9884\u671f \u03c3 \u6539\u5584 0.023 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.7313897975422157,
+        "fraction_upper": 0.9085845636990543
+      }
+    },
+    {
+      "step": 4,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 left_0p8 \u9884\u671f \u03c3 \u6539\u5584 0.021 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.7313897975422157,
+        "fraction_upper": 0.9085845636990543
+      }
+    },
+    {
+      "step": 5,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 up_0p8 \u9884\u671f \u03c3 \u6539\u5584 0.021 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.730240473874989,
+        "fraction_upper": 0.9085845636990543
+      }
+    },
+    {
+      "step": 6,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 front_0p8 \u9884\u671f \u03c3 \u6539\u5584 0.019 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.7270577314119,
+        "fraction_upper": 0.9085845636990543
+      }
+    },
+    {
+      "step": 7,
+      "type": "spray",
+      "rationale": "\u7f3a\u53e3\u6700\u5927 19.1 mm\uff0c\u4f4d\u4e8e [-0.085 -0.045]\uff0c\u55b7\u5c04 5.7 s",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.7270577314119,
+        "fraction_upper": 0.9085845636990543
+      },
+      "spray_stats": {
+        "volume": 0.0003415208114352338,
+        "max_depth": 0.05545693635940552
+      }
+    },
+    {
+      "step": 8,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 front_0p6 \u9884\u671f \u03c3 \u6539\u5584 0.026 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.8332817611174963,
+        "fraction_upper": 0.9522588630536648
+      }
+    },
+    {
+      "step": 9,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 front_0p7 \u9884\u671f \u03c3 \u6539\u5584 0.023 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.8386305366457433,
+        "fraction_upper": 0.9522588630536648
+      }
+    },
+    {
+      "step": 10,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 left_0p8 \u9884\u671f \u03c3 \u6539\u5584 0.021 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.8386305366457433,
+        "fraction_upper": 0.9522588630536648
+      }
+    },
+    {
+      "step": 11,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 up_0p8 \u9884\u671f \u03c3 \u6539\u5584 0.021 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.8364645035805854,
+        "fraction_upper": 0.9522588630536649
+      }
+    },
+    {
+      "step": 12,
+      "type": "observe",
+      "rationale": "\u8986\u76d6\u7387 0.99 / \u72b6\u6001 insufficient_evidence\uff0c\u89c6\u70b9 front_0p8 \u9884\u671f \u03c3 \u6539\u5584 0.019 \u6700\u5927",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.8332817611174963,
+        "fraction_upper": 0.9522588630536648
+      }
+    },
+    {
+      "step": 13,
+      "type": "spray",
+      "rationale": "\u7f3a\u53e3\u6700\u5927 19.0 mm\uff0c\u4f4d\u4e8e [ 0.075 -0.065]\uff0c\u55b7\u5c04 5.7 s",
+      "assessment": {
+        "status": "insufficient_evidence",
+        "coverage": 0.9904517726107329,
+        "fraction_lower": 0.8332817611174963,
+        "fraction_upper": 0.9522588630536648
+      },
+      "spray_stats": {
+        "volume": 0.0003035740546090967,
+        "max_depth": 0.05511075258255005
+      }
+    },
+    {
+      "step": 14,
+      "type": "finish",
+      "rationale": "\u7f6e\u4fe1\u4e0b\u754c 0.910 >= \u8981\u6c42 0.9\uff0c\u6536\u5c3e",
+      "assessment": {
+        "status": "achieved",
+        "coverage": 1.0,
+        "fraction_lower": 0.910043320661303,
+        "fraction_upper": 0.9709353726460968
+      }
+    }
+  ],
+  "verdict": "achieved",
+  "last_report": "/home/star/SCI/hydromining_ws/results/phase7/real_pair.json/perception/02d6e32a803f492699c20e941d69ae3b/report.json",
+  "owned_processes_remaining": [],
+  "cleanup_errors": []
+}

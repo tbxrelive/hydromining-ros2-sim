@@ -1,0 +1,355 @@
+{
+  "passed": true,
+  "medium": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.6221516927083333,
+    "depth_disturbed_fraction": 0.013309134906231096,
+    "cloud_visible_fraction": 0.9854151293352745,
+    "cloud_disturbed_fraction": 0.014584870664725474,
+    "lidar_disturbed_fraction": 0.004263997033741194,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      1.0,
+      1.0,
+      0.0,
+      4.0,
+      290.0,
+      0.891182,
+      39.481
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.000455361081913645,
+      "cumulative_volume_m3": 0.000455361081913645,
+      "max_depth_m": 0.055180370807647705,
+      "cumulative_depth_m": 0.055180370807647705,
+      "elapsed_s": 11.99999999999999,
+      "steps": 60,
+      "max_speed_m_s": 0.006116526201367378,
+      "spacing_m": 0.03360404477777778,
+      "shot": 1,
+      "calibrated": false,
+      "position_mesh": [
+        -0.4610369606053059,
+        -1.4578338189408235e-10,
+        1.0723548361037436
+      ],
+      "direction_mesh": [
+        -0.3420201857208126,
+        5.264318737874252e-10,
+        -0.939692605355337
+      ]
+    }
+  },
+  "second": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.587175925925926,
+    "depth_disturbed_fraction": 0.007758620689655172,
+    "cloud_visible_fraction": 0.9921960072595282,
+    "cloud_disturbed_fraction": 0.00780399274047187,
+    "lidar_disturbed_fraction": 0.001529477196885428,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      2.0,
+      1.0,
+      0.0,
+      4.0,
+      290.0,
+      0.946931,
+      77.955
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.0003415208114352338,
+      "cumulative_volume_m3": 0.0007968818933488787,
+      "max_depth_m": 0.047800302505493164,
+      "cumulative_depth_m": 0.09299236536026001,
+      "elapsed_s": 11.99999999999999,
+      "steps": 60,
+      "max_speed_m_s": 0.005556007847189903,
+      "spacing_m": 0.03360404477777778,
+      "shot": 2,
+      "calibrated": false,
+      "position_mesh": [
+        -0.4610369606053059,
+        -1.4578338189408235e-10,
+        1.0723548361037436
+      ],
+      "direction_mesh": [
+        -0.3420201857208126,
+        5.264318737874252e-10,
+        -0.939692605355337
+      ]
+    }
+  },
+  "replay": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.6253877314814815,
+    "depth_disturbed_fraction": 0.01342896365582391,
+    "cloud_visible_fraction": 0.9863414262688311,
+    "cloud_disturbed_fraction": 0.013658573731169011,
+    "lidar_disturbed_fraction": 0.004657953281423805,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      4.0,
+      1.0,
+      0.0,
+      4.0,
+      290.0,
+      0.891182,
+      120.94
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.000455361081913645,
+      "cumulative_volume_m3": 0.000455361081913645,
+      "max_depth_m": 0.055180370807647705,
+      "cumulative_depth_m": 0.055180370807647705,
+      "elapsed_s": 11.99999999999999,
+      "steps": 60,
+      "max_speed_m_s": 0.006116526201367378,
+      "spacing_m": 0.03360404477777778,
+      "shot": 1,
+      "calibrated": false,
+      "position_mesh": [
+        -0.4610369606053059,
+        -1.4578338189408235e-10,
+        1.0723548361037436
+      ],
+      "direction_mesh": [
+        -0.3420201857208126,
+        5.264318737874252e-10,
+        -0.939692605355337
+      ]
+    }
+  },
+  "preset_scan": {
+    "off": {
+      "preset": "off",
+      "rgb_mean_abs_change": 0.0,
+      "depth_disturbed_fraction": 0.0,
+      "cloud_visible_fraction": 1.0,
+      "cloud_disturbed_fraction": 0.0,
+      "lidar_disturbed_fraction": 0.0,
+      "recovered_temporal_disturbed_fraction": 0.0,
+      "plugin_during": [
+        6.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.891182,
+        155.464
+      ],
+      "statistics": {
+        "volume_removed_m3": 0.0003035740546090967,
+        "cumulative_volume_m3": 0.0003035740546090967,
+        "max_depth_m": 0.03894376754760742,
+        "cumulative_depth_m": 0.03894376754760742,
+        "elapsed_s": 8.0,
+        "steps": 40,
+        "max_speed_m_s": 0.006116526201367378,
+        "spacing_m": 0.03360404477777778,
+        "shot": 1,
+        "calibrated": false,
+        "position_mesh": [
+          -0.4610369606053059,
+          -1.4578338189408235e-10,
+          1.0723548361037436
+        ],
+        "direction_mesh": [
+          -0.3420201857208126,
+          5.264318737874252e-10,
+          -0.939692605355337
+        ]
+      }
+    },
+    "low": {
+      "preset": "low",
+      "rgb_mean_abs_change": 1.2983091001157407,
+      "depth_disturbed_fraction": 0.01283912699520685,
+      "cloud_visible_fraction": 0.986257154823398,
+      "cloud_disturbed_fraction": 0.013742845176601981,
+      "lidar_disturbed_fraction": 0.005329996292176492,
+      "recovered_temporal_disturbed_fraction": 0.0,
+      "plugin_during": [
+        8.0,
+        1.0,
+        0.0,
+        4.0,
+        116.0,
+        0.891182,
+        185.651
+      ],
+      "statistics": {
+        "volume_removed_m3": 0.0003035740546090967,
+        "cumulative_volume_m3": 0.0003035740546090967,
+        "max_depth_m": 0.03894376754760742,
+        "cumulative_depth_m": 0.03894376754760742,
+        "elapsed_s": 8.0,
+        "steps": 40,
+        "max_speed_m_s": 0.006116526201367378,
+        "spacing_m": 0.03360404477777778,
+        "shot": 1,
+        "calibrated": false,
+        "position_mesh": [
+          -0.4610369606053059,
+          -1.4578338189408235e-10,
+          1.0723548361037436
+        ],
+        "direction_mesh": [
+          -0.3420201857208126,
+          5.264318737874252e-10,
+          -0.939692605355337
+        ]
+      }
+    },
+    "high": {
+      "preset": "high",
+      "rgb_mean_abs_change": 1.8617173032407408,
+      "depth_disturbed_fraction": 0.014281725533994136,
+      "cloud_visible_fraction": 0.9858048303783331,
+      "cloud_disturbed_fraction": 0.014195169621666897,
+      "lidar_disturbed_fraction": 0.004831757508342603,
+      "recovered_temporal_disturbed_fraction": 0.0,
+      "plugin_during": [
+        10.0,
+        1.0,
+        0.0,
+        4.0,
+        522.0,
+        0.891182,
+        215.233
+      ],
+      "statistics": {
+        "volume_removed_m3": 0.0003035740546090967,
+        "cumulative_volume_m3": 0.0003035740546090967,
+        "max_depth_m": 0.03894376754760742,
+        "cumulative_depth_m": 0.03894376754760742,
+        "elapsed_s": 8.0,
+        "steps": 40,
+        "max_speed_m_s": 0.006116526201367378,
+        "spacing_m": 0.03360404477777778,
+        "shot": 1,
+        "calibrated": false,
+        "position_mesh": [
+          -0.4610369606053059,
+          -1.4578338189408235e-10,
+          1.0723548361037436
+        ],
+        "direction_mesh": [
+          -0.3420201857208126,
+          5.264318737874252e-10,
+          -0.939692605355337
+        ]
+      }
+    }
+  },
+  "reset_cancels_shot": true,
+  "no_hit_has_no_impact": true,
+  "configured_effects": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.1498580729166668,
+    "depth_disturbed_fraction": 0.008527153427334915,
+    "cloud_visible_fraction": 0.9916934245427893,
+    "cloud_disturbed_fraction": 0.008306575457210665,
+    "lidar_disturbed_fraction": 0.002456433073785688,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      12.0,
+      1.0,
+      0.0,
+      2.0,
+      67.5,
+      0.891182,
+      238.151
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.00015178702730454834,
+      "cumulative_volume_m3": 0.00015178702730454834,
+      "max_depth_m": 0.020798325538635254,
+      "cumulative_depth_m": 0.020798325538635254,
+      "elapsed_s": 4.0,
+      "steps": 20,
+      "max_speed_m_s": 0.006116526201367378,
+      "spacing_m": 0.03360404477777778,
+      "shot": 1,
+      "calibrated": false,
+      "position_mesh": [
+        -0.4610369606053059,
+        -1.4578338189408235e-10,
+        1.0723548361037436
+      ],
+      "direction_mesh": [
+        -0.3420201857208126,
+        5.264318737874252e-10,
+        -0.939692605355337
+      ]
+    }
+  },
+  "invalid_effect_settings_rejected": true,
+  "paused_clock_freezes_exposure": true,
+  "replay_mesh_identical": true,
+  "joint_drift_rad": 5.587651306093733e-06,
+  "cloud_after_first": {
+    "roi_points": 2014,
+    "changed_points": 396,
+    "p95_retreat_m": 0.028749209630096348,
+    "reference_p95_abs_m": 6.24725662962882e-11
+  },
+  "cloud_after_second": {
+    "roi_points": 2014,
+    "changed_points": 532,
+    "p95_retreat_m": 0.06280394791546627,
+    "reference_p95_abs_m": 6.24725662962882e-11
+  },
+  "reset_p95_m": 2.525130561005492e-10,
+  "aggregate_peak_rss_mib": 1952.6328125,
+  "calibrated": false,
+  "final_view": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.612826244212963,
+    "depth_disturbed_fraction": 0.013579040439294523,
+    "cloud_visible_fraction": 0.9859436389381944,
+    "cloud_disturbed_fraction": 0.014056361061805708,
+    "lidar_disturbed_fraction": 0.004727474972191325,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      16.0,
+      1.0,
+      0.0,
+      4.0,
+      290.0,
+      0.891182,
+      299.031
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.000455361081913645,
+      "cumulative_volume_m3": 0.000455361081913645,
+      "max_depth_m": 0.055180370807647705,
+      "cumulative_depth_m": 0.055180370807647705,
+      "elapsed_s": 11.99999999999999,
+      "steps": 60,
+      "max_speed_m_s": 0.006116526201367378,
+      "spacing_m": 0.03360404477777778,
+      "shot": 2,
+      "calibrated": false,
+      "position_mesh": [
+        -0.4610369606053059,
+        -1.4578338189408235e-10,
+        1.0723548361037436
+      ],
+      "direction_mesh": [
+        -0.3420201857208126,
+        5.264318737874252e-10,
+        -0.939692605355337
+      ]
+    }
+  },
+  "GUI_started": false,
+  "overview_camera": false,
+  "world": "coal_wall_acceptance.sdf",
+  "resource_limits_mib": {
+    "rss": 3072,
+    "available_minimum": 1024
+  },
+  "owned_processes_remaining": [],
+  "cleanup_errors": []
+}

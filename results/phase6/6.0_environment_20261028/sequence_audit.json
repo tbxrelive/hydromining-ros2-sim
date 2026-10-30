@@ -1,0 +1,176 @@
+{
+  "passed": true,
+  "calibrated": false,
+  "scope": "file/metadata integrity and full-FOV ray counts; not physical validation",
+  "generated_snapshot_count": 192,
+  "rows": [
+    {
+      "id": "clean_noise0",
+      "environment": "clean",
+      "visibility_m": null,
+      "noise_scale": 0.0,
+      "frame_count": 24,
+      "depth": {
+        "input_valid_rays": 1722144,
+        "input_invalid_rays": 121056,
+        "surface_return_fraction": 1.0,
+        "drop_fraction": 0.0,
+        "false_return_fraction": 0.0
+      },
+      "lidar": {
+        "input_valid_rays": 226416,
+        "input_invalid_rays": 166800,
+        "surface_return_fraction": 1.0,
+        "drop_fraction": 0.0,
+        "false_return_fraction": 0.0
+      }
+    },
+    {
+      "id": "clean_noise1",
+      "environment": "clean",
+      "visibility_m": null,
+      "noise_scale": 1.0,
+      "frame_count": 24,
+      "depth": {
+        "input_valid_rays": 1722144,
+        "input_invalid_rays": 121056,
+        "surface_return_fraction": 1.0,
+        "drop_fraction": 0.0,
+        "false_return_fraction": 0.0
+      },
+      "lidar": {
+        "input_valid_rays": 226416,
+        "input_invalid_rays": 166800,
+        "surface_return_fraction": 0.9999779167549997,
+        "drop_fraction": 2.2083245000353333e-05,
+        "false_return_fraction": 0.0
+      }
+    },
+    {
+      "id": "dim_dust_light_noise0",
+      "environment": "dim_dust_light",
+      "visibility_m": 8.0,
+      "noise_scale": 0.0,
+      "frame_count": 24,
+      "depth": {
+        "input_valid_rays": 1722144,
+        "input_invalid_rays": 121056,
+        "surface_return_fraction": 0.34728861233439245,
+        "drop_fraction": 0.6093584508612521,
+        "false_return_fraction": 0.0433529368043555
+      },
+      "lidar": {
+        "input_valid_rays": 226416,
+        "input_invalid_rays": 166800,
+        "surface_return_fraction": 0.2090444138223447,
+        "drop_fraction": 0.7700118366193202,
+        "false_return_fraction": 0.0209437495583351
+      }
+    },
+    {
+      "id": "dim_dust_light_noise1",
+      "environment": "dim_dust_light",
+      "visibility_m": 8.0,
+      "noise_scale": 1.0,
+      "frame_count": 24,
+      "depth": {
+        "input_valid_rays": 1722144,
+        "input_invalid_rays": 121056,
+        "surface_return_fraction": 0.34728861233439245,
+        "drop_fraction": 0.6093584508612521,
+        "false_return_fraction": 0.0433529368043555
+      },
+      "lidar": {
+        "input_valid_rays": 226416,
+        "input_invalid_rays": 166800,
+        "surface_return_fraction": 0.20896491414034343,
+        "drop_fraction": 0.7700913363013214,
+        "false_return_fraction": 0.0209437495583351
+      }
+    },
+    {
+      "id": "dim_dust_heavy_noise0",
+      "environment": "dim_dust_heavy",
+      "visibility_m": 3.0,
+      "noise_scale": 0.0,
+      "frame_count": 24,
+      "depth": {
+        "input_valid_rays": 1722144,
+        "input_invalid_rays": 121056,
+        "surface_return_fraction": 0.06837581526283516,
+        "drop_fraction": 0.9135565899251166,
+        "false_return_fraction": 0.018067594812048237
+      },
+      "lidar": {
+        "input_valid_rays": 226416,
+        "input_invalid_rays": 166800,
+        "surface_return_fraction": 0.08880114479542082,
+        "drop_fraction": 0.9013585612324218,
+        "false_return_fraction": 0.009840293972157445
+      }
+    },
+    {
+      "id": "dim_dust_heavy_noise1",
+      "environment": "dim_dust_heavy",
+      "visibility_m": 3.0,
+      "noise_scale": 1.0,
+      "frame_count": 24,
+      "depth": {
+        "input_valid_rays": 1722144,
+        "input_invalid_rays": 121056,
+        "surface_return_fraction": 0.06837581526283516,
+        "drop_fraction": 0.9135565899251166,
+        "false_return_fraction": 0.018067594812048237
+      },
+      "lidar": {
+        "input_valid_rays": 226416,
+        "input_invalid_rays": 166800,
+        "surface_return_fraction": 0.08853172920641651,
+        "drop_fraction": 0.901627976821426,
+        "false_return_fraction": 0.009840293972157445
+      }
+    },
+    {
+      "id": "dim_dust_extreme_noise0",
+      "environment": "dim_dust_extreme",
+      "visibility_m": 1.5,
+      "noise_scale": 0.0,
+      "frame_count": 24,
+      "depth": {
+        "input_valid_rays": 1722144,
+        "input_invalid_rays": 121056,
+        "surface_return_fraction": 0.006570298418715276,
+        "drop_fraction": 0.9911697279669993,
+        "false_return_fraction": 0.0022599736142854487
+      },
+      "lidar": {
+        "input_valid_rays": 226416,
+        "input_invalid_rays": 166800,
+        "surface_return_fraction": 0.04038583845664617,
+        "drop_fraction": 0.9529891880432478,
+        "false_return_fraction": 0.006624973500105999
+      }
+    },
+    {
+      "id": "dim_dust_extreme_noise1",
+      "environment": "dim_dust_extreme",
+      "visibility_m": 1.5,
+      "noise_scale": 1.0,
+      "frame_count": 24,
+      "depth": {
+        "input_valid_rays": 1722144,
+        "input_invalid_rays": 121056,
+        "surface_return_fraction": 0.006570298418715276,
+        "drop_fraction": 0.9911697279669993,
+        "false_return_fraction": 0.0022599736142854487
+      },
+      "lidar": {
+        "input_valid_rays": 226416,
+        "input_invalid_rays": 166800,
+        "surface_return_fraction": 0.03971450780863543,
+        "drop_fraction": 0.9536605186912586,
+        "false_return_fraction": 0.006624973500105999
+      }
+    }
+  ]
+}

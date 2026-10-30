@@ -1,0 +1,17 @@
+# Engineering display parameters, not calibrated jet/coal material parameters.
+spray_controller_node:
+  ros__parameters:
+    jet_core: true
+    jet_mist: true
+    jet_splash: true
+    jet_dust: true
+    jet_radius: 0.008  # m; independent from erosion b(P,s)
+    effect_reference_pressure_mpa: 20.0  # strength=min(2, preset_scale*P/reference)
+    # Relative rates in [0,1]; preserve the maximum particle budget.
+    jet_mist_rate_scale: 1.0
+    jet_splash_rate_scale: 1.0
+    jet_dust_rate_scale: 1.0
+    # Tangential emission-box widths in m; normal thickness stays <=0.04 m.
+    jet_mist_spread: 0.24
+    jet_splash_spread: 0.10
+    jet_dust_spread: 0.20

@@ -1,0 +1,20 @@
+{
+  "steps": 1,
+  "log": [
+    {
+      "step": 0,
+      "type": "finish",
+      "rationale": "\u7f6e\u4fe1\u4e0b\u754c 0.972 >= \u8981\u6c42 0.9\uff0c\u6536\u5c3e",
+      "assessment": {
+        "status": "achieved",
+        "coverage": 0.9875342586862347,
+        "fraction_lower": 0.9720404915568917,
+        "fraction_upper": 1.0000000000000002
+      }
+    }
+  ],
+  "verdict": "achieved",
+  "last_report": "/home/star/SCI/hydromining_ws/results/phase7/real_dense.json/perception/4cdd00dd5e0649ba9dcd78fe12395af9/report.json",
+  "owned_processes_remaining": [],
+  "cleanup_errors": []
+}

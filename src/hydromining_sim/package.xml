@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>hydromining_sim</name>
+  <version>0.1.0</version>
+  <description>Hydromining simulation environment with coal wall models</description>
+
+  <maintainer email="tbxrelive@github.com">Star</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>gz_sim_vendor</depend>
+  <depend>gz_transport_vendor</depend>
+  <depend>gz_plugin_vendor</depend>
+  <depend>gz_msgs_vendor</depend>
+  <depend>gz_math_vendor</depend>
+  <depend>sdformat_vendor</depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-scipy</exec_depend>
+  <exec_depend>python3-open3d</exec_depend>
+  <!-- Trimesh and PyMCubes are supplied by the existing .venv_stage4. -->
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

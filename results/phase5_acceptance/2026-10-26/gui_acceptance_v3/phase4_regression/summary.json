@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "calibrated": false,
+  "first": {
+    "volume_removed_m3": 0.000455361081913645,
+    "cumulative_volume_m3": 0.000455361081913645,
+    "max_depth_m": 0.055180370807647705,
+    "cumulative_depth_m": 0.055180370807647705,
+    "elapsed_s": 11.99999999999999,
+    "steps": 60,
+    "max_speed_m_s": 0.006116526201367378,
+    "spacing_m": 0.03360404477777778,
+    "shot": 1,
+    "calibrated": false,
+    "position_mesh": [
+      -0.4610369606053112,
+      -1.4578379866139746e-10,
+      1.0723548361037438
+    ],
+    "direction_mesh": [
+      -0.34202018572081866,
+      5.264305311114548e-10,
+      -0.9396926053553348
+    ]
+  },
+  "second": {
+    "volume_removed_m3": 0.0003415208114352338,
+    "cumulative_volume_m3": 0.0007968818933488787,
+    "max_depth_m": 0.047800302505493164,
+    "cumulative_depth_m": 0.09299236536026001,
+    "elapsed_s": 11.99999999999999,
+    "steps": 60,
+    "max_speed_m_s": 0.005556007847189903,
+    "spacing_m": 0.03360404477777778,
+    "shot": 2,
+    "calibrated": false,
+    "position_mesh": [
+      -0.46103696060531124,
+      -1.4578367332762632e-10,
+      1.0723548361037438
+    ],
+    "direction_mesh": [
+      -0.3420201857208184,
+      5.264315441899647e-10,
+      -0.9396926053553349
+    ]
+  },
+  "replay": {
+    "volume_removed_m3": 0.000455361081913645,
+    "cumulative_volume_m3": 0.000455361081913645,
+    "max_depth_m": 0.055180370807647705,
+    "cumulative_depth_m": 0.055180370807647705,
+    "elapsed_s": 11.99999999999999,
+    "steps": 60,
+    "max_speed_m_s": 0.006116526201367378,
+    "spacing_m": 0.03360404477777778,
+    "shot": 1,
+    "calibrated": false,
+    "position_mesh": [
+      -0.4610369606053112,
+      -1.4578379866139746e-10,
+      1.0723548361037438
+    ],
+    "direction_mesh": [
+      -0.34202018572081866,
+      5.264305311114548e-10,
+      -0.9396926053553348
+    ]
+  },
+  "sensor_first": {
+    "roi_points": 2014,
+    "changed_points": 396,
+    "p95_retreat_m": 0.028749209642405987,
+    "reference_p95_abs_m": 1.9095838342574208e-14
+  },
+  "sensor_cumulative": {
+    "roi_points": 2014,
+    "changed_points": 532,
+    "p95_retreat_m": 0.06280394792556386,
+    "reference_p95_abs_m": 1.9095838342574208e-14
+  },
+  "reset_cloud_p95_m": 8.851430179005214e-14,
+  "replay_cloud_p95_m": 0.0,
+  "replay_mesh_identical": true,
+  "joint_drift_rad": 1.8625767594926401e-09,
+  "joint_hold_sample_count": 4955,
+  "aggregate_peak_rss_mib": 2189.9609375,
+  "invalid_input_rejected": true,
+  "mode": "headless",
+  "cpu_affinity": [
+    0,
+    1
+  ],
+  "owned_processes_remaining": [],
+  "cleanup_errors": []
+}

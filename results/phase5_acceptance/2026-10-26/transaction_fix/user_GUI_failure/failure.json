@@ -1,0 +1,67 @@
+{
+  "error": "create failed:  Service call timed out\n",
+  "peak_rss_mib": 2579.70703125,
+  "resources": {
+    "wall_time": 1793017975.1434617,
+    "rss_mib": 2509.74609375,
+    "available_mib": 4435.953125,
+    "state": "UPDATING",
+    "processes": [
+      {
+        "pid": 210558,
+        "name": "ruby",
+        "rss_mib": 946.88671875
+      },
+      {
+        "pid": 210559,
+        "name": "ruby",
+        "rss_mib": 698.05078125
+      },
+      {
+        "pid": 210818,
+        "name": "python",
+        "rss_mib": 436.5859375
+      },
+      {
+        "pid": 210261,
+        "name": "python",
+        "rss_mib": 158.359375
+      },
+      {
+        "pid": 210480,
+        "name": "ruby",
+        "rss_mib": 63.25390625
+      },
+      {
+        "pid": 210482,
+        "name": "parameter_bridge",
+        "rss_mib": 57.81640625
+      },
+      {
+        "pid": 210483,
+        "name": "jet_bridge",
+        "rss_mib": 53.73046875
+      },
+      {
+        "pid": 210461,
+        "name": "ros2",
+        "rss_mib": 44.1171875
+      },
+      {
+        "pid": 210479,
+        "name": "robot_state_publisher",
+        "rss_mib": 35.0
+      },
+      {
+        "pid": 213112,
+        "name": "gz-transport-service",
+        "rss_mib": 14.06640625
+      },
+      {
+        "pid": 210478,
+        "name": "sh",
+        "rss_mib": 1.87890625
+      }
+    ]
+  }
+}

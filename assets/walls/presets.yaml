@@ -1,0 +1,62 @@
+# 煤壁生成预设配置
+# 每个配置包含：width, height, thickness, tilt, roughness, resolution, seed
+
+# 默认配置（中等粗糙度，20度倾斜）
+default:
+  width: 3.0
+  height: 3.0
+  thickness: 0.4
+  tilt: 20.0
+  roughness: 0.12
+  resolution: 80
+  seed: 42
+
+# 平滑煤壁（用于测试基础功能）
+smooth:
+  width: 3.0
+  height: 3.0
+  thickness: 0.4
+  tilt: 20.0
+  roughness: 0.05
+  resolution: 60
+  seed: 1
+
+# 高粗糙度（挑战性场景）
+rough:
+  width: 3.0
+  height: 3.0
+  thickness: 0.4
+  tilt: 20.0
+  roughness: 0.25
+  resolution: 100
+  seed: 99
+
+# 陡倾斜（60度）
+steep:
+  width: 3.0
+  height: 3.0
+  thickness: 0.4
+  tilt: 60.0
+  roughness: 0.15
+  resolution: 80
+  seed: 42
+
+# 大尺寸煤壁（用于多点作业）
+large:
+  width: 5.0
+  height: 4.0
+  thickness: 0.5
+  tilt: 25.0
+  roughness: 0.18
+  resolution: 120
+  seed: 123
+
+# 薄煤层
+thin:
+  width: 3.0
+  height: 2.5
+  thickness: 0.25
+  tilt: 30.0
+  roughness: 0.10
+  resolution: 80
+  seed: 7

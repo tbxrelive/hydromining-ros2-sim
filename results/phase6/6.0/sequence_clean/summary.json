@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "scenarios": [
+    "none"
+  ],
+  "viewpoints": [
+    "front_0p8"
+  ],
+  "frames_per_view": 12,
+  "max_fk_tf_position_mm": 9.447349281558584e-13,
+  "max_fk_tf_rotation_rad": 8.150870805988478e-16,
+  "aggregate_peak_rss_mib": 1485.37109375,
+  "noise": {
+    "depth": 0.0,
+    "lidar": 0.0
+  },
+  "effects": "off",
+  "calibrated": false,
+  "owned_processes_remaining": [],
+  "cleanup_errors": []
+}

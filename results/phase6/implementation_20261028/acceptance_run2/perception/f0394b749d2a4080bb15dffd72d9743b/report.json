@@ -1,0 +1,249 @@
+{
+  "assessment": {
+    "status": "not_achieved",
+    "fraction_lower": 0.1527716382282734,
+    "fraction_upper": 0.30554327645654683,
+    "coverage": 1.0,
+    "task_area_m2": 0.031419444444444444,
+    "required_depth_m": 0.02,
+    "required_fraction": 0.9,
+    "confidence_k": 1.645,
+    "missing_evidence_cells": [
+      [
+        18,
+        24
+      ],
+      [
+        18,
+        25
+      ],
+      [
+        18,
+        26
+      ],
+      [
+        19,
+        23
+      ],
+      [
+        19,
+        24
+      ],
+      [
+        19,
+        25
+      ],
+      [
+        19,
+        26
+      ],
+      [
+        19,
+        27
+      ],
+      [
+        19,
+        28
+      ],
+      [
+        20,
+        22
+      ],
+      [
+        20,
+        23
+      ],
+      [
+        20,
+        28
+      ],
+      [
+        20,
+        29
+      ],
+      [
+        21,
+        20
+      ],
+      [
+        21,
+        21
+      ],
+      [
+        21,
+        22
+      ],
+      [
+        21,
+        29
+      ],
+      [
+        22,
+        20
+      ],
+      [
+        22,
+        21
+      ],
+      [
+        22,
+        29
+      ],
+      [
+        22,
+        30
+      ],
+      [
+        23,
+        20
+      ],
+      [
+        23,
+        21
+      ],
+      [
+        23,
+        30
+      ],
+      [
+        24,
+        20
+      ],
+      [
+        24,
+        21
+      ],
+      [
+        24,
+        30
+      ],
+      [
+        25,
+        20
+      ],
+      [
+        25,
+        21
+      ],
+      [
+        25,
+        29
+      ],
+      [
+        25,
+        30
+      ],
+      [
+        26,
+        20
+      ],
+      [
+        26,
+        21
+      ],
+      [
+        26,
+        22
+      ],
+      [
+        26,
+        29
+      ],
+      [
+        26,
+        30
+      ],
+      [
+        27,
+        22
+      ],
+      [
+        27,
+        23
+      ],
+      [
+        27,
+        24
+      ],
+      [
+        27,
+        27
+      ],
+      [
+        27,
+        28
+      ],
+      [
+        27,
+        29
+      ],
+      [
+        28,
+        24
+      ],
+      [
+        28,
+        25
+      ],
+      [
+        28,
+        26
+      ],
+      [
+        28,
+        27
+      ],
+      [
+        28,
+        28
+      ],
+      [
+        29,
+        26
+      ]
+    ],
+    "uncertainty_calibrated": false
+  },
+  "volume": {
+    "removed_volume_m3": 0.0003526734870184478,
+    "volume_sigma_m3": 0.00010212684283249271,
+    "volume_lower_m3": 0.00015250487506676206,
+    "volume_upper_m3": 0.0005528420989701335,
+    "removed_mass_kg": 0.4937428818258269,
+    "observed_area_m2": 0.03141944444444445,
+    "unobserved_area_m2": 0.0,
+    "density_kg_m3": 1400.0,
+    "density_calibrated": false,
+    "scope": "positive retreat in reliably observed area only",
+    "volume_uncertainty": "fully correlated conservative bound"
+  },
+  "external_alarm": {
+    "triggered": false,
+    "area_m2": 0.0,
+    "maximum_retreat_m": 0.0,
+    "cells": []
+  },
+  "filtering": {
+    "depth": {
+      "input": 641931,
+      "retained": 641931,
+      "foreground": 0
+    },
+    "lidar": {
+      "input": 82584,
+      "retained": 82584,
+      "foreground": 0
+    }
+  },
+  "center_world": [
+    1.517,
+    0.011,
+    0.694
+  ],
+  "normal_world": [
+    -0.9829704353875108,
+    0.1800499783300223,
+    -0.036757699294786055
+  ],
+  "calibrated": false
+}
