@@ -1,0 +1,102 @@
+wall_inclination_deg: 60.0
+wall_thickness_m: 0.4
+source_coal_pose:
+- 1.6984827557
+- 0.0
+- 1.3
+- 0.0
+- -1.3962634015954636
+- 0.0
+region_center_world:
+- 1.15
+- 0.0
+- 0.35
+wall_normal_world:
+- -0.8660254037844386
+- 0.0
+- 0.5
+diameter: 0.4
+required_depth: 0.05
+required_fraction: 0.9
+pressure_mpa: 30.0
+standoff_m: 0.5
+geometry_spacing_m: 0.005
+patch_extent_m: 0.72
+max_steps: 128
+viewpoints:
+  front_0p8:
+    distance_m: 0.8
+    azimuth_deg: 0
+    elevation_deg: 0
+    reachable: true
+    position_error_m: 4.8426986173360145e-08
+    orientation_error_rad: 2.241409546951644e-07
+    joints:
+    - 0.951475267845448
+    - -0.7428826472366701
+    - -0.3074396411557208
+    - -1.566980185512289
+    - -0.7512832467848665
+    - 1.814445626665152
+    - -1.9383123762219434
+    camera_position_world:
+    - 0.45717967695999984
+    - 0.0
+    - 0.75
+  left_0p8:
+    distance_m: 0.8
+    azimuth_deg: 15
+    elevation_deg: 0
+    reachable: true
+    position_error_m: 1.0414580018805188e-08
+    orientation_error_rad: 5.4513405555455824e-08
+    joints:
+    - 1.2702452334527032
+    - -0.902174687661643
+    - -0.6142970477646021
+    - -1.2558320295600531
+    - -0.7261022333597926
+    - 1.6818485647311157
+    - -2.4472421005993645
+    camera_position_world:
+    - 0.48078695699772867
+    - -0.17931509443683277
+    - 0.75
+  right_0p8:
+    distance_m: 0.8
+    azimuth_deg: -15
+    elevation_deg: 0
+    reachable: true
+    position_error_m: 5.441039329510468e-08
+    orientation_error_rad: 2.3117417661567017e-07
+    joints:
+    - 0.8287863045265894
+    - -0.277003224922094
+    - 0.005521710105736025
+    - -1.2424008417531347
+    - -0.8789399173469569
+    - 1.6112157428147842
+    - -1.5345389088000176
+    camera_position_world:
+    - 0.48078695699772867
+    - 0.17931509443683277
+    - 0.75
+  front_0p6:
+    distance_m: 0.6
+    azimuth_deg: 0
+    elevation_deg: 0
+    reachable: true
+    position_error_m: 5.067724456650542e-08
+    orientation_error_rad: 2.4769093751205336e-07
+    joints:
+    - 1.114823284391226
+    - -0.5793599249754947
+    - -0.7009783373793504
+    - -1.6803488509163307
+    - -0.7855241695441408
+    - 2.2161986407511494
+    - -1.9135594213627496
+    camera_position_world:
+    - 0.6303847577199999
+    - 0.0
+    - 0.6499999999999999

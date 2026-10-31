@@ -1,0 +1,21 @@
+# p/d expressed in coal mesh coordinates only when use_tcp is false (offline tests).
+# Acceptance always uses the measured world->tcp transform.
+bool use_tcp
+float64 position_x
+float64 position_y
+float64 position_z
+float64 direction_x
+float64 direction_y
+float64 direction_z
+float64 pressure
+float64 duration
+bool enabled
+---
+bool success
+string message
+float64 volume_removed_m3
+float64 cumulative_volume_m3
+float64 max_depth_m
+float64 cumulative_depth_m
+string output_mesh_path
+string statistics_json

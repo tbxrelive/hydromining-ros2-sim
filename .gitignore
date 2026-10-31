@@ -1,0 +1,146 @@
+# ROS 2 构建产物
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+.eggs/
+.venv_stage4/
+venv/
+venv_*/
+env/
+
+# 测试结果（保留必要的验收报告）
+results/**/debug_*
+results/**/train_*
+results/**/*.log
+results/**/ddpg_*/
+results/**/surrogate_*/
+results/**/eval_*/
+!results/phase*/acceptance/
+!results/phase*/*_acceptance.json/
+!results/phase*/real_*.json/summary.json
+
+# Gazebo 临时文件
+.gz/
+.gazebo/
+*.gazebo/
+
+# IDE 和编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+.DS_Store
+
+# 大文件模型（使用 Git LFS 或外部存储）
+*.zip
+*.tar.gz
+*.pth
+*.onnx
+*.pkl
+
+# 私有配置
+.env
+*.local.yaml
+*_local.yaml
+secrets/
+
+# 编译产物
+*.o
+*.lo
+*.la
+*.a
+*.so
+*.so.*
+*.dylib
+*.exe
+*.out
+*.app
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+!*Config.cmake
+
+# Colcon
+.colcon/
+compile_commands.json
+
+# 文档生成
+docs/_build/
+docs/build/
+*.pdf
+!docs/**/*.pdf
+
+# 大文件 PDF（科研论文，不上传）
+sci/
+*.pdf
+
+# 数据文件（保留小样本）
+*.bag
+*.db3
+*.pcd
+*.ply
+*.las
+!data/samples/*.pcd
+
+# 临时文件
+*.tmp
+*.temp
+*.bak
+*.orig
+tmp/
+temp/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# 系统文件
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Machine-local dependency downloads and ROS CLI overlay
+.local_ros_deps/
+.venv_rl/
+.cache/phase7/
+
+# 2026-11-01 论文总体计划：目录与结果约定（见 docs/论文总体计划.md）
+SCI/
+results/legacy/
+results/thesis/**/episodes.jsonl
+results/thesis/**/snapshots/
+results/thesis/**/assets/
+results/thesis/**/*.npz
+results/thesis/**/*.pt
+results/thesis/**/checkpoint*
+results/thesis/**/*.obj
+
+# 第三方技能库（外部仓库副本，.claude/skills 已保存所需技能）
+robotics-agent-skills/

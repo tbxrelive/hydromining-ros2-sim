@@ -1,0 +1,20 @@
+# Ubuntu 24.04 / Python 3.12. Install CPU torch separately before this file.
+# Keep the recorded phase-six NumPy/SciPy baseline compatible with py4dgeo.
+numpy==1.26.4
+scipy==1.11.4
+open3d==0.19.0
+scikit-fmm==2025.6.23
+trimesh==4.5.3
+PyMCubes==0.1.6
+perlin-numpy==0.0.1
+# Use Noble's system Matplotlib to match its preloaded mpl_toolkits namespace.
+matplotlib==3.6.3
+pandas==2.2.3
+PyYAML==6.0.2
+psutil==5.9.8
+pytest==8.3.5
+graphviz==0.20.3
+py4dgeo==1.2.0
+gymnasium==1.0.0
+stable-baselines3==2.4.1
+torch==2.5.1+cpu

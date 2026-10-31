@@ -1,0 +1,29 @@
+# ROS 2 参数配置模板
+# 遵循鱼香ROS代码规范
+
+/**:
+  ros__parameters:
+    # 通用参数
+    use_sim_time: true
+    
+    # 节点特定参数
+    node_name:
+      # 控制参数
+      control_frequency: 50.0
+      timeout: 5.0
+      
+      # 话题配置
+      input_topic: "/sensor/data"
+      output_topic: "/processed/data"
+      
+      # QoS 配置
+      qos:
+        reliability: "reliable"  # reliable / best_effort
+        durability: "volatile"   # volatile / transient_local
+        depth: 10
+      
+      # 算法参数
+      algorithm:
+        threshold: 0.5
+        max_iterations: 100
+        enable_debug: false

@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_water_gun">
+
+  <!-- 参数 -->
+  <xacro:arg name="name" default="panda"/>
+  <xacro:arg name="arm_id" default="panda"/>
+
+  <!-- ========================================= -->
+  <!-- 世界固定点（防止机器人倒下） -->
+  <!-- ========================================= -->
+  <link name="world"/>
+
+  <joint name="world_to_base" type="fixed">
+    <parent link="world"/>
+    <child link="panda_link0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ========================================= -->
+  <!-- 直接包含 Panda 机器人定义（已展开的 URDF） -->
+  <!-- ========================================= -->
+  <xacro:include filename="$(find hydromining_robot)/models/panda_robot/urdf/panda.urdf.xacro"/>
+
+  <!-- ========================================= -->
+  <!-- 水枪末端执行器 -->
+  <!-- ========================================= -->
+  <xacro:include filename="$(find hydromining_robot)/models/water_gun/urdf/water_gun.urdf.xacro"/>
+
+  <!-- 连接水枪到 Panda 手部 -->
+  <joint name="panda_hand_to_water_gun" type="fixed">
+    <parent link="panda_hand"/>
+    <child link="water_gun_body"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+  </joint>
+
+  <!-- ========================================= -->
+  <!-- 传感器 -->
+  <!-- ========================================= -->
+  <xacro:include filename="$(find hydromining_robot)/urdf/sensors.urdf.xacro"/>
+
+  <!-- ========================================= -->
+  <!-- ros2_control 定义 -->
+  <!-- ========================================= -->
+  <ros2_control name="panda_control" type="system">
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <!-- Panda 关节 -->
+    <joint name="panda_joint1">
+      <command_interface name="position">
+        <param name="min">-2.8973</param>
+        <param name="max">2.8973</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="panda_joint2">
+      <command_interface name="position">
+        <param name="min">-1.7628</param>
+        <param name="max">1.7628</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="panda_joint3">
+      <command_interface name="position">
+        <param name="min">-2.8973</param>
+        <param name="max">2.8973</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="panda_joint4">
+      <command_interface name="position">
+        <param name="min">-3.0718</param>
+        <param name="max">-0.0698</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="panda_joint5">
+      <command_interface name="position">
+        <param name="min">-2.8973</param>
+        <param name="max">2.8973</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="panda_joint6">
+      <command_interface name="position">
+        <param name="min">-0.0175</param>
+        <param name="max">3.7525</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="panda_joint7">
+      <command_interface name="position">
+        <param name="min">-2.8973</param>
+        <param name="max">2.8973</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+  <!-- ========================================= -->
+  <!-- Gazebo ros2_control 插件 (Gazebo Harmonic 格式) -->
+  <!-- ========================================= -->
+  <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>$(find hydromining_robot)/config/ros2_control.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+</robot>

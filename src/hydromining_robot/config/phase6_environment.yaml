@@ -1,0 +1,12 @@
+# 未标定的离线压力测试；不代表真实矿井能见度或近红外光学特性。
+schema_version: 1
+seed: 20261028
+environments:
+  - clean
+  - dim_dust_light
+  - dim_dust_heavy
+  - dim_dust_extreme
+noise_scales: [0.0, 1.0]
+r_min_m: 0.1
+# 全因子 4x2，对能见度和随机噪声分别控制，不冒充五因素 L16 试验。
+# dim_* 沿用环境预设名称；本工具不处理 RGB、照明或原生粒子。
