@@ -13,8 +13,10 @@ from .. import heightfield_erosion
 from ..erosion_model import DefaultErosionKernel
 from ..jet_effects import jet_hydraulics
 from ..perception.assessment import assess, circle_fractions
+from ..perception.config import PerceptionConfig
 from ..perception import visibility
 from ..perception.wall_frame import WallFrame
+from .decision import RulePolicy
 from .episodes import SCENARIOS
 from .observations import depth_progress, encode_observation, potential_reward
 
@@ -58,6 +60,9 @@ class FastHeightfieldEnv(gym.Env):
         self.camera_poses_, self.K_, self.image_shape_ = camera_poses, intrinsics, image_shape
         self.max_steps_ = max_steps
         self.rng_ = np.random.default_rng(seed)
+        self.rule_ = RulePolicy(PerceptionConfig(
+            diameter=diameter, required_depth=required_depth,
+            required_fraction=required_fraction), max_duration=8.)
         self.scenarios_ = SCENARIOS if scenarios is None else scenarios
         self.scenario_names_ = list(self.scenarios_) if scenario_names is None else list(scenario_names)
         self.surface_grid_ = frame.grid(self.extent_, self.spacing_)
@@ -143,13 +148,17 @@ class FastHeightfieldEnv(gym.Env):
                              'initially_achieved': self.initially_achieved_}
 
     def rule_action(self):
-        """Existing maximum conservative deficit rule, expressed in normalized actions."""
-        c = self.last_change_
-        deficit = np.where(c['valid'] & (self.area_ > 0),
-                           self.required_depth_ + 1.645*c['sigma']-c['delta'], -np.inf)
-        row, col = np.unravel_index(np.argmax(deficit), deficit.shape)
+        """Existing maximum conservative deficit rule, expressed in normalized actions.
+
+        The deficit formula is shared with RulePolicy.deficit_map; selection keeps
+        the original argmax semantics (fall back to the first cell when no cell
+        has a valid deficit) so the L0 baseline stays bit-identical.
+        """
+        deficit = self.rule_.deficit_map(self.last_change_, self.area_ > 0)
+        index = np.nanargmax(deficit) if np.isfinite(deficit).any() else 0
+        row, col = np.unravel_index(index, deficit.shape)
         u, v = self.map_grid_[row, col, :2]
-        duration = np.clip(6*max(deficit[row, col], 0.)/self.required_depth_, 2., 8.)
+        duration = np.clip(6*max(float(deficit[row, col]), 0.)/self.required_depth_, 2., 8.)
         return np.array([u/(self.diameter_/2), v/(self.diameter_/2), (duration-5.)/3.], dtype=np.float32)
 
     def step(self, action):
