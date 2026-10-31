@@ -8,6 +8,60 @@
 
 **维护者**: Star (@tbxrelive)
 
+---
+
+## 🧭 新对话必读：当前工作重点（2026-11-01 起）
+
+> 本节是给下一次对话 / 其他 AI 的入口。**动手前先读完本节和下面两份文档。**
+
+1. [`docs/论文总体计划.md`](docs/论文总体计划.md)：做什么、按什么顺序做、做到什么程度算完成。用户已批准，**严格按其第七节的阶段顺序执行**。
+2. [`docs/进度总表.md`](docs/进度总表.md)：当前做到哪个实验、结果在哪、对应论文哪张图。**这是"做到哪一步"的唯一依据。**
+
+### 目标
+
+本项目服务于用户的**大论文**，并从中产出两篇小论文：
+
+| 论文 | 方向 | 内容 | 大论文章节 |
+|---|---|---|---|
+| 论文 A（先做） | 机器人方向英文 SCI | 干扰下的感知与效果评估 + 判决导向主动观测规划（NBV） | 第 3、4 章 |
+| 论文 B（后做） | 《煤炭学报》 | 非均质煤体下规则先验 + 残差深度强化学习的自适应喷射 | 第 2、5 章 |
+| 大论文 | — | 以上 + 仿真系统 + 闭环集成实验 | 第 2–6 章 |
+
+**主线**：任务达标置信度判决。退缩量置信下界 δ − kσ ≥ 5 cm 的面积 ≥ 90%，输出 achieved / not_achieved / insufficient_evidence 三分类。感知给出 δ、σ；NBV 降低影响判决的不确定性；喷射决策补齐置信下界缺口。
+
+当前任务：60° 煤壁、30 MPa、直径 40 cm 区域、90% 面积退缩 5 cm，参数唯一来源为 `src/hydromining_robot/config/phase7_large_task.yaml`，代码中通过 `algorithms/task_spec.py` 的 `TaskSpec` 读取。
+
+### 执行纪律（每个小实验都必须遵守）
+
+1. **开始前**：列出要改的文件和要跑的实验，**等用户确认**再动手。
+2. **固定流程**：写配置 → 2 回合冒烟 → 正式运行（长训/长评估由用户启动，我只跑 ≤100 步冒烟）→ 统计 → 对照完成标准判定 → 更新 `docs/进度总表.md` → **git 提交**。
+3. **⛔ 关卡实验**不达标不得进入下一步；**不得放宽完成标准去凑结果**，未通过要如实写进进度表和提交信息。
+4. **每完成一个小实验或一次独立验证就 git 提交**；阶段完成打标签（如 `step0-baseline`）。提交信息格式 `<类型>(<实验号或模块>): <中文摘要>`，正文写验证结果。**推送远程前必须征得用户同意**。
+5. **重构必须保持结果不变**：改动 L0 环境或规则后，重跑 `experiments/ch0_baseline/run_baseline.py`，与 `results/thesis/E0.3/episodes.jsonl` 逐回合比对，除耗时字段外必须零差异（成功率 0.917）。
+
+### 目录约定
+
+```
+experiments/<章节>/e<实验号>_<名称>.py   每个小实验一个文件，文件名以实验号开头
+experiments/common/                      共用：task.py(TaskSpec)、划分、接口、记录、统计
+configs/experiments/<实验号>.yaml         每个实验一份配置
+results/thesis/<实验号>/<run_id>/         manifest.json、summary.json、figures/ 进 git；episodes.jsonl、模型不进 git
+results/legacy/                          2026-11-01 前的全部旧结果（只读，不进 git）
+docs/archive/legacy_20261101/            已归档的旧脚本与旧文档
+docs/阶段文档/                            旧"阶段 1–7"开发记录，仅作历史参考
+```
+
+### 已确认的关键事实（不要重新推导，也不要被旧文档误导）
+
+- **旧 RL 结论作废**：2026-10-31 的 12 个模型（DDPG/示范 DDPG/TD3/SAC × 3 种子）L0 测试成功率全为 0，规则基线 0.92。根因是**奖励缺陷**：打穿煤壁的回合回报（约 −17）高于达标回合（约 −33），策略学会了"边缘反复短喷直到打穿"。这不是调参问题，修奖励前不得重训，也不得写成"DRL 不如规则"。
+- **RL 仍然要做**（研究内容 4），但必须在规则处理不好的条件下：非均质、强度未知的煤体，结构为"规则先验 + 残差 RL + 防贯穿护盾"。
+- **旧 NBV 增益很小**：3 个基线视点已近全覆盖（99.68%→100%），旧文档中的"0.342→0.443"等数字不能用于论文。新 NBV 是判决导向 + 动态水雾干扰 + 运动代价 + 序贯停止，且必须先过可行性关卡 E4.0。
+- **破煤模型参数未标定**：论文 A 开始前先做 E2.1 文献标定并冻结为 `sim-v1`，之后各章共用。论文只能比较相对趋势，不宣称真实矿井预测。
+- **文档里的自评分**（如"93/100""96/100"）和"✅ 完成"标记不能作为证据；证据只认 `results/` 下的 json。
+- 查重：与本课题最接近的已有工作及区分点见总体计划第一节。中文文献由用户自行检索。
+
+---
+
 **⚠️ 版本警告**：
 - 本项目使用 **ROS 2 Jazzy + Gazebo Harmonic**
 - 鱼香ROS代码示例基于 **ROS 2 Humble + Gazebo Fortress/Garden**
@@ -21,11 +75,13 @@
 
 ---
 
-## 🎯 项目概述
+## 🎯 项目概述（历史开发阶段，仅供参考）
 
 面向急倾斜煤层水力采煤的机器人自主作业**仿真系统**。
 
-### 核心组件（7 阶段开发计划）
+> 以下"阶段 1–7"是 2026-10-22 至 10-31 的开发过程记录，状态描述可能过时。2026-11-01 起的工作按论文总体计划执行，实验编号为 E2–E6，与这里的"阶段"不是一回事。
+
+### 核心组件（7 阶段开发计划，已结束）
 
 | 阶段 | 名称 | 技术栈 | 状态 |
 |------|------|--------|------|
@@ -726,23 +782,30 @@ Claude 在终端测试（构建 + 启动 + 接口 + 功能）
 - ✗ **禁止**无关重构 (如重命名全局变量、重组项目结构)
 - ✓ 保持与现有代码风格一致 (注释密度、命名约定、缩进)
 
-**已验证的项目文件结构** (禁止变更):
+**项目文件结构**（2026-11-01 按论文计划整理后；结构变更须经用户确认）:
 
 ```
 hydromining_ws/
 ├── src/
 │   ├── hydromining_sim/
-│   │   ├── models/coal_wall/       ← 煤壁几何模型
-│   │   ├── worlds/coal_wall_v02.sdf ← Gazebo 世界定义
-│   │   └── scripts/               ← Python 算法脚本
+│   │   ├── models/coal_wall/          ← 煤壁几何模型
+│   │   ├── worlds/                    ← Gazebo 世界定义
+│   │   ├── scripts/algorithms/        ← 无 ROS 依赖的核心算法（感知、破煤、规划、task_spec.py）
+│   │   └── test/                      ← pytest 单元测试
 │   └── hydromining_robot/
-│       ├── urdf/                  ← URDF/xacro 机器人模型
-│       ├── config/ros2_control/   ← 控制器参数
-│       ├── launch/robot_simulation.launch.py
-│       └── scripts/test_motion.py
-├── build/, install/               ← colcon 输出（自动生成）
-├── robotics-agent-skills/         ← 外部技能库（禁止修改）
-└── .claude/skills/                ← 项目本地技能配置
+│       ├── urdf/                      ← URDF/xacro 机器人模型
+│       ├── config/                    ← 控制器、任务 yaml（phase7_large_task.yaml 为当前任务）
+│       ├── launch/
+│       └── scripts/                   ← ROS 适配层节点
+├── experiments/                       ← 论文实验，每个小实验一个文件（见"目录约定"）
+├── configs/experiments/               ← 实验配置
+├── results/thesis/  results/legacy/   ← 新实验结果 / 旧结果
+├── test_scripts/                      ← 旧阶段验收器与实验脚本（阶段 1 重构中逐步迁入 experiments/common）
+├── scripts/                           ← Shell 入口（验收、训练、GUI 演示、环境）
+├── troubleshooting/KNOWN_ISSUES.md    ← 已知问题库（遇到问题先查）
+├── build/, install/, log/             ← colcon 输出（自动生成）
+├── robotics-agent-skills/             ← 外部技能库（禁止修改，不进 git）
+└── .claude/skills/                    ← 项目本地技能配置
 ```
 
 ---
@@ -753,10 +816,11 @@ hydromining_ws/
 
 **🚨 强制要求**：用户可能随时开新对话，**每次完成后必须更新交接记录**，不要等用户提醒
 
-- ✓ 更新当前阶段的 `00-进度交接.md`：当前结论（附证据）、未验证项、下一步、会话记录表加一行
+- ✓ 更新 [`docs/进度总表.md`](docs/进度总表.md)：实验状态、结果路径、台账加一行（含提交号）
 - ✓ 结论必须区分 **已核实** / **未验证**，未验证的不得写成事实
 - ✓ 推翻旧结论时，同步修正 memory 和本文件中的错误内容
-- ✓ 本项目**不是 git 仓库**，交接文档即“提交记录”
+- ✓ 本项目自 2026-11-01 起是 **git 仓库**：每完成一个小实验或验证即提交，提交信息写清验证结果；进度总表与提交同步更新
+- ✓ `docs/阶段文档/*/00-进度交接.md` 为旧阶段记录，不再作为当前进度依据
 
 ---
 
@@ -1011,6 +1075,7 @@ ros2 launch hydromining_robot robot_simulation.launch.py
 
 | 日期 | 版本 | 变更 | 维护者 |
 |------|------|------|--------|
+| 2026-11-01 | 2.0 | 转为按论文总体计划执行：新增"新对话必读"、目录约定、git 规则；旧阶段补充压缩为历史摘要 | Star |
 | 2026-10-23 | 1.1 | 集成鱼香ROS代码规范，新增代码模板库指引 | Star |
 | 2026-10-22 | 1.0 | 初始版本: 阶段 1 + 2 完成，技能框架建立 | Star |
 
@@ -1018,60 +1083,30 @@ ros2 launch hydromining_robot robot_simulation.launch.py
 
 ## 🔗 相关文档
 
+- **论文总体计划**: `docs/论文总体计划.md` ⭐ 当前执行依据
+- **进度总表**: `docs/进度总表.md` ⭐ 当前进度依据
+- **已知问题库**: `troubleshooting/KNOWN_ISSUES.md`
 - **项目快速开始**: `QUICKSTART.md`
-- **阶段 2 评估报告**: `docs/stage2_review.md`
-- **煤壁生成使用指南**: `docs/coal_wall_generation.md`
-- **故障排查文档**: `troubleshooting/STAGE1_FIX_SUMMARY.md`
-- **鱼香ROS代码规范**: `docs/鱼香ROS代码规范总结.md` ⭐ **新增**
+- **鱼香ROS代码规范**: `docs/鱼香ROS代码规范总结.md`
+- **新机器环境搭建**: `docs/新机器环境搭建记录-2026-10-30.md`
+- **旧阶段开发记录**: `docs/阶段文档/`（历史参考）
 
 ---
 
-**最后更新**: 2026-10-22  
-**规则适用范围**: 所有阶段 (1, 2, 3+) 的开发  
+**最后更新**: 2026-11-01  
+**规则适用范围**: 论文计划所有阶段及旧阶段回归  
 **许可**: Apache-2.0
 
 ---
 
-## 🗺️ 当前阶段执行指南
+## 🖥️ 本机环境与资源约定（2026-10-30 核实，仍有效）
 
-**🚨 新对话先读（2026-11-01 起以此为准）**：
-1. [`docs/论文总体计划.md`](docs/论文总体计划.md) —— 大论文章节、实验路线（阶段 0–7、E2–E6、⛔ 关卡与完成标准）、Git 规则。
-2. [`docs/进度总表.md`](docs/进度总表.md) —— 当前做到哪个实验、状态、结果路径、对应论文图表。
-
-工作已从"按阶段 1–7 开发"转为"按论文总体计划执行"：目标是大论文 + 论文 A（感知 + 判决导向 NBV，机器人方向 SCI）+ 论文 B（非均质煤体规则先验残差 RL，煤炭学报）。阶段 1–7 的旧文档保存在 `docs/阶段文档/`，仅作历史参考；与总体计划冲突时以总体计划为准。
-
-**旧阶段验收入口（仍用于回归）**：`./scripts/run_phase4_acceptance.sh`、`run_phase5_acceptance.sh`、`run_phase6_acceptance.sh`、`run_phase7_batch.sh`；GUI 演示 `./scripts/run_gui_demo.sh`。
-
-
-## 2026-10-30 本机环境恢复（最新补充）
-
-当前开发目录为 `/home/star/SCI/hydromining_ws`；内层 `SCI/` 保留为历史克隆，禁止混用两处构建产物。
-- 环境入口：`source setup_env.sh`；只读检查：`./scripts/check_environment.sh`；恢复依赖与构建：`./scripts/setup_new_machine.sh`。
-- 已创建 `.venv_stage4`（系统 Python 3.12、继承系统包），锁定直接依赖与本地 pip 快照。
-- 官方 ROS CLI/joint_state_publisher 本地 overlay 位于 `.local_ros_deps/opt/ros/jazzy`，由入口加载；未经 sudo 安装到系统。
-- 上游技能库已恢复，`.claude/skills/ros2.md` 与 `robotics-testing.md` 为完整上游内容；systematic-debugging/verification-before-completion 已恢复。
-- 两包构建、133 回归、18 模块导入、pip check、ROS 生命周期/喷射接口及真实阶段四六步无GUI均通过，RSS峰值2100.8MiB。RL只完成一步与模型保存加载冒烟，不代表训练性能。
-- 接缝加载修复按几何焊接忽略法向/UV，未放宽闭合性和1e-7m精度；不得为通过测试删除 OBJ 法向或关闭闭合性校验。
-- 本机 GUI、阶段五/六/七完整场景未在本次重验。证据与边界：`docs/新机器环境搭建记录-2026-10-30.md`、`results/environment_setup_20261030/`。
-
-
-## 2026-10-30 新机器渲染与资源约定（用户最新指示）
-
-用户明确允许新电脑开启渲染，聚合内存不再要求固定小于3GiB。实际nvidia-smi检测到4张NVIDIA TITAN V（各12288MiB），系统内存约62GiB。后续按机器配置资源预算并保留监控与可用内存保护，不以旧电脑3GiB阈值作为功能验收标准。原文中的3GiB要求及历史资源结果保留为旧机器记录。
-
-注意：本次只核查记录并更新约定，验收器monitor当前仍硬编码3GiB/可用1GiB保护，尚未改为可配置；不能声称代码已经放宽。GUI本次未启动，未做多GPU渲染或CUDA适配。当前安装PyTorch为CPU版，四卡显存不会自动合并或让算法自动多卡加速。
-
-
-## 2026-10-30 全阶段复现与DDPG优化交付（覆盖同日执行中状态）
-
-- 已核实：两包构建、144项回归、阶段1–6真实复现、阶段7六工况均通过；真实GUI tri_r5通过并逐张检查喷前/喷中/最终截图，射流与凹坑可见，退出无本次进程残留。
-- NBV已取消真实循环全1掩码，基于观测高度场+外参做视场/遮挡预测。single/pair各3次补看，覆盖99.6817%→100%，sigma约2.0→1.9mm；补看本身未独立达标，不夸大增益。
-- 资源代码已改为HYDROMINING_RSS_GIB=24、HYDROMINING_MIN_AVAILABLE_GIB=8；GPU0保留显示，GPU1–3 CUDA反传通过。GUI峰值4162.65MiB，不再套用旧3GiB要求。
-- DDPG优化、示范辅助、缓存/快速融合、版本化观测及断点恢复已实现并做限定短时测试；最终双环境恢复至10步/4更新。未启动长训或性能对照，不宣称DDPG超过规则。
-- 一条命令GUI：`./scripts/run_gui_demo.sh`；用户长训：`./scripts/run_phase7_training.sh --output results/phase7_training`。全阶段入口：`./scripts/run_full_reproduction.sh --gui`，子阶段实跑、新总编排仅dry-run。
-- 完整报告：docs/全阶段复现与DDPG优化-2026-10-30.md；机器可读汇总：results/reproduction_20261030/summary.json（passed）。用户GUI目视验收、长训性能，以及物理/噪声/昏暗重干扰科研缺口仍待后续，不列为通过。
-
-| 2026-10-30 | 全阶段本机复现与优化交付 | 144测试、六工况和GUI通过；长训性能与科研校准待后续 |
+- 工作目录 `/home/star/SCI/hydromining_ws`；旧克隆已移至 `~/SCI/hydromining_old_clone_20261101`，禁止混用。
+- 环境入口 `source setup_env.sh`；只读检查 `./scripts/check_environment.sh`；恢复依赖与构建 `./scripts/setup_new_machine.sh`。
+- 两个虚拟环境：`.venv_stage4`（仿真/感知，CPU）、`.venv_rl`（SB3 + CUDA 训练）。官方 ROS CLI overlay 在 `.local_ros_deps/opt/ros/jazzy`，由入口加载。
+- 构建：`colcon build --symlink-install --base-paths src --packages-select hydromining_robot hydromining_sim`（必须带 `--base-paths src`）。单元测试：`python3 -m pytest src/hydromining_sim/test -q`。
+- 硬件：4×TITAN V（12 GiB），约 62 GiB 内存。GPU0 留给桌面显示，GPU1–3 用于训练。用户允许开启渲染，资源保护由 `HYDROMINING_RSS_GIB`（默认 24）、`HYDROMINING_MIN_AVAILABLE_GIB`（默认 8）控制，旧电脑的 3 GiB 上限不再适用。
+- 接缝加载按几何焊接忽略法向/UV；不得为通过测试删除 OBJ 法向或关闭闭合性校验。
 
 ## 用户指定：防止过度设计与无效工作（2026-10-30）
 
@@ -1084,10 +1119,11 @@ ros2 launch hydromining_robot robot_simulation.launch.py
 
 这些规则不取消用户明确要求的功能、项目已有的实际错误处理与验证要求；以实际需求和已发现的风险决定必要实现，避免重复防御和无关工作。
 
-## 2026-10-31 40 cm 新任务（验证中）
+## 📜 旧阶段开发历史摘要（2026-10-22 至 10-31，仅供参考）
 
-- 新任务使用 60° 煤壁、30 MPa、40 cm 区域、90% 面积退缩 5 cm；旧任务作为历史配置保留。末网格固定边界 NaN 已修复并回归；最新完整规则 GUI 感知与真值达标、最终网格有限闭合、单次 Ctrl+C 清理通过，六工况替身精度通过。画面底部仍有网格纹理。
-- L0、SB3 DDPG/示范辅助 DDPG/TD3/SAC 已接入；用户已完成四组各三个 50000 步模型训练，高保真评估中断后正在修复和验证，不得宣称学习性能已提高。粒子强度对点云退化的单次严格排序曾失败，后一次完整回归通过，两次原始证据均保留，不视为统计标定。
-- Gazebo GUI 状态面板已核验任务配置、压力、流量、退缩和完成比例更新，最新完整闭环结果见 `results/gui_demo_20261031_114539/summary.json`。
-- SAC L2 贯穿检测后真值缺失导致调度中断的问题和恢复验证见 `troubleshooting/KNOWN_ISSUES.md`；继续评估须保护已训练模型及既有结果。
-- 任务进度、实测及未完成事项以 `docs/阶段文档/阶段7-规划决策/00-进度交接.md` 最新记录为准；用户操作说明为同目录 `04-大任务训练与演示.md`。
+- 阶段 1–6：煤壁生成、机械臂与水枪、传感器、Level Set 喷射、水雾粉尘干扰、感知管线均已实现，并通过各自无 GUI 验收；验收入口 `./scripts/run_phase{4,5,6}_acceptance.sh` 仍可用作回归。物理与噪声参数未标定。
+- 阶段 7：规则决策 + NBV 在真实 GUI 闭环达标（`results/legacy/gui_demo_20261031_114539/`，感知下界 90.0%、真值 94.6%）；40 cm 任务的 L0 替身与 SB3 训练入口已接入。GUI 演示 `./scripts/run_gui_demo.sh`。
+- 旧 RL 训练结果在 `results/legacy/phase7_training_large/`，已确认因奖励缺陷而全部失败，见"新对话必读"。
+- 粒子强度对点云退化的单次排序曾失败、后一次通过，属于单次结果，不是统计标定；E2.3 要求重复 ≥5 次。
+- 详细记录：`docs/阶段文档/*/00-进度交接.md`。
+
