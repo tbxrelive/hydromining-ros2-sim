@@ -19,7 +19,7 @@ def environment(pressure=30., noise_scale=0.):
     intrinsics = np.array([[171.7, 0, 160], [0, 171.7, 120], [0, 0, 1]])
     return FastHeightfieldEnv(np.zeros((144, 144)), frame, [pose], intrinsics,
                               (240, 320), pressure=pressure, standoff=.5, noise_scale=noise_scale,
-                              scenario_names=['empty'])
+                              scenario_names=['empty'], scenarios={'empty': {'shots': []}})
 
 
 def test_pressure_and_repeat_sprays_change_actual_geometry():

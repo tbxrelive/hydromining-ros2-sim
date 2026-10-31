@@ -16,7 +16,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',default='results/phase7_training')
     parser.add_argument('--dry-run',action='store_true')
-    parser.add_argument('--task',choices=('legacy','large'),default='large')
+    parser.add_argument('--task',choices=('large',),default='large')
     parser.add_argument('--timesteps',type=int,default=50000)
     parser.add_argument('--initial-steps',type=int,default=15000)
     parser.add_argument('--seeds',type=int,default=3)
@@ -30,69 +30,55 @@ def main():
     # Do not resolve the interpreter symlink: Python identifies its venv from this path.
     python=str(Path('.venv_rl/bin/python').absolute())
     jobs={gpu:[] for gpu in (1,2,3)}
-    if args.task == 'large':
-        def evaluation_done(destination, variant, seed, fidelity, episodes):
-            path = destination/f'evaluation_{fidelity}.json'
-            if not path.exists() or not (destination/'metadata.json').exists():
-                return False
-            result = json.loads(path.read_text())
-            metadata = json.loads((destination/'metadata.json').read_text())
-            return (result['fidelity'] == fidelity and result['algorithm'] == variant and
-                    result['training_seed'] == seed and result['trained_steps'] == metadata['num_timesteps'] and
-                    metadata['num_timesteps'] >= args.timesteps and
-                    len(result[variant]['episodes']) == episodes and
-                    (variant != 'ddpg' or seed != 0 or all(k in result for k in ('random','rule'))))
-        for gpu, variants in ((1, ('ddpg','ddpg_demo')), (2, ('td3',)), (3, ('sac',))):
-            for variant in variants:
-                for seed in range(args.seeds):
-                    destination=out/variant/f'seed_{seed}'
-                    common=[python,'test_scripts/phase7_train_large.py','--algorithm',variant,'--seed',str(seed),
-                            '--assets',str(out/'assets'),'--output',str(destination),
-                            '--num-envs',str(args.num_envs),'--device','cuda:0',
-                            '--schedule-steps',str(args.timesteps),'--fidelity-report',str(Path(args.fidelity_report).resolve()),
-                            *(['--demo-path',str(out/'demonstrations.npz')] if variant=='ddpg_demo' else [])]
-                    existing = (json.loads((destination/'metadata.json').read_text())
-                                if (destination/'metadata.json').exists() else None)
-                    steps = existing['num_timesteps'] if existing else 0
-                    if steps < min(args.initial_steps, args.timesteps):
-                        first=common+['--timesteps',str(min(args.initial_steps,args.timesteps))]
-                        if existing:first.append('--resume')
-                        jobs[gpu].append(first)
-                    if args.timesteps > args.initial_steps and steps < args.timesteps:
-                        jobs[gpu].append(common+['--timesteps',str(args.timesteps),'--noise-scale','1','--resume'])
-                    evaluation=[python,'test_scripts/phase7_evaluate_large.py','--checkpoint',str(destination),
-                                '--assets',str(out/'assets'),'--output',str(destination/'evaluation_L0.json'),
-                                '--episodes',str(args.eval_episodes)]
-                    if variant=='ddpg' and seed==0:evaluation.append('--include-reference')
-                    if not evaluation_done(destination, variant, seed, 'L0', args.eval_episodes):
-                        jobs[gpu].append(evaluation)
-        # Reference solvers run after this GPU's learners, keeping training busy first.
-        for gpu, variants in ((1, ('ddpg','ddpg_demo')), (2, ('td3',)), (3, ('sac',))):
-            for variant in variants:
-                for seed in range(args.seeds):
-                    destination=out/variant/f'seed_{seed}'
-                    for fidelity in ('L1','L2'):
-                        evaluation=[python,'test_scripts/phase7_evaluate_large.py','--checkpoint',str(destination),
-                                    '--assets',str(out/'assets'),'--output',str(destination/f'evaluation_{fidelity}.json'),
-                                    '--episodes',str(args.eval_episodes if args.reference_episodes is None else args.reference_episodes),
-                                    '--fidelity',fidelity]
-                        if variant=='ddpg' and seed==0:evaluation.append('--include-reference')
-                        episodes = args.eval_episodes if args.reference_episodes is None else args.reference_episodes
-                        if not evaluation_done(destination, variant, seed, fidelity, episodes):
-                            jobs[gpu].append(evaluation)
-    else:
-        for gpu,variant in zip(jobs,('baseline','optimized','demo')):
-            for seed in range(3):
+    def evaluation_done(destination, variant, seed, fidelity, episodes):
+        path = destination/f'evaluation_{fidelity}.json'
+        if not path.exists() or not (destination/'metadata.json').exists():
+            return False
+        result = json.loads(path.read_text())
+        metadata = json.loads((destination/'metadata.json').read_text())
+        return (result['fidelity'] == fidelity and result['algorithm'] == variant and
+                result['training_seed'] == seed and result['trained_steps'] == metadata['num_timesteps'] and
+                metadata['num_timesteps'] >= args.timesteps and
+                len(result[variant]['episodes']) == episodes and
+                (variant != 'ddpg' or seed != 0 or all(k in result for k in ('random','rule'))))
+    for gpu, variants in ((1, ('ddpg','ddpg_demo')), (2, ('td3',)), (3, ('sac',))):
+        for variant in variants:
+            for seed in range(args.seeds):
                 destination=out/variant/f'seed_{seed}'
-                command=[python,'test_scripts/phase7_train_optimized.py','--variant',variant,'--seed',str(seed),
-                         '--output',str(destination),'--timesteps','15000','--num-envs','2','--device','cuda:0',
-                         *(['--demo-path',str(out/'demonstrations.npz')] if variant=='demo' else [])]
-                if (destination/'metadata.json').exists():command.append('--resume')
-                jobs[gpu].append(command)
+                common=[python,'test_scripts/phase7_train_large.py','--algorithm',variant,'--seed',str(seed),
+                        '--assets',str(out/'assets'),'--output',str(destination),
+                        '--num-envs',str(args.num_envs),'--device','cuda:0',
+                        '--schedule-steps',str(args.timesteps),'--fidelity-report',str(Path(args.fidelity_report).resolve()),
+                        *(['--demo-path',str(out/'demonstrations.npz')] if variant=='ddpg_demo' else [])]
+                existing = (json.loads((destination/'metadata.json').read_text())
+                            if (destination/'metadata.json').exists() else None)
+                steps = existing['num_timesteps'] if existing else 0
+                if steps < min(args.initial_steps, args.timesteps):
+                    first=common+['--timesteps',str(min(args.initial_steps,args.timesteps))]
+                    if existing:first.append('--resume')
+                    jobs[gpu].append(first)
+                if args.timesteps > args.initial_steps and steps < args.timesteps:
+                    jobs[gpu].append(common+['--timesteps',str(args.timesteps),'--noise-scale','1','--resume'])
+                evaluation=[python,'test_scripts/phase7_evaluate_large.py','--checkpoint',str(destination),
+                            '--assets',str(out/'assets'),'--output',str(destination/'evaluation_L0.json'),
+                            '--episodes',str(args.eval_episodes)]
+                if variant=='ddpg' and seed==0:evaluation.append('--include-reference')
+                if not evaluation_done(destination, variant, seed, 'L0', args.eval_episodes):
+                    jobs[gpu].append(evaluation)
+    # Reference solvers run after this GPU's learners, keeping training busy first.
+    for gpu, variants in ((1, ('ddpg','ddpg_demo')), (2, ('td3',)), (3, ('sac',))):
+        for variant in variants:
+            for seed in range(args.seeds):
+                destination=out/variant/f'seed_{seed}'
                 for fidelity in ('L1','L2'):
-                    jobs[gpu].append([python,'test_scripts/phase7_evaluate.py','--checkpoint',str(destination),
-                                      '--seed',str(10000+seed),'--fidelity',fidelity,
-                                      '--output',str(destination/f'evaluation_{fidelity}')])
+                    evaluation=[python,'test_scripts/phase7_evaluate_large.py','--checkpoint',str(destination),
+                                '--assets',str(out/'assets'),'--output',str(destination/f'evaluation_{fidelity}.json'),
+                                '--episodes',str(args.eval_episodes if args.reference_episodes is None else args.reference_episodes),
+                                '--fidelity',fidelity]
+                    if variant=='ddpg' and seed==0:evaluation.append('--include-reference')
+                    episodes = args.eval_episodes if args.reference_episodes is None else args.reference_episodes
+                    if not evaluation_done(destination, variant, seed, fidelity, episodes):
+                        jobs[gpu].append(evaluation)
     if args.dry_run:
         print(json.dumps({'display_gpu_reserved':0,'task':args.task,'jobs':jobs},indent=2));return
     if args.task == 'large':
@@ -117,10 +103,9 @@ def main():
     try:
         if not (out/'demonstrations.npz').exists():
             # Same ownership/monitoring loop also covers demonstration collection.
-            collect=[python,'test_scripts/phase7_train_large.py' if args.task == 'large' else
-                     'test_scripts/phase7_train_optimized.py','--collect-demo',
-                     '--output',str(out/'demonstrations.npz'),'--seed','100']
-            if args.task == 'large':collect.extend(['--assets',str(out/'assets')])
+            collect=[python,'test_scripts/phase7_train_large.py','--collect-demo',
+                     '--output',str(out/'demonstrations.npz'),'--seed','100',
+                     '--assets',str(out/'assets')]
             jobs[1].insert(0,collect)
             collecting=True
         else:collecting=False

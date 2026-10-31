@@ -34,9 +34,9 @@ def test_policy_versions_finite_missing_and_terminal_potential():
     state = {'coverage':np.zeros((50,50))}
     change = {'delta':np.full((50,50),np.nan),'sigma':np.full((50,50),np.nan),'significant':np.zeros((50,50))}
     assessment = dict(fraction_lower=0.,fraction_upper=1.,coverage=0.)
-    for version, size in [('v1',2504),('v2',3754)]:
-        obs = encode_observation(state,change,assessment,frame.grid(.5,.01),version=version)
-        assert obs.shape == (size,) and np.isfinite(obs).all()
+    obs = encode_observation(state,change,assessment,frame.grid(.5,.01),cfg.required_depth,
+                             diameter=cfg.diameter, pressure=30., standoff=.5)
+    assert obs.shape == (3756,) and np.isfinite(obs).all()
     # True terminal potential is zero; truncation retains the continuing value.
     assert potential_reward(.2,.9,terminal=True) == -1.6
     assert potential_reward(.2,.9,terminal=False) > 0

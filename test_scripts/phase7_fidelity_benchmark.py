@@ -42,7 +42,8 @@ def main():
     K = np.array([[171.7, 0, 160], [0, 171.7, 120], [0, 0, 1]])
     fast = FastHeightfieldEnv(initial_full, frame, cameras, K, (240, 320),
                               pressure=task['pressure_mpa'], standoff=task['standoff_m'],
-                              scenario_names=['empty'], patch_extent=task['patch_extent_m'],
+                              scenario_names=['empty'], scenarios={'empty': {'shots': []}},
+                              patch_extent=task['patch_extent_m'],
                               diameter=task['diameter'], required_depth=task['required_depth'],
                               required_fraction=task['required_fraction'], wall_thickness=task['wall_thickness_m'])
     inside = np.linalg.norm(frame.grid(.5, .005)[..., :2], axis=-1) <= task['diameter']/2

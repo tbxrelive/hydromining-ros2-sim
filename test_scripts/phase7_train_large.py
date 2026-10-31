@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import sys
 import time
 
 import numpy as np
@@ -16,7 +17,9 @@ from stable_baselines3.common.noise import NormalActionNoise
 from stable_baselines3.common.vec_env import SubprocVecEnv
 
 from phase7_large_env import TASK, fidelity_signature, make_fast_env
-from phase7_train_optimized import CheckpointCallback
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from experiments.common.checkpoint import CheckpointCallback
 from algorithms.planning.ddpg_optimized import DemonstrationDDPG, DemonstrationReplayBuffer
 
 ALGORITHMS = {'ddpg': DDPG, 'ddpg_demo': DemonstrationDDPG, 'td3': TD3, 'sac': SAC}

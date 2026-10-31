@@ -88,6 +88,5 @@ def make_reference_env(directory, mesh_index, fidelity, seed=0, noise_scale=0.):
             'tf_lidar': np.r_[lidar_pose[:3, 3], Rotation.from_matrix(lidar_pose[:3, :3]).as_quat()],
             'joints': view['joints']}
     return HydrominingSurrogateEnv(world, specs, task, fidelity=fidelity, noise_scale=noise_scale,
-        seed=seed, max_steps=task['max_steps'], action_mode='spray', observation_version='v3',
-        reward_mode='potential', task_config=task, scenarios=TEST_SCENARIOS,
+        seed=seed, max_steps=task['max_steps'], scenarios=TEST_SCENARIOS,
         cache_dir=str(Path(directory)/'.reference_cache') if fidelity == 'L1' else None)

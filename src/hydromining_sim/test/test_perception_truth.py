@@ -88,7 +88,7 @@ def test_through_cut_with_missing_truth_returns_unknown(monkeypatch):
         raise ValueError('Through-cut detected: depth metric requires a remaining surface')
     env.world_ = SimpleNamespace(spray_tcp=through_cut, truth_heights=lambda *args: after)
     monkeypatch.setattr(rl_env, 'spray_target_tcp', lambda *args: np.eye(4))
-    _, _, terminated, truncated, info = env._step_spray(np.zeros(3))
+    _, _, terminated, truncated, info = env.step(np.zeros(3))
     assert terminated and not truncated
     assert info['verdict'] == 'through_cut' and info['truth'] == 'unknown'
     assert info['truth_fraction'] is None and info['removed_volume_m3'] is None

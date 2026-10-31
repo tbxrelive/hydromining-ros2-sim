@@ -1,19 +1,14 @@
-"""阶段七 RL 环境（gymnasium）：与规则决策层同语义的 观测/喷射/收尾 动作。
+"""阶段七 RL 环境（gymnasium）：自适应喷射动作 (u, v, duration)。
 
-两级保真度：L1 用真值高度+视点可见性+噪声直接建图（快，批量初训）；
-L2 走完整感知管线（合成观测 -> PerceptionSession，微调/筛选）。
-动作模式：
-- 'full'：连续向量 [observe,spray,finish] argmax + 7 视点 argmax +
-  (u,v,duration)——混合离散-连续编码，裸 DDPG 实测模式塌缩（critic
-  学的是原始向量而非解码语义，Q 曲面平台化），仅供后续 P-DQN/混合策略；
-- 'spray'：三维 (u,v,duration)，判决达标自动收尾——DDPG v1 交付口径，
-  对应"自适应喷射"子问题，模式/视点选择由决策层负责。
+动作空间是三维连续量，判决达标即自动收尾（与规则层同语义）；观测补看由
+决策层负责。观测编码只保留 v3（任务区域网格层 + 压力/靶距标量），奖励只
+保留势函数形式。两级保真度：L1 用真值高度+视点可见性+噪声直接建图（快，
+批量初训）；L2 走完整感知管线（合成观测 -> PerceptionSession）。
 真值仅用于奖励与回合标注，不进观测。
 """
-import numpy as np
 import time
-from dataclasses import replace
-from .observations import depth_progress, encode_observation, potential_reward
+
+import numpy as np
 
 try:
     import gymnasium as gym
@@ -22,26 +17,22 @@ except ImportError:  # 允许未装 gym 的环境导入本模块的非 Env 部�
     gym = None
     spaces = None
 
-from .episodes import SCENARIOS, apply_scenario
+from .observations import depth_progress, encode_observation, potential_reward
+from .episodes import apply_scenario
 from .surrogate import pose_to_matrix, spray_target_tcp
+from ..perception import visibility
 from ..perception.assessment import assess, circle_fractions
 from ..perception.change_detection import (compare_surfaces,
                                            external_change_alarm, volume_summary)
+from ..perception.config import PerceptionConfig
 from ..perception.height_map import HeightMap
+from ..perception.metrics import truth_change
 from ..perception.pipeline import PerceptionSession
-from ..perception import visibility
 from ..perception.sensor_model import depth_sigma, lidar_sigma
 from ..perception.wall_frame import WallFrame
-from ..perception.metrics import truth_change
 
-VIEW_NAMES = ['front_0p6', 'front_0p8', 'front_1p0', 'left_0p8', 'right_0p8',
-              'up_0p8', 'down_0p8']
 OBSERVE_SET = ['front_0p8', 'left_0p8', 'right_0p8']
-
-# 动作向量布局：3 模式 + 7 视点 + (u,v,duration)
-ACTION_MODES, N_VIEWS = 3, len(VIEW_NAMES)
-ACTION_DIM = ACTION_MODES + N_VIEWS + 3
-U_RANGE, V_RANGE, DURATION_RANGE = (-0.1, 0.1), (-0.1, 0.1), (2., 12.)
+DURATION_RANGE = (2., 8.)
 # L1 每视点融入帧数：与真实管线 frames_per_view=3 的计数语义一致，
 # 否则单视点覆盖单元永远达不到 minimum_observations 而无法变可靠。
 L1_FRAMES_PER_VIEW = 3
@@ -52,54 +43,46 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
 
     metadata = {'render_modes': []}
 
-    def __init__(self, world, view_specs, cfg, fidelity='L2', noise_scale=0.,
+    def __init__(self, world, view_specs, task_config, fidelity='L2', noise_scale=0.,
                  max_steps=12, grid=25, cost_observe=2., cost_spray_per_s=0.3,
                  terminal_reward=10., external_penalty=5., seed=None,
-                 action_mode='full', observation_version='v1', reward_mode='legacy', cache_dir=None, scenario_names=None,
-                 task_config=None, scenarios=None):
+                 cache_dir=None, scenario_names=None, scenarios=None):
         if gym is None:
             raise ImportError('gymnasium is required')
         assert fidelity in ('L1', 'L2')
-        assert action_mode in ('full', 'spray')
-        self.scenarios_ = SCENARIOS if scenarios is None else scenarios
+        if not isinstance(task_config, dict) or 'pressure_mpa' not in task_config:
+            raise ValueError('task_config is required')
+        if scenarios is None:
+            raise ValueError('scenarios are required')
+        self.scenarios_ = scenarios
         self.scenario_names_ = list(self.scenarios_) if scenario_names is None else list(scenario_names)
         if not self.scenario_names_ or any(n not in self.scenarios_ for n in self.scenario_names_):
             raise ValueError('invalid training scenarios')
-        self.task_ = task_config
-        # 无 task_config 时是旧 20 cm 任务默认值；1.3 删除旧分支时一并移除。
-        self.pressure_ = task_config['pressure_mpa'] if task_config else 20.
-        self.standoff_ = task_config['standoff_m'] if task_config else .7
-        self.duration_range_ = (2., 8.) if task_config else DURATION_RANGE
-        self.action_radius_ = task_config['diameter']/2 if task_config else U_RANGE[1]
-        self.truth_extent_, self.truth_resolution_ = (.5, .005) if task_config else (.24, .002)
-        self.observation_version_, self.reward_mode_, self.cache_dir_ = observation_version, reward_mode, cache_dir
+        self.pressure_ = task_config['pressure_mpa']
+        self.standoff_ = task_config['standoff_m']
+        self.duration_range_ = DURATION_RANGE
+        self.action_radius_ = task_config['diameter']/2
+        self.truth_extent_, self.truth_resolution_ = (.5, .005)
+        self.cache_dir_ = cache_dir
         self.profile_ = {'reset_s': 0., 'spray_s': 0., 'assessment_s': 0.}
-        self.action_mode_ = action_mode
-        self.world_, self.specs_, self.cfg_ = world, view_specs, cfg
+        self.world_, self.specs_, self.cfg_ = world, view_specs, task_config
         self.fidelity_, self.noise_scale_ = fidelity, noise_scale
         self.max_steps_, self.grid_ = max_steps, grid
         self.cost_observe_, self.cost_spray_per_s_ = cost_observe, cost_spray_per_s
         self.terminal_reward_, self.external_penalty_ = terminal_reward, external_penalty
         self.rng_ = np.random.default_rng(seed)
-        # 观测：grid x grid x 4 图层(delta,sigma,coverage,significant) + 4 标量
+        # 观测：grid x grid x 6 图层 + 6 标量（含压力/靶距）。
         self.observation_space = spaces.Box(
-            low=-np.inf, high=np.inf, shape=(grid * grid * (4 if observation_version == 'v1' else 6) + (6 if observation_version == 'v3' else 4),), dtype=np.float32)
-        if action_mode == 'spray':
-            # 纯连续子问题：DDPG 只学自适应喷射参数 (u, v, duration)；
-            # 模式/视点选择由决策层负责（裸 DDPG 对 argmax 编码的混合
-            # 动作拿不到模式梯度，会塌缩——已实测）。
-            self.action_space = spaces.Box(low=-1., high=1., shape=(3,),
-                                           dtype=np.float32)
-        else:
-            self.action_space = spaces.Box(low=-1., high=1.,
-                                           shape=(ACTION_DIM,), dtype=np.float32)
-        self.center_ = np.array(cfg['region_center_world'])
-        self.normal_ = np.array(cfg['wall_normal_world'])
-        self.perception_ = __import__(
-            'algorithms.perception.config', fromlist=['PerceptionConfig']).PerceptionConfig()
-        if task_config:
-            self.perception_ = replace(self.perception_, diameter=task_config['diameter'],
-                required_depth=task_config['required_depth'], required_fraction=task_config['required_fraction'])
+            low=-np.inf, high=np.inf, shape=(grid * grid * 6 + 6,), dtype=np.float32)
+        # 纯连续子问题：只学自适应喷射参数 (u, v, duration)；
+        # 模式/视点选择由决策层负责（裸 DDPG 对 argmax 编码的混合动作
+        # 拿不到模式梯度，会塌缩——已实测）。
+        self.action_space = spaces.Box(low=-1., high=1., shape=(3,), dtype=np.float32)
+        self.center_ = np.array(task_config['region_center_world'])
+        self.normal_ = np.array(task_config['wall_normal_world'])
+        self.perception_ = PerceptionConfig(
+            diameter=task_config['diameter'], required_depth=task_config['required_depth'],
+            required_fraction=task_config['required_fraction'])
         # L1 工况缓存：确定性蚀除 + 固定参考系 -> 预喷结果可整局复用，
         # 省去每回合重复求解（reset 从 ~10-30s 降到 <1s）。
         self._episode_cache = {}
@@ -133,13 +116,13 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         change = evaluated['change']
         return encode_observation(state, change, evaluated['report']['assessment'],
                                   surface.centers_, self.perception_.required_depth,
-                                  self.perception_.confidence_k, self.steps_used_,
-                                  self.max_steps_, self.grid_, self.observation_version_,
-                                  diameter=self.perception_.diameter, pressure=self.pressure_, standoff=self.standoff_)
+                                  confidence_k=self.perception_.confidence_k,
+                                  steps=self.steps_used_, max_steps=self.max_steps_,
+                                  grid=self.grid_, diameter=self.perception_.diameter,
+                                  pressure=self.pressure_, standoff=self.standoff_)
 
     def _evaluate(self, names):
-        evaluated = self.session_.evaluate(self._observe_snapshots(names, stamp=100))
-        return evaluated
+        return self.session_.evaluate(self._observe_snapshots(names, stamp=100))
 
     # ---------- L1 快速通道：真值表面 + 视点可见性 + σ 模型 -> 同构评估 ----------
     # 与 L2 的边界一致：真值只经可见性掩码和注入噪声进入地图，σ 仍由传感器
@@ -154,10 +137,7 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         return local, self.frame_.to_world(local)
 
     def _l1_visibility(self, view, world):
-        """该视点任一传感器可观测的单元掩码（融合语义：相机 ∪ LiDAR）。
-
-        按世界版本缓存：喷射改变几何后自动失效，观测动作不重复求交。
-        """
+        """该视点任一传感器可观测的单元掩码（融合语义：相机 ∪ LiDAR）。"""
         key = (self.world_.version_, view)
         if key not in self.mask_cache_:
             mask = np.zeros(world.shape[:2], bool)
@@ -192,13 +172,7 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         return mask
 
     def _l1_build_map(self, views, surface=None, masks=None):
-        """把各视点覆盖的表面点带噪融入一张 HeightMap。
-
-        每视点每格一个观测：count = 覆盖视点数，精度自然叠加；σ 按
-        depth_sigma(距离, cfg.noise_scale) 上报，注入噪声用 env 的
-        noise_scale（0 即确定性几何，与 L2 的干净渲染一致）。
-        surface/masks 可显式传入（基线用预喷前的缓存几何）。
-        """
+        """把各视点覆盖的表面点带噪融入一张 HeightMap。"""
         cfg = self.perception_
         surface_map = HeightMap(self.frame_, cfg.extent, cfg.resolution,
                                 cfg.systematic_sigma)
@@ -259,8 +233,7 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
     def _do_observe(self, view, stamp):
         """observe 动作：L2 走会话补看，L1 把视点并入当前轮次重建。"""
         if self.fidelity_ == 'L2':
-            return self.session_.observe(self._observe_snapshots([view],
-                                                               stamp=stamp))
+            return self.session_.observe(self._observe_snapshots([view], stamp=stamp))
         if view not in self.l1_views_:
             if len(self.l1_views_) >= self.perception_.maximum_views:
                 raise ValueError('accumulated viewpoints exceed budget')
@@ -287,12 +260,11 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         if self.fidelity_ == 'L2':
             self.world_.reset()
             self.session_ = PerceptionSession(self.center_, self.perception_)
-            self.session_.set_baseline(self._observe_snapshots(OBSERVE_SET,
-                                                             stamp=0))
+            self.session_.set_baseline(self._observe_snapshots(OBSERVE_SET, stamp=0))
             self.frame_ = self.session_.frame_
             self.pristine_ = self.world_.truth_heights(self.frame_, self.truth_extent_, self.truth_resolution_)
-            apply_scenario(self.world_, self.frame_, -self.normal_,
-                           scenario['shots'], self.standoff_, self.pressure_, self.duration_range_[1] if self.task_ else None)
+            apply_scenario(self.world_, self.frame_, -self.normal_, scenario['shots'],
+                           self.standoff_, self.pressure_, self.duration_range_[1])
         else:
             self.session_ = None
             self.frame_ = WallFrame.from_normal(self.center_, self.normal_)
@@ -311,11 +283,10 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
                 masks = {v: {s: self._l1_sensor_mask(v, surface[1], s)
                              for s in ('depth', 'lidar')}
                          for v in OBSERVE_SET}
-                baseline = self._l1_build_map(self.l1_views_, surface=surface,
-                                              masks=masks)
+                baseline = self._l1_build_map(self.l1_views_, surface=surface, masks=masks)
                 self.pristine_ = self.world_.truth_heights(self.frame_, self.truth_extent_, self.truth_resolution_)
-                apply_scenario(self.world_, self.frame_, -self.normal_,
-                               scenario['shots'], self.standoff_, self.pressure_, self.duration_range_[1] if self.task_ else None)
+                apply_scenario(self.world_, self.frame_, -self.normal_, scenario['shots'],
+                               self.standoff_, self.pressure_, self.duration_range_[1])
                 self._episode_cache[name] = {
                     'phi': self.world_.snapshot_phi(), 'surface': surface,
                     'masks': masks, 'pristine': self.pristine_}
@@ -325,8 +296,7 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
             else:
                 self.world_.restore(entry['phi'])
                 self.pristine_ = entry['pristine']
-                baseline = self._l1_build_map(self.l1_views_,
-                                              surface=entry['surface'],
+                baseline = self._l1_build_map(self.l1_views_, surface=entry['surface'],
                                               masks=entry['masks'])
             self.l1_baseline_state_ = baseline.state(
                 self.perception_.minimum_observations,
@@ -336,26 +306,22 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         a = evaluated['report']['assessment']
         self.last_fraction_lower_, self.last_coverage_ = a['fraction_lower'], a['coverage']
         self.last_evaluated_ = evaluated
-        if self.task_:
-            weights = circle_fractions(evaluated['surface'].centers_, self.perception_.resolution,
-                                       self.perception_.diameter/2)
-            self.last_progress_ = depth_progress(evaluated['change'], weights,
-                                                  self.perception_.required_depth, self.perception_.confidence_k)
+        weights = circle_fractions(evaluated['surface'].centers_, self.perception_.resolution,
+                                   self.perception_.diameter/2)
+        self.last_progress_ = depth_progress(evaluated['change'], weights,
+                                             self.perception_.required_depth,
+                                             self.perception_.confidence_k)
         self.profile_['reset_s'] += time.monotonic() - started
         return self._state_tensor(evaluated), {'scenario': name,
             'initially_achieved': a['status'] == 'achieved'}
 
     def _decode_spray(self, action):
-        """动作向量 -> (u, v, duration)，full/spray 两模式共用。"""
-        if self.action_mode_ == 'spray':
-            ua, va, da = np.asarray(action, float)[:3]
-        else:
-            ua, va, da = np.asarray(action, float)[
-                ACTION_MODES + N_VIEWS:ACTION_MODES + N_VIEWS + 3]
+        """动作向量 -> (u, v, duration)。"""
+        ua, va, da = np.asarray(action, float)[:3]
         u = float(np.clip(ua, -1, 1) * self.action_radius_)
         v = float(np.clip(va, -1, 1) * self.action_radius_)
         radius = np.hypot(u, v)
-        if self.task_ and radius > self.action_radius_:
+        if radius > self.action_radius_:
             u, v = np.array([u, v])*self.action_radius_/radius
         duration = float(np.clip(da, -1, 1) * .5 + .5)
         duration = duration * (self.duration_range_[1] - self.duration_range_[0]) + self.duration_range_[0]
@@ -369,15 +335,12 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
                              frame, self.truth_extent_, self.truth_resolution_, self.perception_.diameter/2,
                              self.perception_.required_depth, self.perception_.required_fraction,
                              allow_missing=allow_missing_truth)
-        # 作业语义：判决+真值双达标才拿正奖励；虚报达标最重罚；其余
-        # 按置信下界缺口比例罚——尽力推进仍优于直接放弃。
+        # 作业语义：判决达标才拿终局奖励；虚报达标重罚。
         success = truth['status'] == 'achieved' and a['status'] == 'achieved'
         if success:
             reward += self.terminal_reward_
         elif a['status'] == 'achieved':
-            reward -= 5. if self.task_ else self.terminal_reward_
-        elif not self.task_:
-            reward -= self.terminal_reward_ * (1. - a['fraction_lower'])
+            reward -= 5.
         info = {'mode': -1, 'verdict': a['status'], 'truth': truth['status'],
                 'truth_fraction': truth['fraction_ge_threshold'], 'removed_volume_m3': truth['removed_volume_m3']}
         if truth['status'] == 'unknown':
@@ -385,7 +348,7 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         return (self._state_tensor(self.last_evaluated_), float(reward),
                 not truncated, truncated, info)
 
-    def _step_spray(self, action):
+    def step(self, action):
         """spray 模式一步：喷射 -> 重评估；判决达标即自动收尾（同规则层）。"""
         a_prev = self.last_evaluated_['report']['assessment']
         if a_prev['status'] == 'achieved':
@@ -396,7 +359,7 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         try:
             stats = self.world_.spray_tcp(tcp, self.pressure_, duration)
         except ValueError as error:
-            if not self.task_ or 'Through-cut detected' not in str(error):
+            if 'Through-cut detected' not in str(error):
                 raise
             self.steps_used_ += 1
             obs, reward, terminated, truncated, info = self._finish(
@@ -411,21 +374,13 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         self.profile_['assessment_s'] += time.monotonic() - started
         a = evaluated['report']['assessment']
         reward = -self.cost_spray_per_s_ * duration
-        if self.task_:
-            weights = circle_fractions(evaluated['surface'].centers_, self.perception_.resolution,
-                                       self.perception_.diameter/2)
-            progress = depth_progress(evaluated['change'], weights, self.perception_.required_depth,
-                                      self.perception_.confidence_k)
-            reward += potential_reward(self.last_progress_, progress, terminal=a['status'] == 'achieved')
-            self.last_progress_ = progress
-        elif self.reward_mode_ == 'potential':
-            reward += potential_reward(self.last_fraction_lower_, a['fraction_lower'], terminal=a['status'] == 'achieved')
-        else:
-            reward += (a['fraction_lower'] - self.last_fraction_lower_) * 8.
-        if not self.task_:
-            reward += (a['coverage'] - self.last_coverage_) * 2.
-        self.last_fraction_lower_, self.last_coverage_ = \
-            a['fraction_lower'], a['coverage']
+        weights = circle_fractions(evaluated['surface'].centers_, self.perception_.resolution,
+                                   self.perception_.diameter/2)
+        progress = depth_progress(evaluated['change'], weights, self.perception_.required_depth,
+                                  self.perception_.confidence_k)
+        reward += potential_reward(self.last_progress_, progress, terminal=a['status'] == 'achieved')
+        self.last_progress_ = progress
+        self.last_fraction_lower_, self.last_coverage_ = a['fraction_lower'], a['coverage']
         self.last_evaluated_ = evaluated
         self.steps_used_ += 1
         self.last_info_ = {'mode': 1, 'spray': {
@@ -434,43 +389,4 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         if a['status'] == 'achieved' or self.steps_used_ >= self.max_steps_:
             return self._finish(a, reward,
                                 truncated=self.steps_used_ >= self.max_steps_ and a['status'] != 'achieved')
-        obs = self._state_tensor(evaluated)
-        return obs, float(reward), False, False, self.last_info_
-
-    def step(self, action):
-        action = np.asarray(action, float)
-        if self.action_mode_ == 'spray':
-            return self._step_spray(action)
-        mode = int(np.argmax(action[:ACTION_MODES]))
-        reward, terminated, truncated, info = 0., False, False, {'mode': mode}
-        frame = self.frame_
-        if mode == 0:  # observe
-            view = VIEW_NAMES[int(np.argmax(action[ACTION_MODES:ACTION_MODES + N_VIEWS]))]
-            evaluated = self._do_observe(view, stamp=200 + self.steps_used_)
-            reward -= self.cost_observe_
-            info['view'] = view
-        elif mode == 1:  # spray
-            u, v, duration = self._decode_spray(action)
-            tcp = spray_target_tcp(frame, np.array([u, v]), -self.normal_, self.standoff_)
-            stats = self.world_.spray_tcp(tcp, self.pressure_, duration)
-            reward -= self.cost_spray_per_s_ * duration
-            self.sprays_used_ += 1
-            info['spray'] = {'u': float(u), 'v': float(v), 'duration': duration,
-                             'volume': stats['volume_removed_m3']}
-            evaluated = self._do_evaluate(stamp=100 + self.steps_used_)
-        else:  # finish
-            evaluated = self.last_evaluated_
-            terminated = True
-        a = evaluated['report']['assessment']
-        reward += (a['fraction_lower'] - self.last_fraction_lower_) * 8.
-        reward += (a['coverage'] - self.last_coverage_) * 2.
-        self.last_fraction_lower_, self.last_coverage_ = a['fraction_lower'], a['coverage']
-        self.last_evaluated_ = evaluated
-        self.steps_used_ += 1
-        if self.steps_used_ >= self.max_steps_:
-            truncated = True
-        if terminated or truncated:
-            obs, reward, ter, tru, finfo = self._finish(a, reward, truncated)
-            finfo.update(info)
-            return obs, reward, ter, tru, finfo
-        return self._state_tensor(evaluated), float(reward), terminated, truncated, info
+        return self._state_tensor(evaluated), float(reward), False, False, self.last_info_

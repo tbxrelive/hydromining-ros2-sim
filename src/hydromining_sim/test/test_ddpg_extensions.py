@@ -83,11 +83,16 @@ def test_success_at_budget_is_terminal_not_timeout(status,expected_truncated):
     from algorithms.perception.wall_frame import WallFrame
     cfg={'region_center_world':[0,0,0],'wall_normal_world':[0,0,1]}
     world=SimpleNamespace(spray_tcp=lambda *a:{'volume_removed_m3':.001})
-    env=HydrominingSurrogateEnv(world,{},cfg,action_mode='spray',max_steps=1)
+    task=dict(cfg,pressure_mpa=30.,standoff_m=.5,diameter=.4,required_depth=.05,required_fraction=.9)
+    env=HydrominingSurrogateEnv(world,{},task,max_steps=1,scenarios={'empty':{'shots':[]}})
     env.frame_=WallFrame.from_normal([0,0,0],[0,0,1])
     before={'status':'not_achieved','fraction_lower':0.,'coverage':1.}
     after={'status':status,'fraction_lower':1. if status=='achieved' else 0.,'coverage':1.}
-    env.last_evaluated_={'report':{'assessment':before}}
-    env._do_evaluate=lambda **kw:{'report':{'assessment':after}}
+    surface=SimpleNamespace(centers_=np.zeros((2,2,3)))
+    change={'delta':np.zeros((2,2)),'sigma':np.zeros((2,2)),
+            'valid':np.ones((2,2),bool),'significant':np.zeros((2,2),bool)}
+    env.last_progress_=0.
+    env.last_evaluated_={'report':{'assessment':before},'surface':surface,'change':change}
+    env._do_evaluate=lambda **kw:{'report':{'assessment':after},'surface':surface,'change':change}
     env._finish=lambda a,r,truncated=False:truncated
     assert env.step(np.zeros(3)) is expected_truncated

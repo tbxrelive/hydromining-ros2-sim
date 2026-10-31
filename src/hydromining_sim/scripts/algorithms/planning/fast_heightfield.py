@@ -17,7 +17,6 @@ from ..perception.config import PerceptionConfig
 from ..perception import visibility
 from ..perception.wall_frame import WallFrame
 from .decision import RulePolicy
-from .episodes import SCENARIOS
 from .observations import depth_progress, encode_observation, potential_reward
 
 
@@ -43,7 +42,7 @@ class FastHeightfieldEnv(gym.Env):
 
     def __init__(self, initial_heights, frame, camera_poses, intrinsics, image_shape, *,
                  pressure, standoff, noise_scale=0., seed=0, max_steps=128,
-                 scenario_names=None, scenarios=None, patch_extent=.72, diameter=.4,
+                 scenario_names=None, scenarios, patch_extent=.72, diameter=.4,
                  required_depth=.05, required_fraction=.9, wall_thickness=.4):
         # pressure/standoff 必填，由 TaskSpec 提供；其余默认值属于任务形状，
         # 调用方应显式传入（1.3 统一为必填）。
@@ -63,7 +62,7 @@ class FastHeightfieldEnv(gym.Env):
         self.rule_ = RulePolicy(PerceptionConfig(
             diameter=diameter, required_depth=required_depth,
             required_fraction=required_fraction), max_duration=8.)
-        self.scenarios_ = SCENARIOS if scenarios is None else scenarios
+        self.scenarios_ = scenarios
         self.scenario_names_ = list(self.scenarios_) if scenario_names is None else list(scenario_names)
         self.surface_grid_ = frame.grid(self.extent_, self.spacing_)
         self.map_grid_ = frame.grid(self.map_extent_, self.map_spacing_)
@@ -117,7 +116,7 @@ class FastHeightfieldEnv(gym.Env):
         self.last_change_, self.last_assessment_ = change, assessment
         self.last_progress_ = depth_progress(change, self.area_, self.required_depth_)
         return encode_observation(state, change, assessment, self.map_grid_, self.required_depth_,
-                                  steps=self.steps_used_, max_steps=self.max_steps_, version='v3',
+                                  steps=self.steps_used_, max_steps=self.max_steps_,
                                   diameter=self.diameter_, pressure=self.pressure_, standoff=self.standoff_)
 
     def reset(self, *, seed=None, options=None):
