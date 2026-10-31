@@ -41,8 +41,8 @@ def surface_rays(scene, u, v, ray_start=.6):
 class LocalSpraySimulation(SpraySimulation):
     """Evolve a fine local volume and retain the entire surrounding wall mesh."""
 
-    def __init__(self, source_mesh, source_pose, center, normal, output_dir,
-                 dt=.2, wall_budget_s=120., spacing=.005, patch_extent=.68, wall_thickness=.4):
+    def __init__(self, source_mesh, source_pose, center, normal, output_dir, *,
+                 dt=.2, wall_budget_s=120., spacing=.005, patch_extent, wall_thickness):
         self.frame_ = WallFrame.from_normal(center, normal)
         self.wall_thickness_ = wall_thickness
         mesh = trimesh.load(source_mesh, force='mesh', process=True)

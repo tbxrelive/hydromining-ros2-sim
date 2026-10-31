@@ -12,6 +12,7 @@ from ..perception.assessment import circle_fractions
 class RulePolicy:
     """证据不足的补看、缺口最大的喷射、达标后的收尾；每步记录决策依据。"""
 
+    # pressure/standoff 默认值属于旧 20 cm 任务；论文实验由 TaskSpec 显式传入，1.3 改为必填。
     def __init__(self, config, observe_gain_min=0.05, standoff=0.7,
                  base_duration=6., max_duration=15., pressure=20.,
                  observe_budget=5):

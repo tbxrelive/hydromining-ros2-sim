@@ -65,6 +65,7 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         if not self.scenario_names_ or any(n not in self.scenarios_ for n in self.scenario_names_):
             raise ValueError('invalid training scenarios')
         self.task_ = task_config
+        # 无 task_config 时是旧 20 cm 任务默认值；1.3 删除旧分支时一并移除。
         self.pressure_ = task_config['pressure_mpa'] if task_config else 20.
         self.standoff_ = task_config['standoff_m'] if task_config else .7
         self.duration_range_ = (2., 8.) if task_config else DURATION_RANGE
@@ -458,8 +459,8 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
             info['view'] = view
         elif mode == 1:  # spray
             u, v, duration = self._decode_spray(action)
-            tcp = spray_target_tcp(frame, np.array([u, v]), -self.normal_, 0.7)
-            stats = self.world_.spray_tcp(tcp, 20., duration)
+            tcp = spray_target_tcp(frame, np.array([u, v]), -self.normal_, self.standoff_)
+            stats = self.world_.spray_tcp(tcp, self.pressure_, duration)
             reward -= self.cost_spray_per_s_ * duration
             self.sprays_used_ += 1
             info['spray'] = {'u': float(u), 'v': float(v), 'duration': duration,

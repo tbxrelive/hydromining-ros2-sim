@@ -35,6 +35,7 @@ SCENARIOS = {
 }
 
 
+# standoff/pressure 默认值属于旧 20 cm 任务；论文实验由 TaskSpec 显式传入，1.3 改为必填。
 def apply_scenario(world, frame, normal_world, shots, standoff=0.7, pressure=20., max_duration=None):
     """按工况在替身世界上顺序喷射；返回每发统计。"""
     results = []

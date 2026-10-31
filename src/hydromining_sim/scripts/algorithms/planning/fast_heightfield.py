@@ -37,10 +37,12 @@ class FastHeightfieldEnv(gym.Env):
 
     metadata = {'render_modes': []}
 
-    def __init__(self, initial_heights, frame, camera_poses, intrinsics, image_shape,
-                 pressure=30., standoff=.7, noise_scale=0., seed=0, max_steps=128,
+    def __init__(self, initial_heights, frame, camera_poses, intrinsics, image_shape, *,
+                 pressure, standoff, noise_scale=0., seed=0, max_steps=128,
                  scenario_names=None, scenarios=None, patch_extent=.72, diameter=.4,
                  required_depth=.05, required_fraction=.9, wall_thickness=.4):
+        # pressure/standoff 必填，由 TaskSpec 提供；其余默认值属于任务形状，
+        # 调用方应显式传入（1.3 统一为必填）。
         self.frame_ = frame
         heights = np.asarray(initial_heights, dtype=np.float64)
         self.initial_surfaces_ = heights[None, ...] if heights.ndim == 2 else heights

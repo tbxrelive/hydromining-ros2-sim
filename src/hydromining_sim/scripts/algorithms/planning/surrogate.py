@@ -95,6 +95,7 @@ class SurrogateWorld:
         hits = self.scene().cast_rays(o3d.core.Tensor(rays), nthreads=1)['t_hit'].numpy()
         return hits.reshape(shape)
 
+    # pressure/duration 默认值属于旧 20 cm 任务；论文实验由 TaskSpec 显式传入，1.3 改为必填。
     def spray_tcp(self, tcp_world_matrix, pressure=20., duration=12., enabled=True):
         """按 TCP 位姿喷射并提交；返回 simulate 的统计与命中距离。"""
         T = np.asarray(tcp_world_matrix, float)

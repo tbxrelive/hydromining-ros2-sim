@@ -6,7 +6,6 @@ import subprocess
 import sys
 
 import numpy as np
-import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'src/hydromining_sim/scripts'))
 from algorithms.perception.kinematics import look_at
@@ -16,6 +15,7 @@ from algorithms.planning.fast_heightfield import FastHeightfieldEnv, TRAIN_SCENA
 from algorithms.perception.kinematics import Chain
 from algorithms.planning.rl_env import HydrominingSurrogateEnv
 from algorithms.planning.surrogate import SurrogateWorld
+from algorithms.task_spec import TaskSpec
 from scipy.spatial.transform import Rotation
 
 TASK = Path('src/hydromining_robot/config/phase7_large_task.yaml')
@@ -49,7 +49,7 @@ def prepare_meshes(directory):
 
 def make_fast_env(directory, seed=0, split='train', noise_scale=0.):
     """L0 samples each separate mesh and produces the same v3 observation schema."""
-    task = yaml.safe_load(TASK.read_text())
+    task = TaskSpec.from_yaml(TASK).as_dict()
     frame = WallFrame.from_normal(task['region_center_world'], task['wall_normal_world'])
     mesh_seeds = TRAIN_SEEDS if split == 'train' else TEST_SEEDS
     heights = [mesh_heights(str(Path(directory)/f'coal_{s}.obj'), task['source_coal_pose'],
@@ -69,7 +69,7 @@ def make_fast_env(directory, seed=0, split='train', noise_scale=0.):
 
 def make_reference_env(directory, mesh_index, fidelity, seed=0, noise_scale=0.):
     """L1/L2 use the same fine geometry and task but retain their sensor pipelines."""
-    task = yaml.safe_load(TASK.read_text())
+    task = TaskSpec.from_yaml(TASK).as_dict()
     mesh = Path(directory)/f'coal_{TEST_SEEDS[mesh_index]}.obj'
     world = SurrogateWorld(str(mesh), local_task=task, tcp_erosion_offset=.05,
                            local_output=f'/tmp/hydromining_ref_{os.getpid()}_{mesh_index}')

@@ -3,6 +3,7 @@ import numpy as np
 from scipy.ndimage import zoom
 
 
+# 默认值属于旧 20 cm 任务；论文实验必须由 TaskSpec 显式传参，1.3 删除默认值。
 def encode_observation(state, change, assessment, centers, required_depth=.02,
                        confidence_k=1.645, steps=0, max_steps=12, grid=25, version='v2',
                        diameter=.2, pressure=20., standoff=.7):
