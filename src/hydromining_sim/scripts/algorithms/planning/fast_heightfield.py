@@ -9,6 +9,7 @@ from gymnasium import spaces
 import numpy as np
 from scipy.ndimage import map_coordinates
 
+from .. import heightfield_erosion
 from ..erosion_model import DefaultErosionKernel
 from ..jet_effects import jet_hydraulics
 from ..perception.assessment import assess, circle_fractions
@@ -99,45 +100,10 @@ class FastHeightfieldEnv(gym.Env):
         return visible.reshape(self.map_grid_.shape[:2])
 
     def _spray(self, u, v, duration):
-        """Integrate the existing radial kernel on the local surface."""
-        before = self.heights_.copy()
-        radial = np.hypot(self.surface_grid_[..., 0]-u, self.surface_grid_[..., 1]-v)
-        target = np.array([[(v+self.extent_/2)/self.spacing_-.5],
-                           [(u+self.extent_/2)/self.spacing_-.5]])
-        elapsed = 0.
-        while elapsed < duration-1e-9:
-            step = min(.2, duration-elapsed)
-            height = float(map_coordinates(self.heights_, target, order=1, mode='nearest')[0])
-            distance = max(.01, self.standoff_-height)
-            radius = self.kernel_.b(self.pressure_, distance)
-            xi = radial / radius
-            inside = xi < 1.
-            response = self.kernel_.kernel_F(xi[inside])
-            # A deep pit can hide its own surface from the nozzle. Test the
-            # same front-facing and first-hit conditions as the Level Set model.
-            grad_v, grad_u = np.gradient(self.heights_, self.spacing_)
-            du = self.surface_grid_[..., 0][inside]-u
-            dv = self.surface_grid_[..., 1][inside]-v
-            heights = self.heights_[inside]
-            gu, gv = grad_u[inside], grad_v[inside]
-            exposed = (-gu*du-gv*dv+heights-self.standoff_) < 0.
-            for fraction in (.5, .75, .875, .9375, .96875, .984375):
-                x = u + fraction*du
-                y = v + fraction*dv
-                coords = np.stack(((y+self.extent_/2)/self.spacing_-.5,
-                                   (x+self.extent_/2)/self.spacing_-.5))
-                foreground = map_coordinates(self.heights_, coords, order=1,
-                                             mode='constant', cval=-np.inf)
-                ray_height = self.standoff_ + fraction*(heights-self.standoff_)
-                exposed &= ray_height >= foreground-.00025
-            # Normal surface speed corresponds to a larger height change on
-            # sloped surfaces, following the height-field Level Set equation.
-            slope_factor = np.sqrt(1. + gu**2 + gv**2)
-            self.heights_[inside] -= self.kernel_.R_c(self.pressure_, distance)*response*exposed*slope_factor*step
-            elapsed += step
-        retreat = before-self.heights_
-        return {'volume_removed_m3': float(retreat.sum()*self.spacing_**2),
-                'max_depth_m': float(retreat.max())}
+        """Integrate the shared radial kernel on the local surface."""
+        return heightfield_erosion.spray_heightfield(
+            self.heights_, self.surface_grid_, u, v, duration, self.pressure_,
+            self.standoff_, self.kernel_, self.spacing_, self.extent_)
 
     def _observe(self):
         """Generate noisy depth measurements, preserving unknown cells."""
