@@ -7,6 +7,7 @@
 """
 import numpy as np
 
+from ..perception import visibility
 from ..perception.sensor_model import depth_sigma
 
 
@@ -87,7 +88,6 @@ def observed_visibility(state, frame, view_specs, config):
     Missing heights are not filled: their visibility remains unknown (False).
     March rays through the observed height field; known foreground cells occlude.
     """
-    from scipy.ndimage import map_coordinates
     heights = np.asarray(state['height'], float)
     local = frame.grid(config.extent, config.resolution)
     local[..., 2] = heights
@@ -97,29 +97,22 @@ def observed_visibility(state, frame, view_specs, config):
     for name, spec in view_specs.items():
         visible = np.zeros_like(finite)
         for sensor in ('depth', 'lidar'):
-            pose = np.asarray(spec[f'tf_{sensor}'], float)
-            origin = pose[:3, 3]
-            sensor_points = (world - origin) @ pose[:3, :3]
+            pose = visibility.pose_matrix(spec[f'tf_{sensor}'])
+            sensor_points = visibility.sensor_points(world, pose)
             distance = np.linalg.norm(sensor_points, axis=-1)
             if sensor == 'depth':
-                K, (height, width) = spec['K'], spec['image_shape']
-                with np.errstate(divide='ignore', invalid='ignore'):
-                    col = K[0, 2] - K[0, 0] * sensor_points[..., 1] / sensor_points[..., 0]
-                    row = K[1, 2] - K[1, 1] * sensor_points[..., 2] / sensor_points[..., 0]
-                mask = (sensor_points[..., 0] > .1) & (col >= 0) & (col < width) & (row >= 0) & (row < height)
+                mask = visibility.camera_inside(sensor_points, spec['K'],
+                                                spec['image_shape'], min_depth=.1)
             else:
-                elevation = np.arctan2(sensor_points[..., 2], np.linalg.norm(sensor_points[..., :2], axis=-1))
-                mask = np.abs(elevation) <= np.deg2rad(15)
+                mask = visibility.lidar_inside(sensor_points)
             mask &= finite & (distance > .1) & (distance < 10.)
-            origin_local = frame.to_local(origin)
+            origin_local = frame.to_local(pose[:3, 3])
             # Height is positive towards the observer. A ray below a measured
             # surface has entered coal, so points behind that surface are hidden.
-            blocked = np.zeros_like(finite)
-            for fraction in np.linspace(.05, .98, 64):
-                ray = origin_local + fraction * (local - origin_local)
-                indices = [(ray[..., i] - local[0, 0, i]) / config.resolution for i in (1, 0)]
-                sampled = map_coordinates(heights, indices, order=0, mode='constant', cval=np.nan)
-                blocked |= np.isfinite(sampled) & (ray[..., 2] < sampled - .5 * config.resolution)
+            blocked = visibility.march_blocked(
+                heights, origin_local, local, np.linspace(.05, .98, 64),
+                config.resolution, config.extent, order=0, cval=np.nan,
+                tolerance=.5*config.resolution, finite_only=True)
             visible |= mask & ~blocked
         result[name] = visible
     return result

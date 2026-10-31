@@ -29,6 +29,7 @@ from ..perception.change_detection import (compare_surfaces,
                                            external_change_alarm, volume_summary)
 from ..perception.height_map import HeightMap
 from ..perception.pipeline import PerceptionSession
+from ..perception import visibility
 from ..perception.sensor_model import depth_sigma, lidar_sigma
 from ..perception.wall_frame import WallFrame
 from ..perception.metrics import truth_change
@@ -166,7 +167,7 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         return self.mask_cache_[key]
 
     def _l1_sensor_mask(self, view, world, sensor):
-        """单传感器对网格表面点的可见掩码（视场 + 遮挡）。"""
+        """单传感器对网格表面点的可见掩码（视场 + 遮挡，逐点射线求交）。"""
         key = (self.world_.version_, view, sensor)
         if key in self._sensor_mask_cache_:
             return self._sensor_mask_cache_[key]
@@ -174,21 +175,12 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         pose = pose_to_matrix(spec[f'tf_{sensor}'])
         origin = pose[:3, 3]
         flat = world.reshape(-1, 3)
-        local = (flat - origin) @ pose[:3, :3]
+        local = visibility.sensor_points(flat, pose)
         distance = np.linalg.norm(local, axis=1)
         if sensor == 'depth':
-            K = spec['K']
-            height, width = spec['image_shape']
-            with np.errstate(divide='ignore', invalid='ignore'):
-                col = K[0, 2] - K[0, 0] * local[:, 1] / local[:, 0]
-                row = K[1, 2] - K[1, 1] * local[:, 2] / local[:, 0]
-            fov = ((local[:, 0] > 0) & (col >= 0) & (col < width) &
-                   (row >= 0) & (row < height))
+            fov = visibility.camera_inside(local, spec['K'], spec['image_shape'])
         else:
-            # VLP-16 类 360° 方位、±15° 俯仰带（与 render_lidar 同约定）。
-            elevation = np.arctan2(local[:, 2],
-                                   np.linalg.norm(local[:, :2], axis=1))
-            fov = np.abs(elevation) <= np.radians(15)
+            fov = visibility.lidar_inside(local)
         with np.errstate(divide='ignore', invalid='ignore'):
             directions = (flat-origin) / np.maximum(distance[:, None], 1e-9)
         hits = self.world_.cast(np.broadcast_to(origin, flat.shape), directions)

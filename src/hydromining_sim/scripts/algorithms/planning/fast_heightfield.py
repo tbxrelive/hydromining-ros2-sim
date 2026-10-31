@@ -13,6 +13,7 @@ from .. import heightfield_erosion
 from ..erosion_model import DefaultErosionKernel
 from ..jet_effects import jet_hydraulics
 from ..perception.assessment import assess, circle_fractions
+from ..perception import visibility
 from ..perception.wall_frame import WallFrame
 from .episodes import SCENARIOS
 from .observations import depth_progress, encode_observation, potential_reward
@@ -74,30 +75,19 @@ class FastHeightfieldEnv(gym.Env):
         return patch.reshape(50, 2, 50, 2).mean(axis=(1, 3))
 
     def _visibility(self, heights):
-        """Project actual surface into the cameras and reject height-field occlusion."""
+        """Project the surface into the cameras and reject height-field occlusion."""
         grid = self.map_grid_.copy()
         grid[..., 2] = self._map_heights(heights)
-        world = self.frame_.to_world(grid).reshape(-1, 3)
-        visible = np.zeros(len(world), bool)
-        image_height, image_width = self.image_shape_
+        world = self.frame_.to_world(grid)
+        visible = np.zeros(grid.shape[:2], bool)
         for pose in self.camera_poses_:
-            local = (world-pose[:3, 3]) @ pose[:3, :3]
-            with np.errstate(divide='ignore', invalid='ignore'):
-                col = self.K_[0, 2] - self.K_[0, 0]*local[:, 1]/local[:, 0]
-                row = self.K_[1, 2] - self.K_[1, 1]*local[:, 2]/local[:, 0]
-            inside = ((local[:, 0] > 0) & (col >= 0) & (col < image_width) &
-                      (row >= 0) & (row < image_height))
-            origin = self.frame_.to_local(pose[:3, 3])
-            targets = grid.reshape(-1, 3)
-            blocked = np.zeros(len(world), bool)
-            for fraction in (.8, .9, .95, .98):
-                ray = origin + fraction*(targets-origin)
-                coords = np.stack(((ray[:, 1]+self.extent_/2)/self.spacing_-.5,
-                                   (ray[:, 0]+self.extent_/2)/self.spacing_-.5))
-                surface = map_coordinates(heights, coords, order=1, mode='constant', cval=-np.inf)
-                blocked |= ray[:, 2] < surface - .002
+            inside = visibility.camera_inside(
+                visibility.sensor_points(world, pose), self.K_, self.image_shape_)
+            blocked = visibility.march_blocked(
+                heights, self.frame_.to_local(visibility.pose_matrix(pose)[:3, 3]), grid,
+                (.8, .9, .95, .98), self.spacing_, self.extent_, order=1, tolerance=.002)
             visible |= inside & ~blocked
-        return visible.reshape(self.map_grid_.shape[:2])
+        return visible
 
     def _spray(self, u, v, duration):
         """Integrate the shared radial kernel on the local surface."""
