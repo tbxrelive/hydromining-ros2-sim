@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Evaluate learned, rule and random policies on held-out walls and layouts."""
+import sys
 import argparse
 import json
 from pathlib import Path
@@ -7,7 +8,8 @@ import time
 
 import numpy as np
 
-from phase7_large_env import make_fast_env, make_reference_env
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from experiments.common.large_env import make_fast_env, make_reference_env
 from phase7_train_large import ALGORITHMS
 from algorithms.planning.fast_heightfield import TEST_SCENARIOS
 from algorithms.planning.ddpg_optimized import DemonstrationDDPG

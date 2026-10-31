@@ -14,10 +14,11 @@ import time
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT/'test_scripts'))
 sys.path.insert(0, str(ROOT/'src/hydromining_sim/scripts'))
 
-from phase7_large_env import make_fast_env, prepare_meshes  # noqa: E402
+from experiments.common.large_env import make_fast_env, prepare_meshes  # noqa: E402
 from phase7_evaluate_large import evaluate, rule_action  # noqa: E402
 
 
@@ -45,7 +46,7 @@ def main():
         for record in episodes:
             handle.write(json.dumps(record) + '\n')
     (output/'summary.json').write_text(json.dumps(summary, indent=2))
-    sources = [ROOT/'test_scripts/phase7_evaluate_large.py', ROOT/'test_scripts/phase7_large_env.py',
+    sources = [ROOT/'test_scripts/phase7_evaluate_large.py', ROOT/'experiments/common/large_env.py',
                ROOT/'src/hydromining_sim/scripts/algorithms/planning/fast_heightfield.py']
     (output/'manifest.json').write_text(json.dumps({
         'experiment': 'E0.3', 'purpose': '重构前规则基线', 'wall_time_s': time.monotonic()-started,

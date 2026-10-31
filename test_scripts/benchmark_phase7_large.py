@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Measure L0 and fine L1 on the same held-out wall and action, without training."""
+import sys
 import argparse
 import json
 from pathlib import Path
 import time
 
 import numpy as np
-from phase7_large_env import make_fast_env, make_reference_env
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from experiments.common.large_env import make_fast_env, make_reference_env
 
 
 def main():

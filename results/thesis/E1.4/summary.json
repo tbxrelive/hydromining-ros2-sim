@@ -1,0 +1,22 @@
+{
+  "experiment": "E1.4",
+  "episodes": 2,
+  "steps_mean": 24.0,
+  "steps_std": 2.8284271247461903,
+  "steps_n": 2,
+  "sprays_mean": 24.0,
+  "sprays_std": 2.8284271247461903,
+  "sprays_n": 2,
+  "spray_duration_s_mean": 139.71037543890998,
+  "spray_duration_s_std": 12.409604130884144,
+  "spray_duration_s_n": 2,
+  "removed_volume_m3_mean": 0.011196167592397215,
+  "removed_volume_m3_std": 0.002305928776454244,
+  "removed_volume_m3_n": 2,
+  "truth_fraction_mean": 0.9366655614500443,
+  "truth_fraction_std": 0.0051266804648362465,
+  "truth_fraction_n": 2,
+  "policy": "rule",
+  "fidelity": "L0",
+  "seed": 10000
+}

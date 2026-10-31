@@ -7,7 +7,8 @@ import sys
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'src/hydromining_sim/scripts'))
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT/'src/hydromining_sim/scripts'))
 from algorithms.perception.kinematics import look_at
 from algorithms.perception.metrics import mesh_heights
 from algorithms.perception.wall_frame import WallFrame
@@ -27,7 +28,8 @@ def fidelity_signature():
     """Bind the L0 gate to the task, original wall and numerical implementations."""
     root = Path('src/hydromining_sim/scripts/algorithms')
     paths = [TASK, Path('src/hydromining_sim/models/coal_wall/meshes/coal_wall.obj'),
-             root/'planning/fast_heightfield.py', root/'erosion_model.py', root/'level_set_evolver.py',
+             root/'planning/fast_heightfield.py', root/'heightfield_erosion.py',
+             root/'perception/visibility.py', root/'erosion_model.py', root/'level_set_evolver.py',
              root/'local_spray_simulation.py', root/'spray_simulation.py', root/'voxel_grid.py']
     return hashlib.sha256(b''.join(path.read_bytes() for path in paths)).hexdigest()
 

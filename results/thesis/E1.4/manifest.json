@@ -1,0 +1,12 @@
+{
+  "experiment": "E1.4",
+  "config": {
+    "policy": "rule",
+    "fidelity": "L0",
+    "seed": 10000,
+    "episodes": 2
+  },
+  "code_revision": "a80938b",
+  "started_at": "2026-11-01T02:41:31",
+  "wall_time_s": 2.7855112979887053
+}

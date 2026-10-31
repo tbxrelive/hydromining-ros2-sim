@@ -24,7 +24,7 @@ def main():
     parser.add_argument('--eval-episodes',type=int,default=12)
     parser.add_argument('--reference-episodes',type=int,default=None,
                         help='L1/L2 cases per run; default matches --eval-episodes')
-    parser.add_argument('--fidelity-report',default='results/phase7_large_task/fidelity_release_v2/fidelity.json')
+    parser.add_argument('--fidelity-report',default='results/thesis/E1.3_fidelity/fidelity.json')
     args=parser.parse_args()
     out=Path(args.output).resolve()
     # Do not resolve the interpreter symlink: Python identifies its venv from this path.
@@ -82,7 +82,7 @@ def main():
     if args.dry_run:
         print(json.dumps({'display_gpu_reserved':0,'task':args.task,'jobs':jobs},indent=2));return
     if args.task == 'large':
-        from phase7_large_env import fidelity_signature, prepare_meshes
+        from experiments.common.large_env import fidelity_signature, prepare_meshes
         report=json.loads(Path(args.fidelity_report).read_text())
         if (not report['passed'] or report.get('scope')!='full case set' or
                 report.get('signature')!=fidelity_signature()):

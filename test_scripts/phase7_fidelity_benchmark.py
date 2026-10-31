@@ -14,7 +14,8 @@ from algorithms.erosion_model import SprayAction
 from algorithms.local_spray_simulation import LocalSpraySimulation, surface_rays
 from algorithms.perception.kinematics import look_at
 from algorithms.planning.fast_heightfield import FastHeightfieldEnv
-from phase7_large_env import fidelity_signature
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from experiments.common.large_env import fidelity_signature
 
 
 def main():

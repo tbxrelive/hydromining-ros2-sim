@@ -16,9 +16,9 @@ from stable_baselines3 import DDPG, SAC, TD3
 from stable_baselines3.common.noise import NormalActionNoise
 from stable_baselines3.common.vec_env import SubprocVecEnv
 
-from phase7_large_env import TASK, fidelity_signature, make_fast_env
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from experiments.common.large_env import TASK, fidelity_signature, make_fast_env
 from experiments.common.checkpoint import CheckpointCallback
 from algorithms.planning.ddpg_optimized import DemonstrationDDPG, DemonstrationReplayBuffer
 
@@ -57,7 +57,7 @@ def main():
     parser.add_argument('--algorithm', choices=ALGORITHMS, default='ddpg_demo')
     parser.add_argument('--assets', required=True)
     parser.add_argument('--output', required=True)
-    parser.add_argument('--fidelity-report', default='results/phase7_large_task/fidelity_release_v2/fidelity.json')
+    parser.add_argument('--fidelity-report', default='results/thesis/E1.3_fidelity/fidelity.json')
     parser.add_argument('--timesteps', type=int, default=50000)
     parser.add_argument('--num-envs', type=int, default=2)
     parser.add_argument('--seed', type=int, default=0)
