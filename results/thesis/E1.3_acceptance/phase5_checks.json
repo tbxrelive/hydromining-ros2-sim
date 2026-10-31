@@ -1,0 +1,369 @@
+{
+  "passed": true,
+  "medium": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.6829246238425926,
+    "depth_disturbed_fraction": 0.013615105402764205,
+    "cloud_visible_fraction": 0.9858381032155988,
+    "cloud_disturbed_fraction": 0.014161896784401324,
+    "lidar_disturbed_fraction": 0.004553670745272525,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      1.0,
+      1.0,
+      0.0,
+      4.0,
+      6606.0,
+      0.891182,
+      42.097
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.000455361081913645,
+      "cumulative_volume_m3": 0.000455361081913645,
+      "max_depth_m": 0.055180370807647705,
+      "cumulative_depth_m": 0.055180370807647705,
+      "elapsed_s": 11.99999999999999,
+      "steps": 60,
+      "max_speed_m_s": 0.006116526201367378,
+      "spacing_m": 0.03360404477777778,
+      "shot": 1,
+      "calibrated": false,
+      "solve_wall_s": 17.521239064022666,
+      "position_mesh": [
+        -0.4610369606053096,
+        -1.4578344477780836e-10,
+        1.072354836103744
+      ],
+      "direction_mesh": [
+        -0.3420201857208168,
+        5.264318859304895e-10,
+        -0.9396926053553355
+      ],
+      "pressure_mpa": 20.0,
+      "nozzle_diameter_m": 0.002,
+      "outlet_velocity_m_s": 190.0,
+      "flow_m3_s": 0.0005969026041820607,
+      "hydraulic_power_w": 11938.052083641214,
+      "water_used_m3": 0.0071628312501847285,
+      "hydraulic_energy_j": 143256.62500369456
+    }
+  },
+  "second": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.5588223379629629,
+    "depth_disturbed_fraction": 0.007641118711899111,
+    "cloud_visible_fraction": 0.9923565545162644,
+    "cloud_disturbed_fraction": 0.007643445483735865,
+    "lidar_disturbed_fraction": 0.0018944660734149053,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      2.0,
+      1.0,
+      0.0,
+      4.0,
+      6229.45,
+      0.946931,
+      82.394
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.0003415208114352338,
+      "cumulative_volume_m3": 0.0007968818933488787,
+      "max_depth_m": 0.047800302505493164,
+      "cumulative_depth_m": 0.09299236536026001,
+      "elapsed_s": 11.99999999999999,
+      "steps": 60,
+      "max_speed_m_s": 0.005556007847189903,
+      "spacing_m": 0.03360404477777778,
+      "shot": 2,
+      "calibrated": false,
+      "solve_wall_s": 17.09423747198889,
+      "position_mesh": [
+        -0.4610369606053096,
+        -1.4578344477780836e-10,
+        1.072354836103744
+      ],
+      "direction_mesh": [
+        -0.3420201857208168,
+        5.264318859304895e-10,
+        -0.9396926053553355
+      ],
+      "pressure_mpa": 20.0,
+      "nozzle_diameter_m": 0.002,
+      "outlet_velocity_m_s": 190.0,
+      "flow_m3_s": 0.0005969026041820607,
+      "hydraulic_power_w": 11938.052083641214,
+      "water_used_m3": 0.0071628312501847285,
+      "hydraulic_energy_j": 143256.62500369456
+    }
+  },
+  "replay": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.6571307146990741,
+    "depth_disturbed_fraction": 0.013228861277863093,
+    "cloud_visible_fraction": 0.9867653217925451,
+    "cloud_disturbed_fraction": 0.013234678207454977,
+    "lidar_disturbed_fraction": 0.004936040044493882,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      4.0,
+      1.0,
+      0.0,
+      4.0,
+      6606.0,
+      0.891182,
+      125.177
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.000455361081913645,
+      "cumulative_volume_m3": 0.000455361081913645,
+      "max_depth_m": 0.055180370807647705,
+      "cumulative_depth_m": 0.055180370807647705,
+      "elapsed_s": 11.99999999999999,
+      "steps": 60,
+      "max_speed_m_s": 0.006116526201367378,
+      "spacing_m": 0.03360404477777778,
+      "shot": 1,
+      "calibrated": false,
+      "solve_wall_s": 17.304653042025166,
+      "position_mesh": [
+        -0.4610369606053096,
+        -1.4578344477780836e-10,
+        1.072354836103744
+      ],
+      "direction_mesh": [
+        -0.3420201857208168,
+        5.264318859304895e-10,
+        -0.9396926053553355
+      ],
+      "pressure_mpa": 20.0,
+      "nozzle_diameter_m": 0.002,
+      "outlet_velocity_m_s": 190.0,
+      "flow_m3_s": 0.0005969026041820607,
+      "hydraulic_power_w": 11938.052083641214,
+      "water_used_m3": 0.0071628312501847285,
+      "hydraulic_energy_j": 143256.62500369456
+    }
+  },
+  "preset_scan": {
+    "off": {
+      "preset": "off",
+      "rgb_mean_abs_change": 0.0,
+      "depth_disturbed_fraction": 0.0,
+      "cloud_visible_fraction": 1.0,
+      "cloud_disturbed_fraction": 0.0,
+      "lidar_disturbed_fraction": 0.0,
+      "recovered_temporal_disturbed_fraction": 0.0,
+      "plugin_during": [
+        6.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.891182,
+        161.32
+      ],
+      "statistics": {
+        "volume_removed_m3": 0.0003035740546090967,
+        "cumulative_volume_m3": 0.0003035740546090967,
+        "max_depth_m": 0.03894376754760742,
+        "cumulative_depth_m": 0.03894376754760742,
+        "elapsed_s": 8.0,
+        "steps": 40,
+        "max_speed_m_s": 0.006116526201367378,
+        "spacing_m": 0.03360404477777778,
+        "shot": 1,
+        "calibrated": false,
+        "solve_wall_s": 11.75586639199173,
+        "position_mesh": [
+          -0.4610369606053096,
+          -1.4578344477780836e-10,
+          1.072354836103744
+        ],
+        "direction_mesh": [
+          -0.3420201857208168,
+          5.264318859304895e-10,
+          -0.9396926053553355
+        ],
+        "pressure_mpa": 20.0,
+        "nozzle_diameter_m": 0.002,
+        "outlet_velocity_m_s": 190.0,
+        "flow_m3_s": 0.0005969026041820607,
+        "hydraulic_power_w": 11938.052083641214,
+        "water_used_m3": 0.004775220833456485,
+        "hydraulic_energy_j": 95504.41666912971
+      }
+    },
+    "low": {
+      "preset": "low",
+      "rgb_mean_abs_change": 1.3100090422453703,
+      "depth_disturbed_fraction": 0.01407813299827819,
+      "cloud_visible_fraction": 0.98591605007213,
+      "cloud_disturbed_fraction": 0.014083949927870073,
+      "lidar_disturbed_fraction": 0.0051793659621802,
+      "recovered_temporal_disturbed_fraction": 0.0,
+      "plugin_during": [
+        8.0,
+        1.0,
+        0.0,
+        4.0,
+        2642.4,
+        0.891182,
+        192.921
+      ],
+      "statistics": {
+        "volume_removed_m3": 0.0003035740546090967,
+        "cumulative_volume_m3": 0.0003035740546090967,
+        "max_depth_m": 0.03894376754760742,
+        "cumulative_depth_m": 0.03894376754760742,
+        "elapsed_s": 8.0,
+        "steps": 40,
+        "max_speed_m_s": 0.006116526201367378,
+        "spacing_m": 0.03360404477777778,
+        "shot": 1,
+        "calibrated": false,
+        "solve_wall_s": 11.608846160990652,
+        "position_mesh": [
+          -0.4610369606053096,
+          -1.4578344477780836e-10,
+          1.072354836103744
+        ],
+        "direction_mesh": [
+          -0.3420201857208168,
+          5.264318859304895e-10,
+          -0.9396926053553355
+        ],
+        "pressure_mpa": 20.0,
+        "nozzle_diameter_m": 0.002,
+        "outlet_velocity_m_s": 190.0,
+        "flow_m3_s": 0.0005969026041820607,
+        "hydraulic_power_w": 11938.052083641214,
+        "water_used_m3": 0.004775220833456485,
+        "hydraulic_energy_j": 95504.41666912971
+      }
+    },
+    "high": {
+      "preset": "high",
+      "rgb_mean_abs_change": 1.8963288483796297,
+      "depth_disturbed_fraction": 0.014179347573176975,
+      "cloud_visible_fraction": 0.9858171622690679,
+      "cloud_disturbed_fraction": 0.014182837730932102,
+      "lidar_disturbed_fraction": 0.005040322580645162,
+      "recovered_temporal_disturbed_fraction": 0.0,
+      "plugin_during": [
+        10.0,
+        1.0,
+        0.0,
+        4.0,
+        11890.8,
+        0.891182,
+        224.421
+      ],
+      "statistics": {
+        "volume_removed_m3": 0.0003035740546090967,
+        "cumulative_volume_m3": 0.0003035740546090967,
+        "max_depth_m": 0.03894376754760742,
+        "cumulative_depth_m": 0.03894376754760742,
+        "elapsed_s": 8.0,
+        "steps": 40,
+        "max_speed_m_s": 0.006116526201367378,
+        "spacing_m": 0.03360404477777778,
+        "shot": 1,
+        "calibrated": false,
+        "solve_wall_s": 11.43261115901987,
+        "position_mesh": [
+          -0.4610369606053096,
+          -1.4578344477780836e-10,
+          1.072354836103744
+        ],
+        "direction_mesh": [
+          -0.3420201857208168,
+          5.264318859304895e-10,
+          -0.9396926053553355
+        ],
+        "pressure_mpa": 20.0,
+        "nozzle_diameter_m": 0.002,
+        "outlet_velocity_m_s": 190.0,
+        "flow_m3_s": 0.0005969026041820607,
+        "hydraulic_power_w": 11938.052083641214,
+        "water_used_m3": 0.004775220833456485,
+        "hydraulic_energy_j": 95504.41666912971
+      }
+    }
+  },
+  "reset_cancels_shot": true,
+  "no_hit_has_no_impact": true,
+  "configured_effects": {
+    "preset": "medium",
+    "rgb_mean_abs_change": 1.14081640625,
+    "depth_disturbed_fraction": 0.0059583973195588445,
+    "cloud_visible_fraction": 0.9940416026804412,
+    "cloud_disturbed_fraction": 0.005958397319558844,
+    "lidar_disturbed_fraction": 0.0008342602892102336,
+    "recovered_temporal_disturbed_fraction": 0.0,
+    "plugin_during": [
+      12.0,
+      1.0,
+      0.0,
+      2.0,
+      3225.5,
+      0.891182,
+      248.651
+    ],
+    "statistics": {
+      "volume_removed_m3": 0.00015178702730454834,
+      "cumulative_volume_m3": 0.00015178702730454834,
+      "max_depth_m": 0.020798325538635254,
+      "cumulative_depth_m": 0.020798325538635254,
+      "elapsed_s": 4.0,
+      "steps": 20,
+      "max_speed_m_s": 0.006116526201367378,
+      "spacing_m": 0.03360404477777778,
+      "shot": 1,
+      "calibrated": false,
+      "solve_wall_s": 6.0738312369794585,
+      "position_mesh": [
+        -0.4610369606053096,
+        -1.4578344477780836e-10,
+        1.072354836103744
+      ],
+      "direction_mesh": [
+        -0.3420201857208168,
+        5.264318859304895e-10,
+        -0.9396926053553355
+      ],
+      "pressure_mpa": 20.0,
+      "nozzle_diameter_m": 0.002,
+      "outlet_velocity_m_s": 190.0,
+      "flow_m3_s": 0.0005969026041820607,
+      "hydraulic_power_w": 11938.052083641214,
+      "water_used_m3": 0.0023876104167282427,
+      "hydraulic_energy_j": 47752.20833456486
+    }
+  },
+  "invalid_effect_settings_rejected": true,
+  "paused_clock_freezes_exposure": true,
+  "replay_mesh_identical": true,
+  "joint_drift_rad": 0.0003081622625069613,
+  "cloud_after_first": {
+    "roi_points": 2014,
+    "changed_points": 396,
+    "p95_retreat_m": 0.028748982798386453,
+    "reference_p95_abs_m": 1.529364666496727e-07
+  },
+  "cloud_after_second": {
+    "roi_points": 2014,
+    "changed_points": 532,
+    "p95_retreat_m": 0.06280395895686736,
+    "reference_p95_abs_m": 1.529364666496727e-07
+  },
+  "reset_p95_m": 6.17289126198395e-07,
+  "aggregate_peak_rss_mib": 2099.38671875,
+  "calibrated": false,
+  "GUI_started": false,
+  "overview_camera": true,
+  "world": "coal_wall_phase5.sdf",
+  "resource_limits_mib": {
+    "rss": 24576.0,
+    "available_minimum": 8192.0
+  }
+}
