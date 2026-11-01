@@ -1,0 +1,17 @@
+{
+  "policy": "rule",
+  "fidelity": "L0",
+  "episodes": 12,
+  "seed": 10000,
+  "success_rate": 0.9166666666666666,
+  "false_achieved": 0,
+  "truth_unknown": 0,
+  "removed_volume_known_episodes": 12,
+  "mean_sprays": 21.75,
+  "mean_steps": 21.833333333333332,
+  "mean_spray_duration_s": 126.73925332864746,
+  "mean_removed_volume_m3": 0.0115432932135573,
+  "mean_water_m3": 0.092653162463954,
+  "mean_energy_j": 2779594.87391862,
+  "mean_wall_time_s": 1.3410711014148546
+}
