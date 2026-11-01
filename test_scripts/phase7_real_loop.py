@@ -41,7 +41,19 @@ from algorithms.perception.metrics import mesh_heights, truth_change
 from algorithms.perception.wall_frame import WallFrame
 from algorithms.planning.decision import RulePolicy
 from algorithms.planning.nbv import observed_visibility
-from algorithms.planning.episodes import SCENARIOS
+from algorithms.planning.episodes import ring_shots
+from algorithms.planning.fast_heightfield import TEST_SCENARIOS, TRAIN_SCENARIOS
+
+# 旧 20 cm 工况保留给 --task legacy 的批量回归；新实验一律用 test_*/train 工况。
+LEGACY_SCENARIOS = {
+    'empty': {'shots': []},
+    'single': {'shots': [((0., 0.), 12.)]},
+    'pair': {'shots': [((-.04, 0.), 12.), ((.04, 0.), 12.)]},
+    'tri_r5': {'shots': ring_shots((0., 0.), 0.05, 3)},
+    'ring_r6': {'shots': ring_shots((0., 0.), 0.06, 6)},
+    'dense': {'shots': [((0., 0.), 12.)] + ring_shots((0., 0.), 0.06, 6)},
+}
+SCENARIOS = {**LEGACY_SCENARIOS, **TRAIN_SCENARIOS, **TEST_SCENARIOS}
 from algorithms.planning.spray_pose import solve_spray_pose
 
 MESH_POSE = [1.5, 0., 1.5, 0., -1.9198621771937625, 0.]

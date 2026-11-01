@@ -144,3 +144,6 @@ results/thesis/**/*.obj
 
 # 第三方技能库（外部仓库副本，.claude/skills 已保存所需技能）
 robotics-agent-skills/
+
+# GUI 演示的临时产物（世界、网格、感知快照），不进版本库
+results/gui_demo_*/
