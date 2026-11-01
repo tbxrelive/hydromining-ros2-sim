@@ -1,0 +1,224 @@
+{
+  "all": {
+    "n": 18,
+    "depth_error_mean_mm": 14.840932116975814,
+    "depth_error_max_mm": 112.49724692878482,
+    "volume_error_mean_pct": 6.212158523417497,
+    "volume_error_max_pct": 33.52052288336922,
+    "depth_pass": false,
+    "volume_pass": true
+  },
+  "task_regime": {
+    "n": 12,
+    "depth_error_mean_mm": 1.232687671687936,
+    "depth_error_max_mm": 3.3421832074908564,
+    "volume_error_mean_pct": 0.9650615288903942,
+    "volume_error_max_pct": 3.0184668973506366,
+    "depth_pass": true,
+    "volume_pass": true
+  },
+  "thresholds": {
+    "depth_mean_mm": 5.0,
+    "volume_mean_relative": 0.15
+  },
+  "records": [
+    {
+      "pressure_mpa": 20.0,
+      "standoff_m": 0.3,
+      "duration_s": 2.0,
+      "l0_depth_mm": 65.96154688419566,
+      "levelset_depth_mm": 58.13342332839966,
+      "depth_error_mm": -7.828123555795999,
+      "l0_volume_cm3": 249.5133410358064,
+      "levelset_volume_cm3": 238.94070982933044,
+      "volume_relative_error": -0.042373009645839864
+    },
+    {
+      "pressure_mpa": 20.0,
+      "standoff_m": 0.3,
+      "duration_s": 8.0,
+      "l0_depth_mm": 185.7746398012671,
+      "levelset_depth_mm": 177.68341302871704,
+      "depth_error_mm": -8.091226772550058,
+      "l0_volume_cm3": 1238.3282823299996,
+      "levelset_volume_cm3": 1130.0856068730354,
+      "volume_relative_error": -0.08741032325717228
+    },
+    {
+      "pressure_mpa": 20.0,
+      "standoff_m": 0.5,
+      "duration_s": 2.0,
+      "l0_depth_mm": 27.17725830386418,
+      "levelset_depth_mm": 26.637732982635498,
+      "depth_error_mm": -0.5395253212286816,
+      "l0_volume_cm3": 104.08265199221131,
+      "levelset_volume_cm3": 103.99206429719925,
+      "volume_relative_error": -0.0008703438399978522
+    },
+    {
+      "pressure_mpa": 20.0,
+      "standoff_m": 0.5,
+      "duration_s": 8.0,
+      "l0_depth_mm": 96.26363704738571,
+      "levelset_depth_mm": 94.58136558532715,
+      "depth_error_mm": -1.682271462058571,
+      "l0_volume_cm3": 499.39887985656344,
+      "levelset_volume_cm3": 487.02129572629934,
+      "volume_relative_error": -0.02478496574485547
+    },
+    {
+      "pressure_mpa": 20.0,
+      "standoff_m": 0.7,
+      "duration_s": 2.0,
+      "l0_depth_mm": 14.255565666090487,
+      "levelset_depth_mm": 14.078676700592041,
+      "depth_error_mm": -0.17688896549844513,
+      "l0_volume_cm3": 62.75248189212058,
+      "levelset_volume_cm3": 62.741608917713165,
+      "volume_relative_error": -0.00017326763945532496
+    },
+    {
+      "pressure_mpa": 20.0,
+      "standoff_m": 0.7,
+      "duration_s": 8.0,
+      "l0_depth_mm": 54.528828045982415,
+      "levelset_depth_mm": 53.50220203399658,
+      "depth_error_mm": -1.0266260119858317,
+      "l0_volume_cm3": 268.0116356511153,
+      "levelset_volume_cm3": 265.97950607538223,
+      "volume_relative_error": -0.007582243848466152
+    },
+    {
+      "pressure_mpa": 30.0,
+      "standoff_m": 0.3,
+      "duration_s": 2.0,
+      "l0_depth_mm": 92.38513150341713,
+      "levelset_depth_mm": 62.43258714675903,
+      "depth_error_mm": -29.95254435665809,
+      "l0_volume_cm3": 524.5008601903287,
+      "levelset_volume_cm3": 458.8128805160523,
+      "volume_relative_error": -0.1252390313534278
+    },
+    {
+      "pressure_mpa": 30.0,
+      "standoff_m": 0.3,
+      "duration_s": 8.0,
+      "l0_depth_mm": 257.1709099960459,
+      "levelset_depth_mm": 215.97188711166382,
+      "depth_error_mm": -41.199022884382096,
+      "l0_volume_cm3": 2635.0933338464733,
+      "levelset_volume_cm3": 2078.8791954517365,
+      "volume_relative_error": -0.21107948293536352
+    },
+    {
+      "pressure_mpa": 30.0,
+      "standoff_m": 0.5,
+      "duration_s": 2.0,
+      "l0_depth_mm": 40.15664493435525,
+      "levelset_depth_mm": 39.28810358047485,
+      "depth_error_mm": -0.8685413538803977,
+      "l0_volume_cm3": 214.66532462195022,
+      "levelset_volume_cm3": 214.4310757517815,
+      "volume_relative_error": -0.0010912282669839016
+    },
+    {
+      "pressure_mpa": 30.0,
+      "standoff_m": 0.5,
+      "duration_s": 8.0,
+      "l0_depth_mm": 135.06214197840973,
+      "levelset_depth_mm": 133.0457329750061,
+      "depth_error_mm": -2.016409003403635,
+      "l0_volume_cm3": 1049.9912525716009,
+      "levelset_volume_cm3": 1022.3763510584832,
+      "volume_relative_error": -0.026300125306267293
+    },
+    {
+      "pressure_mpa": 30.0,
+      "standoff_m": 0.7,
+      "duration_s": 2.0,
+      "l0_depth_mm": 21.33028104454443,
+      "levelset_depth_mm": 21.08663320541382,
+      "depth_error_mm": -0.24364783913061183,
+      "l0_volume_cm3": 126.34030023921525,
+      "levelset_volume_cm3": 126.33683532476425,
+      "volume_relative_error": -2.7425251043769586e-05
+    },
+    {
+      "pressure_mpa": 30.0,
+      "standoff_m": 0.7,
+      "duration_s": 8.0,
+      "l0_depth_mm": 79.42607726719679,
+      "levelset_depth_mm": 78.32038402557373,
+      "depth_error_mm": -1.1056932416230598,
+      "l0_volume_cm3": 555.5509632185751,
+      "levelset_volume_cm3": 550.1389876008034,
+      "volume_relative_error": -0.009741636638369919
+    },
+    {
+      "pressure_mpa": 40.0,
+      "standoff_m": 0.3,
+      "duration_s": 2.0,
+      "l0_depth_mm": 115.91633661809172,
+      "levelset_depth_mm": 63.13997507095337,
+      "depth_error_mm": -52.77636154713836,
+      "l0_volume_cm3": 913.700337717199,
+      "levelset_volume_cm3": 729.9788877367973,
+      "volume_relative_error": -0.20107407472280656
+    },
+    {
+      "pressure_mpa": 40.0,
+      "standoff_m": 0.3,
+      "duration_s": 8.0,
+      "l0_depth_mm": 349.2485649066901,
+      "levelset_depth_mm": 236.75131797790527,
+      "depth_error_mm": -112.49724692878482,
+      "l0_volume_cm3": 4835.301824422333,
+      "levelset_volume_cm3": 3214.483369886875,
+      "volume_relative_error": -0.3352052288336922
+    },
+    {
+      "pressure_mpa": 40.0,
+      "standoff_m": 0.5,
+      "duration_s": 2.0,
+      "l0_depth_mm": 52.611380113649325,
+      "levelset_depth_mm": 50.2467155456543,
+      "depth_error_mm": -2.364664567995028,
+      "l0_volume_cm3": 375.17949580103493,
+      "levelset_volume_cm3": 373.824442923069,
+      "volume_relative_error": -0.0036117455594762466
+    },
+    {
+      "pressure_mpa": 40.0,
+      "standoff_m": 0.5,
+      "duration_s": 8.0,
+      "l0_depth_mm": 169.7209793081073,
+      "levelset_depth_mm": 166.37879610061646,
+      "depth_error_mm": -3.3421832074908564,
+      "l0_volume_cm3": 1820.336558685131,
+      "levelset_volume_cm3": 1765.3903022408485,
+      "volume_relative_error": -0.030184668973506364
+    },
+    {
+      "pressure_mpa": 40.0,
+      "standoff_m": 0.7,
+      "duration_s": 2.0,
+      "l0_depth_mm": 28.313900483978603,
+      "levelset_depth_mm": 27.985751628875732,
+      "depth_error_mm": -0.3281488551028708,
+      "l0_volume_cm3": 217.40942268224975,
+      "levelset_volume_cm3": 217.33649224042895,
+      "volume_relative_error": -0.0003354520743445305
+    },
+    {
+      "pressure_mpa": 40.0,
+      "standoff_m": 0.7,
+      "duration_s": 8.0,
+      "l0_depth_mm": 102.87639788210235,
+      "levelset_depth_mm": 101.77874565124512,
+      "depth_error_mm": -1.0976522308572405,
+      "l0_volume_cm3": 970.3819196492541,
+      "levelset_volume_cm3": 959.6065267920494,
+      "volume_relative_error": -0.011104280324080467
+    }
+  ]
+}

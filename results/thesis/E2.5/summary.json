@@ -1,0 +1,180 @@
+{
+  "library_hash": "6971affc37fe84947e5da94c79af15d05f57ab51ed9b3647523a6c2a2a357432",
+  "reproducible": true,
+  "hash_same_process": true,
+  "hash_other_process": true,
+  "counts": {
+    "train": 50,
+    "val": 15,
+    "test": 30
+  },
+  "wall_seeds": {
+    "train": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "val": [
+      30,
+      31,
+      32
+    ],
+    "test": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ]
+  },
+  "strength_seeds_reserved": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139
+  ],
+  "heightfield_hashes": {
+    "sc_test_006": "3cd581f961f103fe523e08e0678b66380fd162f60b7624634d0e8ce07d60e053",
+    "sc_test_007": "379c2cc1dc497848e839a06794959461bd7e159bb0783b955228e81ae0717773",
+    "sc_test_008": "25d2e0470d435d3b4d0f64a9c452811f01f0a9053862570577fdfa27faf159a2"
+  },
+  "wall_tilt": [
+    {
+      "wall_seed": 20,
+      "points": 709,
+      "angle_to_configured_normal_deg": 0.34794756555328443,
+      "fitted_plane_inclination_from_vertical_deg": 59.94081767232813,
+      "configured_wall_inclination_deg": 60.0
+    },
+    {
+      "wall_seed": 21,
+      "points": 825,
+      "angle_to_configured_normal_deg": 0.34753407213283,
+      "fitted_plane_inclination_from_vertical_deg": 59.65895122301645,
+      "configured_wall_inclination_deg": 60.0
+    }
+  ],
+  "scenario_depth_check": {
+    "max_depth_m": 0.18895375728607178,
+    "limit_m": 0.2,
+    "all_below_half_thickness": true,
+    "worst": [
+      {
+        "split": "val",
+        "scenario": "sc_val_014",
+        "family": "deep_pit",
+        "wall_seed": 32,
+        "initial_erosion_depth_m": 0.18895375728607178,
+        "margin_to_wall_m": 0.21104624271392824
+      },
+      {
+        "split": "val",
+        "scenario": "sc_val_011",
+        "family": "triangle",
+        "wall_seed": 32,
+        "initial_erosion_depth_m": 0.17108696699142456,
+        "margin_to_wall_m": 0.22891303300857546
+      },
+      {
+        "split": "val",
+        "scenario": "sc_val_008",
+        "family": "pair",
+        "wall_seed": 32,
+        "initial_erosion_depth_m": 0.16390134394168854,
+        "margin_to_wall_m": 0.23609865605831148
+      },
+      {
+        "split": "val",
+        "scenario": "sc_val_013",
+        "family": "deep_pit",
+        "wall_seed": 31,
+        "initial_erosion_depth_m": 0.1447903960943222,
+        "margin_to_wall_m": 0.2552096039056778
+      },
+      {
+        "split": "test",
+        "scenario": "sc_test_026",
+        "family": "deep_pit",
+        "wall_seed": 22,
+        "initial_erosion_depth_m": 0.14097456634044647,
+        "margin_to_wall_m": 0.25902543365955355
+      }
+    ]
+  },
+  "rule_baseline": {
+    "train": {
+      "episodes": 50,
+      "success_rate": 0.98,
+      "through_cut_rate": 0.02,
+      "initially_achieved_fraction": 0.0,
+      "mean_sprays": 22.5,
+      "mean_duration_s": 130.48533114091492,
+      "mean_removed_volume_m3": 0.010697908615915994
+    },
+    "val": {
+      "episodes": 15,
+      "success_rate": 0.6666666666666666,
+      "through_cut_rate": 0.3333333333333333,
+      "initially_achieved_fraction": 0.0,
+      "mean_sprays": 18.0,
+      "mean_duration_s": 107.8924633808434,
+      "mean_removed_volume_m3": 0.010855320011983074
+    },
+    "test": {
+      "episodes": 30,
+      "success_rate": 1.0,
+      "through_cut_rate": 0.0,
+      "initially_achieved_fraction": 0.0,
+      "mean_sprays": 22.366666666666667,
+      "mean_duration_s": 129.5616202915514,
+      "mean_removed_volume_m3": 0.011099713895171939
+    }
+  },
+  "initially_achieved_fraction_all": 0.0,
+  "initially_achieved_within_limit": true,
+  "wall_time_s": 155.2411203230149
+}

@@ -19,10 +19,13 @@ source setup_env.sh            # Jazzy + .venv_stage4 + install/setup.bash + GZ_
 # 构建（必须带 --base-paths src，否则会扫到外部目录）
 colcon build --symlink-install --base-paths src --packages-select hydromining_robot hydromining_sim
 
-# 单元测试（当前 117 项，约 30 s）
+# 单元测试（当前 143 项，约 35 s）
 python3 -m pytest src/hydromining_sim/test -q
 python3 -m pytest src/hydromining_sim/test/test_planning_decision.py -q          # 单文件
 python3 -m pytest src/hydromining_sim/test/test_nbv_observation_policy.py::test_name -q  # 单用例
+
+# 仿真基准冻结校验（破煤核/蚀除/可见性/退化/任务配置/干扰等级/场景库任一处改动都会失败）
+python3 scripts/freeze_sim_v1.py --check
 
 # 规则基线回归（重构 L0/规则后必须与 results/thesis/E0.3 逐回合比对，成功率应为 0.917）
 .venv_rl/bin/python experiments/ch0_baseline/run_baseline.py --output results/thesis/<新目录名>
@@ -71,6 +74,10 @@ src/hydromining_robot/scripts/            ROS 适配层（生命周期节点）�
 ## 实验与结果约定
 
 - 每个小实验一个文件：`experiments/<章节>/e<实验号>_<名称>.py`；共用逻辑进 `experiments/common/`。
+- `experiments/common/` 现有：`task.py`（TaskSpec 入口）、`splits.py`（场景库唯一入口）、
+  `scenarios.py`（工况生成/回合种子）、`interference.py`（干扰等级与受扰比例）、
+  `crater.py`（孔形度量与平板靶）、`records.py`、`stats.py`、`regression.py`（逐回合比对）、
+  `large_env.py`、`checkpoint.py`、`interfaces.py`。
 - 结果写 `results/thesis/<实验号>/<run_id>/`：`manifest.json`（配置、代码哈希、种子）、`episodes.jsonl`、`summary.json`、`figures/`。只有 manifest/summary/figures 进 git。
 - `results/legacy/` 是 2026-11-01 前的旧结果，只读；不要往里面写。
 - **每个阶段完成后 git 提交一次并打标签**；阶段内的小实验不逐个提交，进度先记在 `docs/进度总表.md`。**推送前征得用户同意**。
@@ -81,7 +88,10 @@ src/hydromining_robot/scripts/            ROS 适配层（生命周期节点）�
 
 ## 容易踩的坑
 
-- 改 L0 蚀除、可见性或规则后，跑规则基线逐回合比对，不要只看测试通过。
+- 改 L0 蚀除、可见性或规则后，跑规则基线逐回合比对，不要只看测试通过。比对用
+  `experiments/common/regression.py`（自动跳过墙钟计时字段）。
+- **sim-v1 已冻结**：改动 `configs/sim_v1.lock.json` 里的任何文件都会让
+  `test_sim_v1_frozen.py` 失败。这不是误报，是要求先升版本（sim-v2）并重记规则基线。
 - 旧文档（`docs/阶段文档/`、`README.md` 顶部状态、评测自评分）可能过时；旧 RL 模型成功率全 0 是奖励缺陷，不是方法结论。
 - `test_scripts/` 里多数不是 pytest（是验收/实验入口），`pytest` 只收集 `src/hydromining_sim/test/`。
 - 重建全部（`rm -rf build install log`）很少需要；先试增量构建。

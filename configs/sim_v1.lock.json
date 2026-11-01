@@ -1,0 +1,20 @@
+{
+  "version": "sim-v1",
+  "frozen_at": "2026-11-01",
+  "files": {
+    "src/hydromining_sim/scripts/algorithms/erosion_model.py": "45f620a9e0abf2a14c6ada701b6e5e4358029c04680be8cff601f89df348461c",
+    "src/hydromining_sim/scripts/algorithms/heightfield_erosion.py": "8d81dd0360cfbc8c292082b41fa11c1e808d889b125c3aaab63625f9f19801cf",
+    "src/hydromining_sim/scripts/algorithms/level_set_evolver.py": "4599e1b93b81db05dd4730966841d5f6fda08ac5ff7ee6fc87a5e68a4b09a82a",
+    "src/hydromining_sim/scripts/algorithms/spray_simulation.py": "68f4fda6d8b1a2f253cee2711b39f803527cdb669c3b588973c8bb02afa566f0",
+    "src/hydromining_sim/scripts/algorithms/local_spray_simulation.py": "53cc6c4efbc12261cf84294f7f0eac1e8a3bf6800c622f8997c1a8c3b61afe50",
+    "src/hydromining_sim/scripts/algorithms/voxel_grid.py": "f4a1e06f9427cc42afe531c4f01086c62fd70b4d77bac308e8d66ed0c63d8e3a",
+    "src/hydromining_sim/scripts/algorithms/perception/visibility.py": "e0b09574c0ff0eec45110d37b6d53c507aba90d99a8bfa16f6c81cadaf6711e9",
+    "src/hydromining_sim/scripts/algorithms/perception/sensor_model.py": "08d905bb798b3a5c870ef41df39865c333b4408fa789e433f068cf11af98fb75",
+    "src/hydromining_sim/scripts/algorithms/perception/environment.py": "b435aef730e2b313fa229c30c73c1706fc0e483f6178507037d94d5d185d085c",
+    "src/hydromining_sim/scripts/algorithms/planning/fast_heightfield.py": "1ab60d8cad23760a50f18848a368154823ad15bdfd555ec629eb68d25f38302f",
+    "src/hydromining_sim/scripts/algorithms/planning/surrogate.py": "7a56d6fd191503b263e81a704f018abf1433b73651c233afc051b32a9652b529",
+    "src/hydromining_robot/config/phase7_large_task.yaml": "44c42fac7ebcd5d12fe7e52b746dab2ed62c6a650fe2956c35d9e7618d71e408",
+    "configs/interference_levels.yaml": "e89bc2f57b20f2001efd333e994fd1953359cac8e15ab0378996708373fcb89b",
+    "results/thesis/E2.5/library.json": "c59c592c24c47414f91ea9f85d21253648316d40ecf469806653b2d0739ef032"
+  }
+}

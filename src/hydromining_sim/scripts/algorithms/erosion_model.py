@@ -41,101 +41,147 @@ class SprayAction:
 class ErosionKernel:
     """
     冲蚀核函数及参数
-    
-    实现公式⑧和公式⑨中的参数函数
+
+    实现公式⑧和公式⑨中的参数函数。径向核的指数做成实例参数，供 E2.1a
+    标定扫描使用；构造默认值与此前硬编码的 (3/2, 6) 完全相同。
     """
-    
+
     def __init__(
         self,
-        R_c_func: Callable[[float, float], float],
-        b_func: Callable[[float, float], float]
+        R_c_func: Callable[..., float],
+        b_func: Callable[[float, float], float],
+        radial_power=1.5,
+        radial_decay=6,
     ):
         """
         初始化冲蚀核
-        
+
         Args:
             R_c_func: Callable(pressure, distance) -> float
                       中心冲蚀速度 [m/s]
             b_func: Callable(pressure, distance) -> float
                     有效冲蚀半径 [m]
+            radial_power: 径向核 ξ 的幂次（默认 3/2）
+            radial_decay: 径向核外侧衰减幂次（默认 6）
         """
         self.R_c = R_c_func
         self.b = b_func
-    
-    @staticmethod
-    def kernel_F(xi: np.ndarray) -> np.ndarray:
+        # 不做 float 转换：默认值保持 int 6，避免与旧实现的整数幂快速路径产生末位差异。
+        self.radial_power = radial_power
+        self.radial_decay = radial_decay
+
+    def kernel_F(self, xi: np.ndarray) -> np.ndarray:
         """
         冲蚀径向核函数
-        
+
         公式⑧: F(ξ) = (1-ξ^(3/2))^6, for 0 ≤ ξ < 1
                       = 0,              for ξ ≥ 1
-        
+
         Args:
             xi: 归一化径向距离 r/b (形状任意)
-        
+
         Returns:
             F(xi) ∈ [0, 1]
         """
-        return np.where(xi < 1, (1 - xi**(3/2))**6, 0)
+        return np.where(xi < 1, (1 - xi**self.radial_power)**self.radial_decay, 0)
 
 
 class DefaultErosionKernel(ErosionKernel):
+    """默认冲蚀核：参数可注入，默认值与 2026-11-01 前的硬编码实现逐位相同。
+
+    公式与参数说明见 docs/文献/E2.1_标定依据.md。当前默认值属于**工程取值**，
+    E2.1a 与文献对照后才改为趋势标定；论文中不得表述为"已标定"。
+
+    煤强度接口：`coal_strength_mpa` 留作 E2.2 非均质场的入口，默认
+    `strength_exponent=0`，此时不论强度取何值，强度因子恒为 1，公式不变。
     """
-    默认临时冲蚀核参数（待标定）
-    
-    基于用户论文的参考数据
-    """
-    
-    @staticmethod
-    def R_c_default(pressure: float, distance: float) -> float:
+
+    # 全部可调参数的默认值；键名同时是 yaml `kernel:` 段允许的字段。
+    # alpha=1.0 的依据见 docs/文献/E2.1_标定依据.md（文献：割缝深度随压力线性增加）。
+    DEFAULTS = {
+        'k': 1.8257418583505537e-4,   # R_c 经验系数（吸收煤强度、喷嘴效率等）
+        'alpha': 1.0,                 # R_c 的压力指数（文献：线性）
+        'beta': 2.0,                  # R_c 的靶距指数（充分发展射流：v∝1/s，动压∝1/s²）
+        'min_distance': 0.01,         # 靶距下限，避免除零 [m]
+        'b_base': 0.05,               # 有效半径基础值 [m]
+        'b_pressure': 0.002,          # 有效半径的压力系数 [m/MPa]
+        'b_distance': 0.05,           # 有效半径的靶距系数（≈ 射流扩散角）
+        'radial_power': 1.5,          # 径向核 ξ 幂次
+        'radial_decay': 6,            # 径向核外侧衰减幂次
+        'reference_strength_mpa': 30.,  # 强度参考值，E2.2 使用
+        'strength_exponent': 0.,      # 强度指数，0 表示不启用强度（当前状态）
+        'coal_strength_mpa': 0.,      # 煤体单轴抗压强度，0 表示未知/未启用
+    }
+
+    def __init__(self, **params):
+        """按关键字覆盖默认参数；未知参数名直接报错，避免拼写错误被忽略。"""
+        unknown = set(params) - set(self.DEFAULTS)
+        if unknown:
+            raise ValueError(f'未知的冲蚀核参数: {sorted(unknown)}')
+        for name, value in params.items():
+            if not np.isfinite(value):
+                raise ValueError(f'冲蚀核参数必须有限: {name}={value}')
+        values = {**self.DEFAULTS, **params}
+        self.k = values['k']
+        self.alpha = values['alpha']
+        self.beta = values['beta']
+        self.min_distance = values['min_distance']
+        self.b_base = values['b_base']
+        self.b_pressure = values['b_pressure']
+        self.b_distance = values['b_distance']
+        self.reference_strength_mpa = values['reference_strength_mpa']
+        self.strength_exponent = values['strength_exponent']
+        self.coal_strength_mpa = values['coal_strength_mpa']
+        super().__init__(R_c_func=self.R_c, b_func=self.b,
+                         radial_power=values['radial_power'],
+                         radial_decay=values['radial_decay'])
+
+    def params(self):
+        """返回全部参数，供 manifest 记录与敏感性分析枚举。"""
+        return {name: getattr(self, name) for name in self.DEFAULTS
+                if name not in ('radial_power', 'radial_decay')} | {
+            'radial_power': self.radial_power, 'radial_decay': self.radial_decay}
+
+    def strength_factor(self, coal_strength_mpa=None):
+        """强度修正因子；强度指数为 0 或强度未给出时恒等于 1.0（逐位不变）。"""
+        strength = self.coal_strength_mpa if coal_strength_mpa is None else coal_strength_mpa
+        if self.strength_exponent == 0 or strength is None or strength <= 0:
+            return 1.0
+        return (self.reference_strength_mpa/strength)**self.strength_exponent
+
+    def R_c(self, pressure: float, distance: float, coal_strength_mpa=None) -> float:
         """
-        中心冲蚀速度（临时参数）
-        
-        R_c ∝ P^α / s^β
-        
+        中心冲蚀速度 [m/s]
+
+        R_c = k · P^α / s^β · 强度因子
+
         Args:
             pressure: 压力 [MPa]
             distance: 靶距 [m]
-        
+            coal_strength_mpa: 可选，该点的煤体强度；省略时用核内设定值
+
         Returns:
             中心冲蚀速度 [m/s]
         """
-        # 临时公式（需从论文或实验标定）
-        k = 1e-3      # 经验系数（已调整：1e-5 → 1e-3，增大破坏效果）
-        alpha = 0.5   # 压力指数
-        beta = 2.0    # 距离指数
-        
-        if distance < 0.01:
-            distance = 0.01  # 避免除以零
-        
-        return k * (pressure ** alpha) / (distance ** beta)
-    
-    @staticmethod
-    def b_default(pressure: float, distance: float) -> float:
+        if distance < self.min_distance:
+            distance = self.min_distance  # 避免除以零
+        value = self.k*(pressure**self.alpha)/(distance**self.beta)
+        return value*self.strength_factor(coal_strength_mpa)
+
+    def b(self, pressure: float, distance: float) -> float:
         """
-        有效冲蚀半径（临时参数）
-        
-        b ∝ P^γ * s^δ
-        
+        有效冲蚀半径 [m]
+
+        b = b_base + b_pressure·P + b_distance·s
+
         Args:
             pressure: 压力 [MPa]
             distance: 靶距 [m]
-        
+
         Returns:
             有效冲蚀半径 [m]
         """
-        # 临时公式（需标定）
-        b_base = 0.05         # 基础半径
-        pressure_factor = 0.002   # 压力系数
-        distance_factor = 0.05    # 靶距系数
-        
-        return b_base + pressure_factor * pressure + distance_factor * distance
-    
-    def __init__(self):
-        super().__init__(
-            R_c_func=self.R_c_default,
-            b_func=self.b_default
-        )
+        return self.b_base + self.b_pressure*pressure + self.b_distance*distance
 
 
 class ErosionModel:

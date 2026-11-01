@@ -1,0 +1,34 @@
+# E2.1a 破煤响应扫描：压力、靶距、时长 → 孔深、孔径、体积
+experiment: E2.1a
+# 平板靶（本地坐标，与任务 patch 同一格距）
+plate:
+  extent_m: 0.72
+  spacing_m: 0.005
+  thickness_m: 0.4
+# 全因子扫描；每个因素都会在另外两维固定于 nominal 的条件下单独拟合响应曲线
+pressure_mpa: [10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 50.0]
+standoff_m: [0.1, 0.2, 0.3, 0.5, 0.7, 1.0]
+duration_s: [1.0, 2.0, 4.0, 8.0, 16.0]
+nominal:
+  pressure_mpa: 30.0
+  standoff_m: 0.5
+  duration_s: 4.0
+# 同点多次喷射，检查孔深增长与饱和
+accumulate:
+  pressure_mpa: 30.0
+  standoff_m: 0.5
+  duration_s: 2.0
+  shots: 5
+# Level Set 交叉验证子集（与 L0 同靶同条件）
+levelset:
+  pressure_mpa: [20.0, 30.0, 40.0]
+  standoff_m: [0.3, 0.5, 0.7]
+  duration_s: [2.0, 8.0]
+  span_m: 0.4
+  thickness_m: 0.4
+  resolution: [80, 80, 80]
+  wall_budget_s: 300.0
+# 冲蚀核参数；省略则用任务配置里的核
+# kernel:
+#   alpha: 0.5
+#   k: 0.001

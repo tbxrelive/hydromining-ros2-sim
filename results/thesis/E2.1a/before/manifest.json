@@ -1,0 +1,26 @@
+{
+  "experiment": "E2.1a_l0",
+  "config": {
+    "engine": "l0",
+    "kernel": {
+      "k": 0.001,
+      "alpha": 0.5,
+      "beta": 2.0,
+      "min_distance": 0.01,
+      "b_base": 0.05,
+      "b_pressure": 0.002,
+      "b_distance": 0.05,
+      "reference_strength_mpa": 30.0,
+      "strength_exponent": 0.0,
+      "coal_strength_mpa": 0.0,
+      "radial_power": 1.5,
+      "radial_decay": 6
+    },
+    "kernel_source": "task",
+    "config": "/home/star/SCI/hydromining_ws/configs/experiments/E2.1a.yaml",
+    "conditions": 245
+  },
+  "code_revision": "d5032ec",
+  "started_at": "2026-11-01T15:44:59",
+  "wall_time_s": 14.615100896975491
+}

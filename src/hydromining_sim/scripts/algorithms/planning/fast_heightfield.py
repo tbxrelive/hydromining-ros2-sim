@@ -41,11 +41,11 @@ class FastHeightfieldEnv(gym.Env):
     metadata = {'render_modes': []}
 
     def __init__(self, initial_heights, frame, camera_poses, intrinsics, image_shape, *,
-                 pressure, standoff, noise_scale=0., seed=0, max_steps=128,
+                 pressure, standoff, kernel=None, noise_scale=0., seed=0, max_steps=128,
                  scenario_names=None, scenarios, patch_extent=.72, diameter=.4,
                  required_depth=.05, required_fraction=.9, wall_thickness=.4):
-        # pressure/standoff 必填，由 TaskSpec 提供；其余默认值属于任务形状，
-        # 调用方应显式传入（1.3 统一为必填）。
+        # pressure/standoff 必填，由 TaskSpec 提供；kernel 省略时用默认冲蚀核。
+        # 其余默认值属于任务形状，调用方应显式传入（1.3 统一为必填）。
         self.frame_ = frame
         heights = np.asarray(initial_heights, dtype=np.float64)
         self.initial_surfaces_ = heights[None, ...] if heights.ndim == 2 else heights
@@ -67,7 +67,7 @@ class FastHeightfieldEnv(gym.Env):
         self.surface_grid_ = frame.grid(self.extent_, self.spacing_)
         self.map_grid_ = frame.grid(self.map_extent_, self.map_spacing_)
         self.area_ = circle_fractions(self.map_grid_, self.map_spacing_, self.diameter_/2) * self.map_spacing_**2
-        self.kernel_ = DefaultErosionKernel()
+        self.kernel_ = kernel if kernel is not None else DefaultErosionKernel()
         self.action_space = spaces.Box(-1., 1., shape=(3,), dtype=np.float32)
         self.observation_space = spaces.Box(-np.inf, np.inf, shape=(3756,), dtype=np.float32)
         self.reset(seed=seed)

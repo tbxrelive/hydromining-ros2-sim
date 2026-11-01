@@ -28,7 +28,7 @@ from ..perception.config import PerceptionConfig
 from ..perception.height_map import HeightMap
 from ..perception.metrics import truth_change
 from ..perception.pipeline import PerceptionSession
-from ..perception.sensor_model import depth_sigma, lidar_sigma
+from ..perception.sensor_model import degrade_ranges, depth_sigma, lidar_sigma
 from ..perception.wall_frame import WallFrame
 
 OBSERVE_SET = ['front_0p8', 'left_0p8', 'right_0p8']
@@ -46,7 +46,8 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
     def __init__(self, world, view_specs, task_config, fidelity='L2', noise_scale=0.,
                  max_steps=12, grid=25, cost_observe=2., cost_spray_per_s=0.3,
                  terminal_reward=10., external_penalty=5., seed=None,
-                 cache_dir=None, scenario_names=None, scenarios=None):
+                 cache_dir=None, scenario_names=None, scenarios=None,
+                 visibility=np.inf):
         if gym is None:
             raise ImportError('gymnasium is required')
         assert fidelity in ('L1', 'L2')
@@ -67,6 +68,8 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         self.profile_ = {'reset_s': 0., 'spray_s': 0., 'assessment_s': 0.}
         self.world_, self.specs_, self.cfg_ = world, view_specs, task_config
         self.fidelity_, self.noise_scale_ = fidelity, noise_scale
+        # 干扰等级只由能见度定义；np.inf 表示洁净，数值与加入干扰模型前一致。
+        self.visibility_ = visibility
         self.max_steps_, self.grid_ = max_steps, grid
         self.cost_observe_, self.cost_spray_per_s_ = cost_observe, cost_spray_per_s
         self.terminal_reward_, self.external_penalty_ = terminal_reward, external_penalty
@@ -105,7 +108,8 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
         return [[self.world_.snapshot(self.specs_[n]['tf_depth'],
                                       self.specs_[n]['tf_lidar'], self.specs_[n]['K'],
                                       self.specs_[n]['image_shape'], stamp + 10 * i + f,
-                                      self.rng_, noise_scale=self.noise_scale_)
+                                      self.rng_, noise_scale=self.noise_scale_,
+                                      visibility=self.visibility_)
                  for f in range(frames)] for i, n in enumerate(names)]
 
     def _state_tensor(self, evaluated):
@@ -193,7 +197,21 @@ class HydrominingSurrogateEnv(gym.Env if gym else object):
                 directions = delta / ranges[:, None]
                 sigma_fn = depth_sigma if sensor == 'depth' else lidar_sigma
                 sigma = sigma_fn(ranges, cfg.noise_scale)
+                # 能见度有限时按同一射线退化：丢点直接从融合输入里消失。
+                # L1 只用可见表面点，无法表示近距假回波，这一点与 L2 不同。
+                degraded = None
+                if np.isfinite(self.visibility_):
+                    degraded, _ = degrade_ranges(
+                        ranges, sigma_fn(ranges, self.noise_scale_),
+                        self.visibility_, self.rng_)
                 for _ in range(L1_FRAMES_PER_VIEW):
+                    if degraded is not None:
+                        keep = np.isfinite(degraded)
+                        if not keep.any():
+                            break
+                        points = origin + directions[keep]*degraded[keep, None]
+                        surface_map.integrate(points, directions[keep], sigma[keep])
+                        continue
                     points = world[mask].copy()
                     if self.noise_scale_ > 0:
                         noise = self.rng_.normal(

@@ -135,6 +135,9 @@ Thumbs.db
 SCI/
 results/legacy/
 results/thesis/**/episodes.jsonl
+# 逐次重复的原始行数据体量大且可由 summary 复算，不进版本库
+results/thesis/**/rows.jsonl
+results/thesis/**/*_rows.jsonl
 results/thesis/**/snapshots/
 results/thesis/**/assets/
 results/thesis/**/*.npz

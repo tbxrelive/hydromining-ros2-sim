@@ -1,0 +1,35 @@
+# 干扰等级定义（E2.3a 预实验推出，E2.3b 重复统计验证）
+#
+# 等级**只由能见度 V 定义**；传感器噪声档位（1× / 2×）是与之正交的第二个因素，
+# 由 noise_gears 给出，不在等级内部混合。
+#
+# 取值依据（results/thesis/E2.3a/pilot.json，视点包络 0.5–2.0 m、视角 0–60°）：
+#   等级     V      包络平均受扰比例 D（噪声 1×）   相邻间隔
+#   无       inf    0.06 %                          —
+#   低       120 m  10.4 %                          10.3 pp
+#   中       30 m   33.6 %                          23.2 pp
+#   高       8 m    73.0 %                          39.4 pp
+#
+# 相邻等级判据（E2.3b）：|Δ均值| > 2×合并标准差，且 ≥ 3 个百分点，且顺序正确。
+# 噪声 2× 下的包络均值依次为 7.1 / 17.9 / 41.6 / 78.4 %，相邻间隔同样满足判据。
+levels:
+  none:
+    visibility_m: .inf
+    noise_scale: 1.0
+  low:
+    visibility_m: 120.0
+    noise_scale: 1.0
+  medium:
+    visibility_m: 30.0
+    noise_scale: 1.0
+  high:
+    visibility_m: 8.0
+    noise_scale: 1.0
+
+# 与等级正交的传感器噪声档位；有效噪声倍数 = level.noise_scale × gear
+noise_gears: [1.0, 2.0]
+
+# 视点包络：E2.3b 统计时使用的距离与视角范围（米 / 度）
+viewpoint_envelope:
+  distance_m: [0.5, 2.0]
+  angle_deg: [0.0, 20.0, 40.0, 60.0]

@@ -1,0 +1,46 @@
+{
+  "baseline_success_rate": 0.9166666666666666,
+  "baseline_episodes": 12,
+  "identical_to_E0.3": true,
+  "difference_count": 0,
+  "differences": [],
+  "feasibility": {
+    "single_shot": [
+      {
+        "duration_s": 2.0,
+        "depth_center_m": 0.04015664493435525,
+        "diameter_half_m": 0.06863662517577698,
+        "volume_m3": 0.00021466532462195023,
+        "reaches_required_depth": false,
+        "through": false
+      },
+      {
+        "duration_s": 4.0,
+        "depth_center_m": 0.07536670437318775,
+        "diameter_half_m": 0.0756939756606048,
+        "volume_m3": 0.00045740279619155104,
+        "reaches_required_depth": true,
+        "through": false
+      },
+      {
+        "duration_s": 6.0,
+        "depth_center_m": 0.10668994990482156,
+        "diameter_half_m": 0.08740387444736633,
+        "volume_m3": 0.0007398914357234811,
+        "reaches_required_depth": true,
+        "through": false
+      },
+      {
+        "duration_s": 8.0,
+        "depth_center_m": 0.13506214197840974,
+        "diameter_half_m": 0.09507891862878783,
+        "volume_m3": 0.001049991252571601,
+        "reaches_required_depth": true,
+        "through": false
+      }
+    ],
+    "min_duration_reaching_required_depth": 4.0,
+    "any_through_cut": false
+  },
+  "wall_time_s": 27.346576974989148
+}

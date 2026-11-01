@@ -1,0 +1,86 @@
+{
+  "levels": {
+    "none": {
+      "name": "none",
+      "visibility_m": Infinity,
+      "noise_scale": 1.0
+    },
+    "low": {
+      "name": "low",
+      "visibility_m": 120.0,
+      "noise_scale": 1.0
+    },
+    "medium": {
+      "name": "medium",
+      "visibility_m": 30.0,
+      "noise_scale": 1.0
+    },
+    "high": {
+      "name": "high",
+      "visibility_m": 8.0,
+      "noise_scale": 1.0
+    }
+  },
+  "repeats": 10,
+  "views": [
+    "front_0p8",
+    "left_0p8",
+    "right_0p8",
+    "front_0p6"
+  ],
+  "wall_time_s": 17.187193967984058,
+  "summary": {
+    "none@1x": {
+      "depth_mean": 0.0007212130778907046,
+      "depth_std": 8.905462361534306e-05,
+      "lidar_mean": 0.0028580126869624358,
+      "n": 40
+    },
+    "low@1x": {
+      "depth_mean": 0.06728590509611518,
+      "depth_std": 0.0071458559851758415,
+      "lidar_mean": 0.07608094454145316,
+      "n": 40
+    },
+    "medium@1x": {
+      "depth_mean": 0.24083428635001053,
+      "depth_std": 0.022497180446746468,
+      "lidar_mean": 0.2652225651080687,
+      "n": 40
+    },
+    "high@1x": {
+      "depth_mean": 0.6418865273361022,
+      "depth_std": 0.04236594785073816,
+      "lidar_mean": 0.6814067485779036,
+      "n": 40
+    },
+    "none@2x": {
+      "depth_mean": 0.07912033141437254,
+      "depth_std": 0.0015838135626761252,
+      "lidar_mean": 0.13335443022848317,
+      "n": 40
+    },
+    "low@2x": {
+      "depth_mean": 0.1487815175756177,
+      "depth_std": 0.008134948935507999,
+      "lidar_mean": 0.21012184108653914,
+      "n": 40
+    },
+    "medium@2x": {
+      "depth_mean": 0.32921313244792944,
+      "depth_std": 0.024243110734680717,
+      "lidar_mean": 0.39798484097563114,
+      "n": 40
+    },
+    "high@2x": {
+      "depth_mean": 0.7264353403729413,
+      "depth_std": 0.03978302574685698,
+      "lidar_mean": 0.777610876172055,
+      "n": 40
+    }
+  },
+  "monotone": {
+    "1x": true,
+    "2x": true
+  }
+}

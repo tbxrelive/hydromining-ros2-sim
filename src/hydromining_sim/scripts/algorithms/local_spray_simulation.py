@@ -42,7 +42,8 @@ class LocalSpraySimulation(SpraySimulation):
     """Evolve a fine local volume and retain the entire surrounding wall mesh."""
 
     def __init__(self, source_mesh, source_pose, center, normal, output_dir, *,
-                 dt=.2, wall_budget_s=120., spacing=.005, patch_extent, wall_thickness):
+                 dt=.2, wall_budget_s=120., spacing=.005, patch_extent, wall_thickness,
+                 kernel=None):
         self.frame_ = WallFrame.from_normal(center, normal)
         self.wall_thickness_ = wall_thickness
         mesh = trimesh.load(source_mesh, force='mesh', process=True)
@@ -75,7 +76,7 @@ class LocalSpraySimulation(SpraySimulation):
         extents = patch_mesh.extents
         resolution = tuple((np.ceil(extents/spacing).astype(int)+6).tolist())
         super().__init__(str(path), resolution, dt, wall_budget_s=wall_budget_s,
-                         max_voxels=3_000_000, reinitialize_interval_s=.5)
+                         max_voxels=3_000_000, reinitialize_interval_s=.5, kernel=kernel)
         self.patch_u_indices_ = np.searchsorted(self.u_, self.patch_)
         self.patch_v_indices_ = np.searchsorted(self.v_, self.patch_)
         self.initial_patch_ = surface_rays(self.model.surface_scene(

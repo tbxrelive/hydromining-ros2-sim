@@ -1,0 +1,169 @@
+{
+  "repeats": 3,
+  "duration_s": 8.0,
+  "presets": [
+    "off",
+    "low",
+    "medium",
+    "high"
+  ],
+  "summary": {
+    "off": {
+      "mean": 0.0,
+      "std": 0.0,
+      "n": 3,
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "low": {
+      "mean": 0.012659965563776817,
+      "std": 0.0008362462975785697,
+      "n": 3,
+      "values": [
+        0.013140443948066452,
+        0.011694355251524034,
+        0.013145097491739961
+      ]
+    },
+    "medium": {
+      "mean": 0.014267764902973615,
+      "std": 0.0005910366874757696,
+      "n": 3,
+      "values": [
+        0.013983898738889666,
+        0.013872213690725487,
+        0.014947182279305691
+      ]
+    },
+    "high": {
+      "mean": 0.013948221570726109,
+      "std": 0.00028445995060695007,
+      "n": 3,
+      "values": [
+        0.013683745171948439,
+        0.014249150728279585,
+        0.013911768811950302
+      ]
+    }
+  },
+  "monotone": false,
+  "mapping": {
+    "off": {
+      "equivalent_level": "none",
+      "equivalent_visibility_m": Infinity
+    },
+    "low": {
+      "equivalent_level": "none",
+      "equivalent_visibility_m": Infinity
+    },
+    "medium": {
+      "equivalent_level": "none",
+      "equivalent_visibility_m": Infinity
+    },
+    "high": {
+      "equivalent_level": "none",
+      "equivalent_visibility_m": Infinity
+    }
+  },
+  "records": [
+    {
+      "preset": "off",
+      "repeat": 0,
+      "cloud_disturbed_fraction": 0.0,
+      "depth_disturbed_fraction": 0.0,
+      "lidar_disturbed_fraction": 0.0,
+      "cloud_visible_fraction": 1.0
+    },
+    {
+      "preset": "low",
+      "repeat": 0,
+      "cloud_disturbed_fraction": 0.013140443948066452,
+      "depth_disturbed_fraction": 0.012871701800921401,
+      "lidar_disturbed_fraction": 0.004970800889877641,
+      "cloud_visible_fraction": 0.9868595560519337
+    },
+    {
+      "preset": "medium",
+      "repeat": 0,
+      "cloud_disturbed_fraction": 0.013983898738889666,
+      "depth_disturbed_fraction": 0.013981571967052912,
+      "lidar_disturbed_fraction": 0.004970800889877642,
+      "cloud_visible_fraction": 0.9860161012611104
+    },
+    {
+      "preset": "high",
+      "repeat": 0,
+      "cloud_disturbed_fraction": 0.013683745171948439,
+      "depth_disturbed_fraction": 0.014145609381544046,
+      "lidar_disturbed_fraction": 0.004710094549499444,
+      "cloud_visible_fraction": 0.9863162548280515
+    },
+    {
+      "preset": "off",
+      "repeat": 1,
+      "cloud_disturbed_fraction": 0.0,
+      "depth_disturbed_fraction": 0.0,
+      "lidar_disturbed_fraction": 0.0,
+      "cloud_visible_fraction": 1.0
+    },
+    {
+      "preset": "low",
+      "repeat": 1,
+      "cloud_disturbed_fraction": 0.011694355251524034,
+      "depth_disturbed_fraction": 0.011767648564381776,
+      "lidar_disturbed_fraction": 0.0038410734149054507,
+      "cloud_visible_fraction": 0.988305644748476
+    },
+    {
+      "preset": "medium",
+      "repeat": 1,
+      "cloud_disturbed_fraction": 0.013872213690725487,
+      "depth_disturbed_fraction": 0.013871050304807111,
+      "lidar_disturbed_fraction": 0.005075083426028921,
+      "cloud_visible_fraction": 0.9861277863092747
+    },
+    {
+      "preset": "high",
+      "repeat": 1,
+      "cloud_disturbed_fraction": 0.014249150728279585,
+      "depth_disturbed_fraction": 0.01432826097072921,
+      "lidar_disturbed_fraction": 0.005579115684093437,
+      "cloud_visible_fraction": 0.9857508492717204
+    },
+    {
+      "preset": "off",
+      "repeat": 2,
+      "cloud_disturbed_fraction": 0.0,
+      "depth_disturbed_fraction": 0.0,
+      "lidar_disturbed_fraction": 0.0,
+      "cloud_visible_fraction": 1.0
+    },
+    {
+      "preset": "low",
+      "repeat": 2,
+      "cloud_disturbed_fraction": 0.013145097491739961,
+      "depth_disturbed_fraction": 0.01247033365908139,
+      "lidar_disturbed_fraction": 0.004345105672969966,
+      "cloud_visible_fraction": 0.9868549025082599
+    },
+    {
+      "preset": "medium",
+      "repeat": 2,
+      "cloud_disturbed_fraction": 0.014947182279305691,
+      "depth_disturbed_fraction": 0.01489599329889711,
+      "lidar_disturbed_fraction": 0.004866518353726363,
+      "cloud_visible_fraction": 0.9850528177206943
+    },
+    {
+      "preset": "high",
+      "repeat": 2,
+      "cloud_disturbed_fraction": 0.013911768811950302,
+      "depth_disturbed_fraction": 0.01379426683419424,
+      "lidar_disturbed_fraction": 0.0043277252502780875,
+      "cloud_visible_fraction": 0.9860882311880497
+    }
+  ]
+}

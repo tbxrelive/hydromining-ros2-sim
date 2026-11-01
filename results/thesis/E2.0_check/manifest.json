@@ -1,0 +1,11 @@
+{
+  "experiment": "E0.3",
+  "purpose": "\u91cd\u6784\u524d\u89c4\u5219\u57fa\u7ebf",
+  "wall_time_s": 16.622806689003482,
+  "code_sha256": "36d8790cbe8474beb0ee6b1d38f20804f6c3191ef26da2696dbbac27561f493c",
+  "sources": [
+    "test_scripts/phase7_evaluate_large.py",
+    "experiments/common/large_env.py",
+    "src/hydromining_sim/scripts/algorithms/planning/fast_heightfield.py"
+  ]
+}

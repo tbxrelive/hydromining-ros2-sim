@@ -1,0 +1,56 @@
+{
+  "assessment": {
+    "status": "not_achieved",
+    "fraction_lower": 0.0,
+    "fraction_upper": 0.0,
+    "coverage": 1.0,
+    "task_area_m2": 0.031419444444444444,
+    "required_depth_m": 0.02,
+    "required_fraction": 0.9,
+    "confidence_k": 1.645,
+    "missing_evidence_cells": [],
+    "uncertainty_calibrated": false
+  },
+  "volume": {
+    "removed_volume_m3": 4.483628518658205e-09,
+    "volume_sigma_m3": 8.952722927701638e-05,
+    "volume_lower_m3": 0.0,
+    "volume_upper_m3": 0.00017547785301147079,
+    "removed_mass_kg": 6.277079926121487e-06,
+    "observed_area_m2": 0.03141944444444445,
+    "unobserved_area_m2": 0.0,
+    "density_kg_m3": 1400.0,
+    "density_calibrated": false,
+    "scope": "positive retreat in reliably observed area only",
+    "volume_uncertainty": "fully correlated conservative bound"
+  },
+  "external_alarm": {
+    "triggered": false,
+    "area_m2": 0.0,
+    "maximum_retreat_m": 0.0,
+    "cells": []
+  },
+  "filtering": {
+    "depth": {
+      "input": 641934,
+      "retained": 641934,
+      "foreground": 0
+    },
+    "lidar": {
+      "input": 82584,
+      "retained": 82584,
+      "foreground": 0
+    }
+  },
+  "center_world": [
+    1.517,
+    0.011,
+    0.694
+  ],
+  "normal_world": [
+    -0.9829700372561939,
+    0.18005900379351816,
+    -0.03672412026778322
+  ],
+  "calibrated": false
+}

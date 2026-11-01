@@ -12,7 +12,7 @@ import open3d as o3d
 from scipy.spatial.transform import Rotation
 
 from ..perception.frames import transform_points
-from ..perception.sensor_model import depth_sigma, lidar_sigma
+from ..perception.sensor_model import degrade_ranges, depth_sigma, lidar_sigma
 from ..spray_simulation import SpraySimulation
 from ..erosion_model import SprayAction
 from .spray_pose import tcp_target_world
@@ -38,17 +38,19 @@ class SurrogateWorld:
 
     def __init__(self, mesh_path, resolution=(96, 96, 64), dt=0.2,
                  mesh_pose=(1.5, 0., 1.5, 0., -1.9198621771937625, 0.), tcp_erosion_offset=0.,
-                 local_task=None, local_output='/tmp/hydromining_local_surrogate'):
+                 local_task=None, local_output='/tmp/hydromining_local_surrogate', kernel=None):
+        # kernel 省略时用 DefaultErosionKernel，与重构前的数值逐位一致。
         if local_task:
             from ..local_spray_simulation import LocalSpraySimulation
             self.simulation_ = LocalSpraySimulation(mesh_path, local_task['source_coal_pose'],
                 local_task['region_center_world'], local_task['wall_normal_world'], local_output,
                 dt=dt, wall_budget_s=180., spacing=local_task['geometry_spacing_m'],
-                patch_extent=local_task['patch_extent_m'], wall_thickness=local_task['wall_thickness_m'])
+                patch_extent=local_task['patch_extent_m'], wall_thickness=local_task['wall_thickness_m'],
+                kernel=kernel)
             self.rotation_ = self.simulation_.frame_.axes
             self.translation_ = self.simulation_.frame_.origin
         else:
-            self.simulation_ = SpraySimulation(mesh_path, tuple(resolution), dt)
+            self.simulation_ = SpraySimulation(mesh_path, tuple(resolution), dt, kernel=kernel)
             pose = np.asarray(mesh_pose, float)
             if pose.shape != (6,) or not np.isfinite(pose).all():
                 raise ValueError('invalid mesh pose')
@@ -133,8 +135,13 @@ class SurrogateWorld:
         return self.cast(origin, world_dirs), world_dirs
 
     def render_depth(self, pose, K, image_shape, rng=None, noise_scale=1.0,
-                     dropout=0.0):
-        """轴向深度图（Gazebo 相机约定 +X 前）；未命中/丢点为 NaN。"""
+                     dropout=0.0, visibility=np.inf):
+        """轴向深度图（Gazebo 相机约定 +X 前）；未命中/丢点为 NaN。
+
+        `visibility` 有限时按 `sensor_model.degrade_ranges` 施加环境退化
+        （丢点、近距假回波、按透过率放大的噪声）；为无穷大时走原来的
+        高斯噪声路径，数值与加入干扰模型之前逐位一致。
+        """
         K = np.asarray(K, float)
         height, width = image_shape
         rows, cols = np.indices((height, width))
@@ -144,7 +151,14 @@ class SurrogateWorld:
         norm = np.linalg.norm(directions, axis=1)
         depth = (hits / norm).reshape(height, width)
         depth[~np.isfinite(depth)] = np.nan
-        if rng is not None and noise_scale > 0:
+        if rng is not None and np.isfinite(visibility):
+            # 退化按斜距进行：sigma 与透过率都定义在斜距上，最后再换回轴向深度。
+            axial = np.where(np.isfinite(depth), depth, 0.)
+            sigma = depth_sigma(axial, noise_scale) * norm.reshape(depth.shape)
+            ranges, _ = degrade_ranges(axial * norm.reshape(depth.shape), sigma,
+                                       visibility, rng)
+            depth = ranges / norm.reshape(depth.shape)
+        elif rng is not None and noise_scale > 0:
             sigma = depth_sigma(np.where(np.isfinite(depth), depth, 0.), noise_scale)
             depth = depth + rng.normal(0, sigma)
             if dropout > 0:
@@ -152,14 +166,22 @@ class SurrogateWorld:
         return depth.astype(np.float32)
 
     def render_lidar(self, pose, rng=None, noise_scale=1.0, dropout=0.0,
-                     elevations=LIDAR_ELEVATIONS, azimuths=LIDAR_AZIMUTHS):
-        """VLP-16 类角栅点云；点保留在传感器系内，未命中为 NaN。"""
+                     elevations=LIDAR_ELEVATIONS, azimuths=LIDAR_AZIMUTHS,
+                     visibility=np.inf):
+        """VLP-16 类角栅点云；点保留在传感器系内，未命中为 NaN。
+
+        `visibility` 有限时按 `degrade_ranges` 施加环境退化，否则保持原来的
+        高斯噪声路径（逐位一致）。
+        """
         el, az = np.meshgrid(elevations, azimuths, indexing='ij')
         local = np.stack((np.cos(el) * np.cos(az), np.cos(el) * np.sin(az),
                           np.sin(el)), axis=-1).reshape(-1, 3)
         hits, _ = self._cast_from(pose_to_matrix(pose), local)
         ranges = hits.copy()
-        if rng is not None and noise_scale > 0:
+        if rng is not None and np.isfinite(visibility):
+            sigma = lidar_sigma(np.where(np.isfinite(ranges), ranges, 0.), noise_scale)
+            ranges, _ = degrade_ranges(ranges, sigma, visibility, rng)
+        elif rng is not None and noise_scale > 0:
             sigma = lidar_sigma(np.where(np.isfinite(ranges), ranges, 0.), noise_scale)
             ranges = ranges + rng.normal(0, sigma)
             if dropout > 0:
@@ -168,12 +190,13 @@ class SurrogateWorld:
         return points.astype(np.float32)
 
     def snapshot(self, pose_depth, pose_lidar, K, image_shape, stamp_index,
-                 rng=None, noise_scale=1.0, dropout=0.0):
+                 rng=None, noise_scale=1.0, dropout=0.0, visibility=np.inf):
         """按管线格式输出一帧快照；时间戳为合成递增计数。"""
         return {
             'depth': self.render_depth(pose_depth, K, image_shape, rng, noise_scale,
-                                       dropout),
-            'lidar_local': self.render_lidar(pose_lidar, rng, noise_scale, dropout),
+                                       dropout, visibility),
+            'lidar_local': self.render_lidar(pose_lidar, rng, noise_scale, dropout,
+                                             visibility=visibility),
             'K': np.asarray(K, float),
             'tf_depth': np.asarray(pose_depth, float),
             'tf_lidar': np.asarray(pose_lidar, float),
