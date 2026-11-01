@@ -73,7 +73,7 @@ src/hydromining_robot/scripts/            ROS 适配层（生命周期节点）�
 - 每个小实验一个文件：`experiments/<章节>/e<实验号>_<名称>.py`；共用逻辑进 `experiments/common/`。
 - 结果写 `results/thesis/<实验号>/<run_id>/`：`manifest.json`（配置、代码哈希、种子）、`episodes.jsonl`、`summary.json`、`figures/`。只有 manifest/summary/figures 进 git。
 - `results/legacy/` 是 2026-11-01 前的旧结果，只读；不要往里面写。
-- 每完成一个小实验或一次独立验证就 git 提交（格式见 AGENTS.md），阶段完成打标签；**推送前征得用户同意**。
+- **每个阶段完成后 git 提交一次并打标签**；阶段内的小实验不逐个提交，进度先记在 `docs/进度总表.md`。**推送前征得用户同意**。
 
 ## 代码风格
 
