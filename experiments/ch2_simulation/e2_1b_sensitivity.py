@@ -7,6 +7,10 @@
 
 两档扰动幅度（±20%、±50%），比较排序是否稳定（Kendall τ ≥ 0.7）。
 
+**层 2 必须连压力与靶距一起扰动**：第一版只扰动核参数，而任务压力恒为 30 MPa，
+此时 R_c = k·P^α/s^β 里 k 与 α 只有乘积可辨识，二者名次必然互换（τ 0.47–0.60）。
+把任务量纳入扰动集后才能分开；同时按文献把恒为 0 的 b_pressure 从参数集里去掉。
+
 命令：
     python experiments/ch2_simulation/e2_1b_sensitivity.py --layer 1
     python experiments/ch2_simulation/e2_1b_sensitivity.py --layer 2
@@ -29,11 +33,14 @@ from experiments.common.records import RunWriter  # noqa: E402
 from experiments.common.stats import bootstrap_ci, kendall_tau  # noqa: E402
 from experiments.common.task import load_task  # noqa: E402
 
-# 层 1 敏感的参数：6 个核参数 + 2 个任务量
-LAYER1_PARAMS = ('k', 'alpha', 'beta', 'b_base', 'b_pressure', 'b_distance',
+# 层 1 敏感的参数：核参数 + 任务量（压力、靶距）
+LAYER1_PARAMS = ('k', 'alpha', 'beta', 'pressure_threshold', 'b_base', 'b_distance',
                  'pressure_mpa', 'standoff_m')
-# 层 2 只扰动核参数：任务量是设计变量，不是不确定量
-LAYER2_PARAMS = ('k', 'alpha', 'beta', 'b_base', 'b_pressure', 'b_distance')
+# 层 2 必须包含任务量：R_c = k·(P−P_th)^α/s^β 在 P 固定时 k 与 α 数学上不可分
+# （只有乘积可辨识），这是第一版 Morris 排序 τ 偏低的根因。把压力、靶距、
+# 时长一并扰动后，k 与 α 才能靠各自的特征方向分开。
+LAYER2_PARAMS = ('k', 'alpha', 'beta', 'pressure_threshold', 'b_base', 'b_distance',
+                 'pressure_mpa', 'standoff_m')
 OUTPUTS1 = ('depth_center_m', 'diameter_half_m', 'volume_m3')
 OUTPUTS2 = ('success', 'sprays', 'duration_s', 'removed_volume_m3')
 
@@ -84,10 +91,14 @@ def run_single(kernel, pressure, standoff, duration, plate):
     return [result[name] for name in OUTPUTS1]
 
 
-def run_task(kernel, episodes, cache):
-    """任务级规则基线：返回成功率、喷射次数、总时长、总去除体积。"""
+def run_task(kernel, episodes, cache, pressure=None, standoff=None):
+    """任务级规则基线：返回成功率、喷射次数、总时长、总去除体积。
+
+    压力/靶距省略时用任务配置值；层 2 的 Morris 需要扰动它们以分开 k 与 α。
+    """
     from experiments.common.large_env import make_fast_env
-    env = make_fast_env(cache, 10000, 'test', kernel=kernel)
+    env = make_fast_env(cache, 10000, 'test', kernel=kernel,
+                        pressure_override=pressure, standoff_override=standoff)
     successes, sprays, durations, volumes = 0, 0, 0., 0.
     try:
         for index in range(episodes):
@@ -250,7 +261,8 @@ def main():
             from experiments.common.large_env import prepare_meshes
             prepare_meshes(cache)
             def evaluate2(row):
-                return run_task(kernel_from(row, LAYER2_PARAMS), args.episodes, cache)
+                return run_task(kernel_from(row, LAYER2_PARAMS), args.episodes, cache,
+                                pressure=row['pressure_mpa'], standoff=row['standoff_m'])
             low = {name: ranges[name][0] for name in LAYER2_PARAMS}
             high = {name: ranges[name][1] for name in LAYER2_PARAMS}
             result = morris_for(evaluate2, LAYER2_PARAMS, low, high, OUTPUTS2,

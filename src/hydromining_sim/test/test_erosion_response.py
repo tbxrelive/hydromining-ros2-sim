@@ -19,18 +19,23 @@ from experiments.common.regression import compare  # noqa: E402
 from experiments.common.stats import adjacent_separation, bootstrap_ci, kendall_tau  # noqa: E402
 
 
-# 标称工况 30 MPa、0.5 m 处的中心冲蚀速度：E2.1a 改压力指数时保持不变。
-NOMINAL_RC = 0.021908902300206645
+# 标称工况 30 MPa、0.5 m 处的中心冲蚀速度：历次改核都锚定在这个值上，
+# 保证任务压力下的全部下游结果可比。
+NOMINAL_RC = 0.013945840774443334
 
 
 def test_default_kernel_follows_calibrated_formula():
-    """默认参数按文献标定：压力线性（α=1），标称工况的 R_c 保持不变。"""
+    """默认参数按文献标定：阈值压力 + 线性压力 + 0.22x 半宽 + 剖面指数 2。"""
     kernel = DefaultErosionKernel()
+    assert kernel.threshold() == 5.
+    assert kernel.R_c(5., .5) == 0.            # 阈值处不破煤
+    assert kernel.R_c(3., .5) == 0.            # 阈值下不破煤
     for pressure in (10., 20., 30., 50.):
         for distance in (.1, .5, 1.0):
-            expected = kernel.k*pressure/(distance**2.0)
+            expected = kernel.k*(pressure - kernel.pressure_threshold)/(distance**2.0)
             assert kernel.R_c(pressure, distance) == expected
-            assert kernel.b(pressure, distance) == .05 + .002*pressure + .05*distance
+            # b 与压力无关（Zhang & Zou）：b = b0 + 0.22·s
+            assert kernel.b(pressure, distance) == .001 + .22*distance
     assert kernel.R_c(30., .5) == pytest.approx(NOMINAL_RC, rel=1e-12)
 
 
@@ -40,8 +45,8 @@ def test_default_radius_clamps_near_zero_distance():
     assert kernel.R_c(30., 0.) == kernel.R_c(30., .01)
 
 
-def test_radial_kernel_default_matches_legacy_expression():
-    """径向核默认指数保持旧的 (1-ξ^1.5)^6。"""
+def test_radial_kernel_default_matches_literature_profile():
+    """径向侵蚀核为 (1-ξ^1.5)^6：速度剖面 (1-η^1.5)^2 的三次方（式(8)：∝u³）。"""
     xi = np.linspace(0., 1.2, 50)
     expected = np.where(xi < 1, (1 - xi**(3/2))**6, 0)
     assert np.array_equal(DefaultErosionKernel().kernel_F(xi), expected)
@@ -54,9 +59,9 @@ def test_kernel_parameters_are_injectable():
     faster = DefaultErosionKernel(k=2*base.k)
     assert faster.R_c(30., .5) == pytest.approx(2*base.R_c(30., .5))
     assert faster.b(30., .5) == base.b(30., .5)
-    wider = DefaultErosionKernel(b_base=.06)
-    assert wider.b(30., .5) == pytest.approx(.06 + .002*30 + .05*.5)
-    assert np.array_equal(DefaultErosionKernel(radial_decay=8).kernel_F(np.array([.5])) ,
+    wider = DefaultErosionKernel(b_distance=.3)
+    assert wider.b(30., .5) == pytest.approx(.001 + .3*.5)
+    assert np.array_equal(DefaultErosionKernel(radial_decay=8).kernel_F(np.array([.5])),
                           np.array([(1 - .5**1.5)**8]))
 
 
@@ -67,8 +72,12 @@ def test_strength_interface_is_neutral_by_default():
     for strength in (5., 30., 120.):
         assert kernel.R_c(30., .5, strength) == base
         assert kernel.strength_factor(strength) == 1.0
-    softened = DefaultErosionKernel(strength_exponent=1.)
-    assert softened.strength_factor(60.) == pytest.approx(.5)
+    # 强度通过缩放阈值压力进入：煤越硬、阈值越高、R_c 越小。
+    # 注意强度因子只在显式传入强度时生效；核内 coal_strength_mpa=0 表示未知，取中性。
+    hardened = DefaultErosionKernel(strength_exponent=1.)
+    assert hardened.threshold(60.) == pytest.approx(10.)
+    assert hardened.R_c(30., .5, 60.) < hardened.R_c(30., .5, 30.)
+    assert hardened.R_c(30., .5) == hardened.R_c(30., .5, 30.)  # 未指定时用参考强度
 
 
 def test_unknown_kernel_parameter_is_rejected():

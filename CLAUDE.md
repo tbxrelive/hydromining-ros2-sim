@@ -90,8 +90,10 @@ src/hydromining_robot/scripts/            ROS 适配层（生命周期节点）�
 
 - 改 L0 蚀除、可见性或规则后，跑规则基线逐回合比对，不要只看测试通过。比对用
   `experiments/common/regression.py`（自动跳过墙钟计时字段）。
-- **sim-v1 已冻结**：改动 `configs/sim_v1.lock.json` 里的任何文件都会让
-  `test_sim_v1_frozen.py` 失败。这不是误报，是要求先升版本（sim-v2）并重记规则基线。
+- **sim-v1b 已冻结**：改动 `configs/sim_v1.lock.json` 里的任何文件都会让
+  `test_sim_v1_frozen.py` 失败。这不是误报，是要求先升版本号并重记规则基线。
+  破煤核为 `R_c = k·(P−P_th)^α/s^β`、`b = b0+0.22·s`、剖面 `(1−ξ^1.5)²`，
+  依据见 `docs/文献/E2.1_标定依据.md`。
 - 旧文档（`docs/阶段文档/`、`README.md` 顶部状态、评测自评分）可能过时；旧 RL 模型成功率全 0 是奖励缺陷，不是方法结论。
 - `test_scripts/` 里多数不是 pytest（是验收/实验入口），`pytest` 只收集 `src/hydromining_sim/test/`。
 - 重建全部（`rm -rf build install log`）很少需要；先试增量构建。

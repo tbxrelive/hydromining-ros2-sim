@@ -1,0 +1,27 @@
+{
+  "experiment": "E2.1a_levelset",
+  "config": {
+    "engine": "levelset",
+    "kernel": {
+      "k": 0.00013945840774443334,
+      "alpha": 1.0,
+      "beta": 2.0,
+      "pressure_threshold": 5.0,
+      "min_distance": 0.01,
+      "b_base": 0.001,
+      "b_pressure": 0.0,
+      "b_distance": 0.22,
+      "reference_strength_mpa": 30.0,
+      "strength_exponent": 0.0,
+      "coal_strength_mpa": 0.0,
+      "radial_power": 1.5,
+      "radial_decay": 6
+    },
+    "kernel_source": "task",
+    "config": "/home/star/SCI/hydromining_ws/configs/experiments/E2.1a.yaml",
+    "conditions": 18
+  },
+  "code_revision": "fc1a51f",
+  "started_at": "2026-11-01T22:54:26",
+  "wall_time_s": 211.54342755300058
+}

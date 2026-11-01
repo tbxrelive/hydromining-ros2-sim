@@ -1,8 +1,8 @@
 {
   "experiment": "E0.3",
   "purpose": "\u91cd\u6784\u524d\u89c4\u5219\u57fa\u7ebf",
-  "wall_time_s": 18.971023710997542,
-  "code_sha256": "4810be4420df756ab21e422094d081f6afe668a9ba95d5620b70abbf24bc1606",
+  "wall_time_s": 22.00214395400053,
+  "code_sha256": "149598fd79de5b6c21237f3473aadb510757c2e7b36498736bce20a1f7fcdfac",
   "sources": [
     "test_scripts/phase7_evaluate_large.py",
     "experiments/common/large_env.py",

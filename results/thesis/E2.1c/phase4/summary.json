@@ -2,26 +2,26 @@
   "passed": true,
   "calibrated": false,
   "first": {
-    "volume_removed_m3": 0.0003794675682613709,
-    "cumulative_volume_m3": 0.0003794675682613709,
-    "max_depth_m": 0.04556727409362793,
-    "cumulative_depth_m": 0.04556727409362793,
+    "volume_removed_m3": 0.0003415208114352338,
+    "cumulative_volume_m3": 0.0003415208114352338,
+    "max_depth_m": 0.02748817205429077,
+    "cumulative_depth_m": 0.02748817205429077,
     "elapsed_s": 11.99999999999999,
     "steps": 60,
-    "max_speed_m_s": 0.00499403290450573,
+    "max_speed_m_s": 0.0028981755021959543,
     "spacing_m": 0.03360404477777778,
     "shot": 1,
     "calibrated": false,
-    "solve_wall_s": 15.965384803013876,
+    "solve_wall_s": 14.882777705999615,
     "position_mesh": [
-      -0.4610369606204469,
-      -1.203093093898877e-10,
-      1.0723548360683197
+      -0.46103696115981524,
+      7.719647789929118e-10,
+      1.0723548348297447
     ],
     "direction_mesh": [
-      -0.3420201862209163,
-      5.637324045071335e-10,
-      -0.9396926051733143
+      -0.34202020374774983,
+      1.870399496742281e-09,
+      -0.9396925987940676
     ],
     "pressure_mpa": 20.0,
     "nozzle_diameter_m": 0.002,
@@ -32,26 +32,26 @@
     "hydraulic_energy_j": 143256.62500369456
   },
   "second": {
-    "volume_removed_m3": 0.0003415208114352338,
-    "cumulative_volume_m3": 0.0007209883796966047,
-    "max_depth_m": 0.04487079381942749,
-    "cumulative_depth_m": 0.0828866958618164,
+    "volume_removed_m3": 0.0002656272977829596,
+    "cumulative_volume_m3": 0.0006071481092181934,
+    "max_depth_m": 0.026089608669281006,
+    "cumulative_depth_m": 0.05600923299789429,
     "elapsed_s": 11.99999999999999,
     "steps": 60,
-    "max_speed_m_s": 0.004533930215984583,
+    "max_speed_m_s": 0.002741406671702862,
     "spacing_m": 0.03360404477777778,
     "shot": 2,
     "calibrated": false,
-    "solve_wall_s": 16.22687068200321,
+    "solve_wall_s": 14.465988605000348,
     "position_mesh": [
-      -0.4610369606053092,
-      -1.4578344781357444e-10,
+      -0.46103696060530663,
+      -1.4578310520568794e-10,
       1.0723548361037436
     ],
     "direction_mesh": [
-      -0.34202018572081677,
-      5.264315979663925e-10,
-      -0.9396926053553355
+      -0.3420201857208131,
+      5.264319952180685e-10,
+      -0.9396926053553368
     ],
     "pressure_mpa": 20.0,
     "nozzle_diameter_m": 0.002,
@@ -62,26 +62,26 @@
     "hydraulic_energy_j": 143256.62500369456
   },
   "replay": {
-    "volume_removed_m3": 0.0003794675682613709,
-    "cumulative_volume_m3": 0.0003794675682613709,
-    "max_depth_m": 0.04556727409362793,
-    "cumulative_depth_m": 0.04556727409362793,
+    "volume_removed_m3": 0.0003415208114352338,
+    "cumulative_volume_m3": 0.0003415208114352338,
+    "max_depth_m": 0.02748817205429077,
+    "cumulative_depth_m": 0.02748817205429077,
     "elapsed_s": 11.99999999999999,
     "steps": 60,
-    "max_speed_m_s": 0.00499403290450573,
+    "max_speed_m_s": 0.0028981755021959543,
     "spacing_m": 0.03360404477777778,
     "shot": 1,
     "calibrated": false,
-    "solve_wall_s": 16.324467061000178,
+    "solve_wall_s": 14.290309130999958,
     "position_mesh": [
-      -0.4610369606204469,
-      -1.203093093898877e-10,
-      1.0723548360683197
+      -0.46103696115981524,
+      7.719647789929118e-10,
+      1.0723548348297447
     ],
     "direction_mesh": [
-      -0.3420201862209163,
-      5.637324045071335e-10,
-      -0.9396926051733143
+      -0.34202020374774983,
+      1.870399496742281e-09,
+      -0.9396925987940676
     ],
     "pressure_mpa": 20.0,
     "nozzle_diameter_m": 0.002,
@@ -93,22 +93,22 @@
   },
   "sensor_first": {
     "roi_points": 2014,
-    "changed_points": 366,
-    "p95_retreat_m": 0.023298905989981803,
-    "reference_p95_abs_m": 5.254811521976425e-09
+    "changed_points": 540,
+    "p95_retreat_m": 0.019483439583770197,
+    "reference_p95_abs_m": 1.5839011259981872e-07
   },
   "sensor_cumulative": {
     "roi_points": 2014,
-    "changed_points": 487,
-    "p95_retreat_m": 0.04956040239194385,
-    "reference_p95_abs_m": 5.254811521976425e-09
+    "changed_points": 793,
+    "p95_retreat_m": 0.03779007294390137,
+    "reference_p95_abs_m": 1.5839011259981872e-07
   },
-  "reset_cloud_p95_m": 2.120963090288789e-08,
-  "replay_cloud_p95_m": 0.0,
+  "reset_cloud_p95_m": 6.405819802511949e-07,
+  "replay_cloud_p95_m": 2.2887833992611187e-16,
   "replay_mesh_identical": true,
-  "joint_drift_rad": 1.307539649930689e-05,
-  "joint_hold_sample_count": 5715,
-  "aggregate_peak_rss_mib": 2173.31640625,
+  "joint_drift_rad": 0.0003816171941100066,
+  "joint_hold_sample_count": 5249,
+  "aggregate_peak_rss_mib": 2159.6484375,
   "invalid_input_rejected": true,
   "mode": "headless",
   "cpu_affinity": [

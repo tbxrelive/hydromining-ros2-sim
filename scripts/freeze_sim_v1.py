@@ -43,8 +43,9 @@ def digest(path):
 
 def build():
     """构造锁文件内容。"""
-    return {'version': 'sim-v1',
+    return {'version': 'sim-v1b',
             'frozen_at': '2026-11-01',
+            'note': 'v1b：按文献全文加阈值压力与 0.22x 半宽；场景库内容与 sim-v1 逐字节一致',
             'files': {path: digest(path) for path in LOCKED_FILES}}
 
 

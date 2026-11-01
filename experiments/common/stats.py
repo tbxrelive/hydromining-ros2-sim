@@ -69,11 +69,19 @@ def adjacent_separation(a, b, *, min_gap=0.03, min_sd=2.0, alpha=0.01):
 
 
 def kendall_tau(a, b):
-    """Kendall τ 秩相关，用于判断两组参数下的敏感度排序是否一致。"""
+    """Kendall τ 秩相关，用于判断两组参数下的敏感度排序是否一致。
+
+    任一组为常数（例如输出饱和、全部 μ* 为 0）时排序无意义，返回 None，
+    避免把 nan 写进 summary。
+    """
     x, y = np.asarray(a, float), np.asarray(b, float)
     if x.shape != y.shape or len(x) < 3:
         return None
+    if np.allclose(x, x[0]) or np.allclose(y, y[0]):
+        return None
     result = kendalltau(x, y)
+    if not np.isfinite(result.statistic):
+        return None
     return {'tau': float(result.statistic), 'p_value': float(result.pvalue), 'n': int(len(x))}
 
 

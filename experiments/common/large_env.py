@@ -53,10 +53,19 @@ def prepare_meshes(directory, seeds=None):
 
 
 def make_fast_env(directory, seed=0, split='train', noise_scale=0., kernel=None,
-                  wall_seeds=None, scenarios=None):
-    """L0 从网格采样高度场，并输出同一套 v3 观测；kernel 省略时用任务配置的核。"""
+                  wall_seeds=None, scenarios=None, pressure_override=None,
+                  standoff_override=None):
+    """L0 从网格采样高度场，并输出同一套 v3 观测；kernel 省略时用任务配置的核。
+
+    pressure_override/standoff_override 供敏感性分析扰动任务量；
+    都是 None 时与任务配置完全一致。
+    """
     spec = TaskSpec.from_yaml(TASK)
     task = spec.as_dict()
+    if pressure_override is not None:
+        task['pressure_mpa'] = float(pressure_override)
+    if standoff_override is not None:
+        task['standoff_m'] = float(standoff_override)
     frame = WallFrame.from_normal(task['region_center_world'], task['wall_normal_world'])
     mesh_seeds = (tuple(wall_seeds) if wall_seeds is not None
                   else (TRAIN_SEEDS if split == 'train' else TEST_SEEDS))

@@ -87,27 +87,34 @@ class ErosionKernel:
 
 
 class DefaultErosionKernel(ErosionKernel):
-    """默认冲蚀核：参数可注入，默认值与 2026-11-01 前的硬编码实现逐位相同。
+    """默认冲蚀核：参数可注入，默认值按 E2.1a 文献标定（全文证据）。
 
-    公式与参数说明见 docs/文献/E2.1_标定依据.md。当前默认值属于**工程取值**，
-    E2.1a 与文献对照后才改为趋势标定；论文中不得表述为"已标定"。
+    公式与文献依据见 docs/文献/E2.1_标定依据.md。要点：
+    - 阈值压力 P_th：h = k₁(P − Pc)（Zhang 2019 式(8)；Crow 模型与
+      Zhang & Zou 式(18) 同样要求阈值）；低于阈值不破煤；
+    - 压力指数 α = 1（Zhang 2019 拟合值 1.0005）；
+    - 靶距指数 β = 2（充分发展射流：v∝1/s，动压∝1/s²）；
+    - 射流半宽 b = b0 + 0.22·s（Zhang & Zou：半径按 0.22x 增长，与压力无关）；
+    - 径向剖面 (1−ξ^1.5)^6：Zhang & Zou 式(3) 给出的是**速度**剖面 (1−η^1.5)^2，
+      而式(8) 的冲蚀速率 ∝ ux³，故**侵蚀**剖面是速度剖面的三次方，即 (1−η^1.5)^6。
+      式(9) 的显式结果正是 6 次方，这一点写反会把射流的影响范围拓得太宽。
 
-    煤强度接口：`coal_strength_mpa` 留作 E2.2 非均质场的入口，默认
-    `strength_exponent=0`，此时不论强度取何值，强度因子恒为 1，公式不变。
+    煤强度接口：强度通过**缩放阈值压力**进入（强度越高、阈值越高），
+    `strength_exponent=0` 时恒为中性，公式不变。
     """
 
     # 全部可调参数的默认值；键名同时是 yaml `kernel:` 段允许的字段。
-    # alpha=1.0 的依据见 docs/文献/E2.1_标定依据.md（文献：割缝深度随压力线性增加）。
     DEFAULTS = {
-        'k': 1.8257418583505537e-4,   # R_c 经验系数（吸收煤强度、喷嘴效率等）
-        'alpha': 1.0,                 # R_c 的压力指数（文献：线性）
+        'k': 1.3945840774443334e-4,   # R_c 经验系数；锚定“标称单次喷射（30MPa,0.5m,4s）恰好 50 mm”
+        'alpha': 1.0,                 # R_c 的压力指数（文献拟合 1.0005）
         'beta': 2.0,                  # R_c 的靶距指数（充分发展射流：v∝1/s，动压∝1/s²）
+        'pressure_threshold': 5.0,    # 阈值破煤压力 [MPa]；工程取值（见标定依据 4.2）
         'min_distance': 0.01,         # 靶距下限，避免除零 [m]
-        'b_base': 0.05,               # 有效半径基础值 [m]
-        'b_pressure': 0.002,          # 有效半径的压力系数 [m/MPa]
-        'b_distance': 0.05,           # 有效半径的靶距系数（≈ 射流扩散角）
-        'radial_power': 1.5,          # 径向核 ξ 幂次
-        'radial_decay': 6,            # 径向核外侧衰减幂次
+        'b_base': 0.001,              # 喷嘴半宽 [m]（2 mm 喷嘴）
+        'b_pressure': 0.0,            # 文献：半宽与压力无关；参数保留供敏感性检验
+        'b_distance': 0.22,           # 射流半宽增长系数（Zhang & Zou：b = 0.22x）
+        'radial_power': 1.5,          # 径向核 ξ 幂次（文献一致）
+        'radial_decay': 6,            # 侵蚀剖面指数 = 速度剖面 (1−η^1.5)^2 的三次方（式(8)(9)）
         'reference_strength_mpa': 30.,  # 强度参考值，E2.2 使用
         'strength_exponent': 0.,      # 强度指数，0 表示不启用强度（当前状态）
         'coal_strength_mpa': 0.,      # 煤体单轴抗压强度，0 表示未知/未启用
@@ -125,6 +132,7 @@ class DefaultErosionKernel(ErosionKernel):
         self.k = values['k']
         self.alpha = values['alpha']
         self.beta = values['beta']
+        self.pressure_threshold = values['pressure_threshold']
         self.min_distance = values['min_distance']
         self.b_base = values['b_base']
         self.b_pressure = values['b_pressure']
@@ -143,17 +151,21 @@ class DefaultErosionKernel(ErosionKernel):
             'radial_power': self.radial_power, 'radial_decay': self.radial_decay}
 
     def strength_factor(self, coal_strength_mpa=None):
-        """强度修正因子；强度指数为 0 或强度未给出时恒等于 1.0（逐位不变）。"""
+        """强度对阈值压力的缩放因子；强度指数为 0 或强度未给出时恒等于 1.0。"""
         strength = self.coal_strength_mpa if coal_strength_mpa is None else coal_strength_mpa
         if self.strength_exponent == 0 or strength is None or strength <= 0:
             return 1.0
-        return (self.reference_strength_mpa/strength)**self.strength_exponent
+        return (strength/self.reference_strength_mpa)**self.strength_exponent
+
+    def threshold(self, coal_strength_mpa=None):
+        """有效阈值压力 [MPa]；煤体越硬阈值越高。"""
+        return self.pressure_threshold*self.strength_factor(coal_strength_mpa)
 
     def R_c(self, pressure: float, distance: float, coal_strength_mpa=None) -> float:
         """
         中心冲蚀速度 [m/s]
 
-        R_c = k · P^α / s^β · 强度因子
+        R_c = k·(P − P_th)^α / s^β；P ≤ P_th 时为 0（不破煤）。
 
         Args:
             pressure: 压力 [MPa]
@@ -165,14 +177,17 @@ class DefaultErosionKernel(ErosionKernel):
         """
         if distance < self.min_distance:
             distance = self.min_distance  # 避免除以零
-        value = self.k*(pressure**self.alpha)/(distance**self.beta)
-        return value*self.strength_factor(coal_strength_mpa)
+        effective = pressure - self.threshold(coal_strength_mpa)
+        if effective <= 0:
+            return 0.0
+        return self.k*(effective**self.alpha)/(distance**self.beta)
 
     def b(self, pressure: float, distance: float) -> float:
         """
         有效冲蚀半径 [m]
 
-        b = b_base + b_pressure·P + b_distance·s
+        b = b_base + b_pressure·P + b_distance·s；
+        文献形（Zhang & Zou）：b = b0 + 0.22·s，与压力无关（b_pressure=0）。
 
         Args:
             pressure: 压力 [MPa]

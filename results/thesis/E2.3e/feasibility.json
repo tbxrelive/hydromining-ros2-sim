@@ -1,0 +1,102 @@
+{
+  "repeats": 2,
+  "duration_s": 8.0,
+  "low_level_threshold": 0.104,
+  "upper_bound": 0.02523442226255293,
+  "reaches_low_level": false,
+  "summary": {
+    "default_high": {
+      "mean": 0.005988529014844804,
+      "n": 2,
+      "values": [
+        0.005983293778212107,
+        0.005993764251477501
+      ]
+    },
+    "max_spread": {
+      "mean": 0.006165363674438085,
+      "n": 2,
+      "values": [
+        0.006160128437805389,
+        0.006170598911070781
+      ]
+    },
+    "max_spread_all_effects": {
+      "mean": 0.02523442226255293,
+      "n": 2,
+      "values": [
+        0.0253618130206152,
+        0.025107031504490663
+      ]
+    }
+  },
+  "records": [
+    {
+      "config": "default_high",
+      "spread": 0.24,
+      "reference_mpa": 20.0,
+      "splash": false,
+      "dust": false,
+      "repeat": 0,
+      "cloud_disturbed_fraction": 0.005983293778212107,
+      "depth_disturbed_fraction": 0.005979803620456978,
+      "lidar_disturbed_fraction": 0.0009385428253615128
+    },
+    {
+      "config": "default_high",
+      "spread": 0.24,
+      "reference_mpa": 20.0,
+      "splash": false,
+      "dust": false,
+      "repeat": 1,
+      "cloud_disturbed_fraction": 0.005993764251477501,
+      "depth_disturbed_fraction": 0.0059786402345386016,
+      "lidar_disturbed_fraction": 0.0008516407119021135
+    },
+    {
+      "config": "max_spread",
+      "spread": 0.5,
+      "reference_mpa": 20.0,
+      "splash": false,
+      "dust": false,
+      "repeat": 0,
+      "cloud_disturbed_fraction": 0.006160128437805389,
+      "depth_disturbed_fraction": 0.0061461678067848665,
+      "lidar_disturbed_fraction": 0.0009733036707452725
+    },
+    {
+      "config": "max_spread",
+      "spread": 0.5,
+      "reference_mpa": 20.0,
+      "splash": false,
+      "dust": false,
+      "repeat": 1,
+      "cloud_disturbed_fraction": 0.006170598911070781,
+      "depth_disturbed_fraction": 0.006150821350458374,
+      "lidar_disturbed_fraction": 0.0009559232480533926
+    },
+    {
+      "config": "max_spread_all_effects",
+      "spread": 0.5,
+      "reference_mpa": 10.0,
+      "splash": true,
+      "dust": true,
+      "repeat": 0,
+      "cloud_disturbed_fraction": 0.0253618130206152,
+      "depth_disturbed_fraction": 0.02534203546000279,
+      "lidar_disturbed_fraction": 0.006830506117908788
+    },
+    {
+      "config": "max_spread_all_effects",
+      "spread": 0.5,
+      "reference_mpa": 10.0,
+      "splash": true,
+      "dust": true,
+      "repeat": 1,
+      "cloud_disturbed_fraction": 0.025107031504490663,
+      "depth_disturbed_fraction": 0.025111685048164176,
+      "lidar_disturbed_fraction": 0.007230255839822025
+    }
+  ],
+  "conclusion": "粒子层最强配置仍低于软件层低档，E4.4 需改验证对象"
+}

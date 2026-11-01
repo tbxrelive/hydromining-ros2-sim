@@ -20,18 +20,23 @@ required_depth: 0.05
 required_fraction: 0.9
 pressure_mpa: 30.0
 standoff_m: 0.5
-# 破煤冲蚀核参数（E2.1a 与文献对照后修改；改动会改变全部下游数字，需重新记录规则基线）
-# alpha=1.0：Zhang et al. 2019（10.3390/app9235250）摘要明确"割缝深度随射流压力线性增加"；
-#            原值 0.5 属临时公式，实测孔深-压力指数 0.453，与文献不符。
-# k：按 alpha 改动后保持标称工况（30 MPa、0.5 m）的 R_c 不变，
-#    k = 1e-3 · 30^(0.5-1.0) = 1.8257418583505537e-4。绝对速率仍锚定在任务可达性上。
+# 破煤冲蚀核参数（E2.1a 全文标定，依据见 docs/文献/E2.1_标定依据.md；改动会作废下游数字）
+# 结构：R_c = k·(P − P_th)^α / s^β，b = b_base + b_distance·s
+# - P_th=5 MPa：Zhang 2019 式(8) h=k₁(P−Pc)、Zhang & Zou 式(18) 均要求阈值压力；
+#   煤的界限值 0 < Pc < 10（Jiang 2025 表 1 报 12 MPa 起破），工程取 5。
+# - k：锚定“标称单次喷射（30 MPa、0.5 m、4 s）恰好去除要求的 5 cm”，
+#   即 R_c(30, 0.5)=0.013946 m/s。这比沿用任意 R_c 更有物理含义，
+#   同时保证 2 s 单喷不足（27 mm）、4 s 刚好达标（50 mm）。
+# - b：Zhang & Zou——半宽按 0.22·x 增长、与压力无关；b_base 为 2 mm 喷嘴半宽。
+# - radial_decay=6：式(3) 的速度剖面 (1−η^1.5)² 取三次方（式(8)：冲蚀速率∝u³）。
 kernel:
-  k: 1.8257418583505537e-4
+  k: 1.3945840774443334e-4
   alpha: 1.0
   beta: 2.0
-  b_base: 0.05
-  b_pressure: 0.002
-  b_distance: 0.05
+  pressure_threshold: 5.0
+  b_base: 0.001
+  b_pressure: 0.0
+  b_distance: 0.22
   radial_power: 1.5
   radial_decay: 6
 # 单次喷射时长范围 [s]

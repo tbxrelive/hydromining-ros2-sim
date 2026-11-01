@@ -17,58 +17,58 @@
       "predicted": "not_achieved",
       "truth": {
         "status": "not_achieved",
-        "fraction_ge_threshold": 0.16984732824427481,
+        "fraction_ge_threshold": 0.11513994910941476,
         "sampled_area_m2": 0.031439999999999996,
-        "removed_volume_m3": 0.0002874020080566406,
-        "maximum_retreat_m": 0.04811656475067139,
+        "removed_volume_m3": 0.00030922509765625,
+        "maximum_retreat_m": 0.030331850051879883,
         "resolution_m": 0.002
       },
       "coverage": 1.0,
-      "fraction_lower": 0.09548227389267083,
-      "fraction_upper": 0.25461939704712233,
-      "volume_m3": 0.0002867331843927824,
+      "fraction_lower": 0.03819290955706835,
+      "fraction_upper": 0.23234019980549914,
+      "volume_m3": 0.00030833140360869823,
       "external_alarm": false,
-      "report_path": "/home/star/SCI/hydromining_ws/results/thesis/E2.1c/phase6/perception/0424210f20ac4e15a71af1507f71873f/report.json"
+      "report_path": "/home/star/SCI/hydromining_ws/results/thesis/E2.1c/phase6/perception/3fddbbd23d33432ebb4ea08093457597/report.json"
     },
     "tri_r5": {
       "predicted": "not_achieved",
       "truth": {
         "status": "not_achieved",
-        "fraction_ge_threshold": 0.6096692111959288,
+        "fraction_ge_threshold": 0.6553435114503817,
         "sampled_area_m2": 0.031439999999999996,
-        "removed_volume_m3": 0.0007767069091796874,
-        "maximum_retreat_m": 0.046791255474090576,
+        "removed_volume_m3": 0.0007873294677734374,
+        "maximum_retreat_m": 0.042964935302734375,
         "resolution_m": 0.002
       },
       "coverage": 1.0,
       "fraction_lower": 0.47422862700026536,
-      "fraction_upper": 0.7280081336751836,
-      "volume_m3": 0.0007737489619181394,
+      "fraction_upper": 0.8122181946777475,
+      "volume_m3": 0.0007856690694822793,
       "external_alarm": true,
-      "report_path": "/home/star/SCI/hydromining_ws/results/thesis/E2.1c/phase6/perception/9e2c3a1a59214b48a96bf050ab50140d/report.json"
+      "report_path": "/home/star/SCI/hydromining_ws/results/thesis/E2.1c/phase6/perception/9a6e31be7dcc41fea66948cf76708a57/report.json"
     },
     "hex_r6": {
-      "predicted": "insufficient_evidence",
+      "predicted": "achieved",
       "truth": {
         "status": "achieved",
-        "fraction_ge_threshold": 0.9521628498727736,
+        "fraction_ge_threshold": 1.0,
         "sampled_area_m2": 0.031439999999999996,
-        "removed_volume_m3": 0.00186672900390625,
-        "maximum_retreat_m": 0.08949637413024902,
+        "removed_volume_m3": 0.00182014111328125,
+        "maximum_retreat_m": 0.08774852752685547,
         "resolution_m": 0.002
       },
       "coverage": 1.0,
-      "fraction_lower": 0.8948589868269826,
-      "fraction_upper": 0.9952037839271509,
-      "volume_m3": 0.001863443290340633,
+      "fraction_lower": 0.9790690478295466,
+      "fraction_upper": 1.0,
+      "volume_m3": 0.0018170721730262499,
       "external_alarm": true,
-      "report_path": "/home/star/SCI/hydromining_ws/results/thesis/E2.1c/phase6/perception/97d742d2044f4cd58c5894f551a6bc44/report.json"
+      "report_path": "/home/star/SCI/hydromining_ws/results/thesis/E2.1c/phase6/perception/156d3c41a7374a58a7a0229064779c91/report.json"
     }
   },
   "map_messages": 4,
   "feedback_messages": 30,
   "calibrated": false,
-  "aggregate_peak_rss_mib": 2530.86328125,
+  "aggregate_peak_rss_mib": 2350.70703125,
   "GUI_verified": false,
   "owned_processes_remaining": [],
   "cleanup_errors": []

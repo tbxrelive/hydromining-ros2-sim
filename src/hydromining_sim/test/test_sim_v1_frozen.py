@@ -28,7 +28,7 @@ def test_lock_file_exists():
 def test_locked_files_unchanged():
     """冻结集合里每个文件的内容必须与锁文件一致。"""
     expected = json.loads(LOCK.read_text())
-    assert expected['version'] == 'sim-v1'
+    assert expected['version'] in ('sim-v1', 'sim-v1b')
     missing = [path for path in expected['files'] if not (ROOT/path).exists()]
     assert not missing, f'冻结文件缺失: {missing}'
     changed = [path for path, digest in expected['files'].items() if _digest(path) != digest]

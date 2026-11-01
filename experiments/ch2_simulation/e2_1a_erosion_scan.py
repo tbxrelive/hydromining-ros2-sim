@@ -37,9 +37,13 @@ METRICS = ('depth_center_m', 'depth_max_m', 'diameter_half_m', 'diameter_abs_m',
            'volume_m3', 'symmetry')
 
 
-def build_kernel(config):
-    """按配置构造冲蚀核；未给出 kernel 段时直接用任务配置里的参数。"""
+def build_kernel(config, override=None):
+    """按配置构造冲蚀核；override（JSON 字符串）优先，其次 config 的 kernel 段，
+    最后用任务配置里的参数。三轮核的历史对照靠 override 复现。"""
     from algorithms.erosion_model import DefaultErosionKernel
+    if override:
+        params = json.loads(override)
+        return DefaultErosionKernel(**params), 'cli'
     params = config.get('kernel')
     if params is None:
         return load_task().erosion_kernel(), 'task'
@@ -140,6 +144,8 @@ def summarize_fits(rows, config):
     """
     nominal = config['nominal']
     rows = [r for r in rows if r.get('shots', 1) == 1]
+    # 打穿壁厚的条件不能进响应曲线：孔深已经超过壁厚，几何不再有效。
+    rows = [r for r in rows if not r.get('through')]
     # 累加实验的 shots=1 记录与全因子记录重复，按 (P, s, t) 去重后只用第一条。
     seen, unique = set(), []
     for row in rows:
@@ -275,6 +281,7 @@ def main():
     parser.add_argument('--engine', choices=('l0', 'levelset'), default='l0')
     parser.add_argument('--limit', type=int, default=0, help='只跑前 N 个条件（冒烟用）')
     parser.add_argument('--compare-l0', default='', help='只做比对：给定 L0 运行目录')
+    parser.add_argument('--kernel-json', default='', help='覆盖冲蚀核参数（JSON），用于历史核对照')
     args = parser.parse_args()
 
     if args.compare_l0:
@@ -283,7 +290,7 @@ def main():
         return
 
     config = yaml.safe_load(Path(args.config).read_text())
-    kernel, kernel_source = build_kernel(config)
+    kernel, kernel_source = build_kernel(config, args.kernel_json)
     output = Path(args.output)
     started = time.monotonic()
 

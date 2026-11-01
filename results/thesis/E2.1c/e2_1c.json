@@ -1,40 +1,61 @@
 {
-  "baseline_success_rate": 0.9166666666666666,
+  "baseline_success_rate": 1.0,
   "baseline_episodes": 12,
-  "identical_to_E0.3": true,
-  "difference_count": 0,
-  "differences": [],
+  "identical_to_E0.3": false,
+  "difference_count": 86,
+  "differences": [
+    "(0, 'energy_j', 3256520.31208613, 4463277.767662552)",
+    "(0, 'removed_volume_m3', 0.009565629717633221, 0.007732438620282743)",
+    "(0, 'spray_duration_s', 148.48529067169875, 203.50897067040205)",
+    "(0, 'sprays', 26, 44)",
+    "(0, 'steps', 26, 44)",
+    "(0, 'truth_fraction', 0.933040450928382, 0.987991821396994)",
+    "(0, 'water_m3', 0.10855067706953767, 0.14877592558875175)",
+    "(1, 'energy_j', 3023755.726704834, 4302580.727722599)",
+    "(1, 'removed_volume_m3', 0.009673911253701484, 0.007916065354825468)",
+    "(1, 'spray_duration_s', 137.87208583764732, 196.18177955877036)",
+    "(1, 'sprays', 24, 43)",
+    "(1, 'steps', 24, 43)",
+    "(1, 'truth_fraction', 0.9523706896551725, 0.9960212201591512)",
+    "(1, 'water_m3', 0.10079185755682779, 0.14341935759075328)",
+    "(2, 'energy_j', 3045584.955673507, 4167923.0346352924)",
+    "(2, 'removed_volume_m3', 0.009543674325137103, 0.007722431432940657)",
+    "(2, 'spray_duration_s', 138.8674180014059, 190.04188642650843)",
+    "(2, 'sprays', 25, 41)",
+    "(2, 'steps', 25, 41)",
+    "(2, 'truth_fraction', 0.9470545977011495, 0.9894230769230771)"
+  ],
   "feasibility": {
     "single_shot": [
       {
         "duration_s": 2.0,
-        "depth_center_m": 0.04015664493435525,
-        "diameter_half_m": 0.06863662517577698,
-        "volume_m3": 0.00021466532462195023,
+        "depth_center_m": 0.02597995370820649,
+        "diameter_half_m": 0.05292567428401227,
+        "volume_m3": 9.600372764372415e-05,
         "reaches_required_depth": false,
         "through": false
       },
       {
         "duration_s": 4.0,
-        "depth_center_m": 0.07536670437318775,
-        "diameter_half_m": 0.0756939756606048,
-        "volume_m3": 0.00045740279619155104,
+        "depth_center_m": 0.05000000000004406,
+        "diameter_half_m": 0.06180387232371033,
+        "volume_m3": 0.00020824596127080227,
         "reaches_required_depth": true,
         "through": false
       },
       {
         "duration_s": 6.0,
-        "depth_center_m": 0.10668994990482156,
-        "diameter_half_m": 0.08740387444736633,
-        "volume_m3": 0.0007398914357234811,
+        "depth_center_m": 0.072083318996443,
+        "diameter_half_m": 0.06863662517577698,
+        "volume_m3": 0.00034463106810448475,
         "reaches_required_depth": true,
         "through": false
       },
       {
         "duration_s": 8.0,
-        "depth_center_m": 0.13506214197840974,
-        "diameter_half_m": 0.09507891862878783,
-        "volume_m3": 0.001049991252571601,
+        "depth_center_m": 0.09257997846258927,
+        "diameter_half_m": 0.07735777827895049,
+        "volume_m3": 0.0005047834275443809,
         "reaches_required_depth": true,
         "through": false
       }
@@ -42,5 +63,5 @@
     "min_duration_reaching_required_depth": 4.0,
     "any_through_cut": false
   },
-  "wall_time_s": 27.346576974989148
+  "wall_time_s": 27.13673920600013
 }

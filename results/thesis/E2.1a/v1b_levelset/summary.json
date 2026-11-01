@@ -1,0 +1,23 @@
+{
+  "experiment": "E2.1a_levelset",
+  "episodes": 18,
+  "depth_center_m_mean": 0.06625236736403571,
+  "depth_center_m_std": 0.055812459338787535,
+  "depth_center_m_n": 18,
+  "depth_max_m_mean": 0.06625236736403571,
+  "depth_max_m_std": 0.055812459338787535,
+  "depth_max_m_n": 18,
+  "diameter_half_m_mean": 0.06938748459423702,
+  "diameter_half_m_std": 0.014311956000595961,
+  "diameter_half_m_n": 18,
+  "diameter_abs_m_mean": 0.08350859125515929,
+  "diameter_abs_m_std": 0.03593019672787733,
+  "diameter_abs_m_n": 18,
+  "volume_m3_mean": 0.00033949119216865965,
+  "volume_m3_std": 0.00032581880467597854,
+  "volume_m3_n": 18,
+  "symmetry_mean": 1.0,
+  "symmetry_std": 0.0,
+  "symmetry_n": 18,
+  "wall_time_s": 211.5426621459992
+}

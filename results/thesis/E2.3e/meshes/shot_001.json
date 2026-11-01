@@ -1,0 +1,30 @@
+{
+  "volume_removed_m3": 0.0002656272977829596,
+  "cumulative_volume_m3": 0.0002656272977829596,
+  "max_depth_m": 0.019684195518493652,
+  "cumulative_depth_m": 0.019684195518493652,
+  "elapsed_s": 8.0,
+  "steps": 40,
+  "max_speed_m_s": 0.0028981752693653107,
+  "spacing_m": 0.03360404477777778,
+  "shot": 1,
+  "calibrated": false,
+  "solve_wall_s": 9.137536401000034,
+  "position_mesh": [
+    -0.4610369606053086,
+    -1.4578310130256011e-10,
+    1.072354836103744
+  ],
+  "direction_mesh": [
+    -0.34202018572081616,
+    5.264322033848856e-10,
+    -0.9396926053553357
+  ],
+  "pressure_mpa": 20.0,
+  "nozzle_diameter_m": 0.002,
+  "outlet_velocity_m_s": 190.0,
+  "flow_m3_s": 0.0005969026041820607,
+  "hydraulic_power_w": 11938.052083641214,
+  "water_used_m3": 0.004775220833456485,
+  "hydraulic_energy_j": 95504.41666912971
+}

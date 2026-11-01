@@ -78,9 +78,9 @@
     139
   ],
   "heightfield_hashes": {
-    "sc_test_006": "3cd581f961f103fe523e08e0678b66380fd162f60b7624634d0e8ce07d60e053",
-    "sc_test_007": "379c2cc1dc497848e839a06794959461bd7e159bb0783b955228e81ae0717773",
-    "sc_test_008": "25d2e0470d435d3b4d0f64a9c452811f01f0a9053862570577fdfa27faf159a2"
+    "sc_test_006": "754a5619365d672bd7b883218acaff7b4bfb80c7af6137292b2a084ff8b8e77a",
+    "sc_test_007": "1b292036552901115da3bcff81ec09e67c822df79def1e2c06f638bfff6eba5e",
+    "sc_test_008": "9878880db077eccebbea93d128292f5953c5c177cd67e77659b138b47b83a164"
   },
   "wall_tilt": [
     {
@@ -99,7 +99,7 @@
     }
   ],
   "scenario_depth_check": {
-    "max_depth_m": 0.18895375728607178,
+    "max_depth_m": 0.13599535822868347,
     "limit_m": 0.2,
     "all_below_half_thickness": true,
     "worst": [
@@ -108,73 +108,73 @@
         "scenario": "sc_val_014",
         "family": "deep_pit",
         "wall_seed": 32,
-        "initial_erosion_depth_m": 0.18895375728607178,
-        "margin_to_wall_m": 0.21104624271392824
+        "initial_erosion_depth_m": 0.13599535822868347,
+        "margin_to_wall_m": 0.26400464177131655
       },
       {
         "split": "val",
         "scenario": "sc_val_011",
         "family": "triangle",
         "wall_seed": 32,
-        "initial_erosion_depth_m": 0.17108696699142456,
-        "margin_to_wall_m": 0.22891303300857546
+        "initial_erosion_depth_m": 0.1204974353313446,
+        "margin_to_wall_m": 0.2795025646686554
       },
       {
         "split": "val",
         "scenario": "sc_val_008",
         "family": "pair",
         "wall_seed": 32,
-        "initial_erosion_depth_m": 0.16390134394168854,
-        "margin_to_wall_m": 0.23609865605831148
+        "initial_erosion_depth_m": 0.11484933644533157,
+        "margin_to_wall_m": 0.28515066355466845
       },
       {
         "split": "val",
         "scenario": "sc_val_013",
         "family": "deep_pit",
         "wall_seed": 31,
-        "initial_erosion_depth_m": 0.1447903960943222,
-        "margin_to_wall_m": 0.2552096039056778
+        "initial_erosion_depth_m": 0.10045831650495529,
+        "margin_to_wall_m": 0.29954168349504473
       },
       {
         "split": "test",
         "scenario": "sc_test_026",
         "family": "deep_pit",
         "wall_seed": 22,
-        "initial_erosion_depth_m": 0.14097456634044647,
-        "margin_to_wall_m": 0.25902543365955355
+        "initial_erosion_depth_m": 0.09724413603544235,
+        "margin_to_wall_m": 0.30275586396455767
       }
     ]
   },
   "rule_baseline": {
     "train": {
       "episodes": 50,
-      "success_rate": 0.98,
-      "through_cut_rate": 0.02,
+      "success_rate": 1.0,
+      "through_cut_rate": 0.0,
       "initially_achieved_fraction": 0.0,
-      "mean_sprays": 22.5,
-      "mean_duration_s": 130.48533114091492,
-      "mean_removed_volume_m3": 0.010697908615915994
+      "mean_sprays": 38.88,
+      "mean_duration_s": 191.80701429849955,
+      "mean_removed_volume_m3": 0.008365342108029155
     },
     "val": {
       "episodes": 15,
       "success_rate": 0.6666666666666666,
       "through_cut_rate": 0.3333333333333333,
       "initially_achieved_fraction": 0.0,
-      "mean_sprays": 18.0,
-      "mean_duration_s": 107.8924633808434,
-      "mean_removed_volume_m3": 0.010855320011983074
+      "mean_sprays": 34.06666666666667,
+      "mean_duration_s": 183.8639792246123,
+      "mean_removed_volume_m3": 0.009710849494725032
     },
     "test": {
       "episodes": 30,
       "success_rate": 1.0,
       "through_cut_rate": 0.0,
       "initially_achieved_fraction": 0.0,
-      "mean_sprays": 22.366666666666667,
-      "mean_duration_s": 129.5616202915514,
-      "mean_removed_volume_m3": 0.011099713895171939
+      "mean_sprays": 37.96666666666667,
+      "mean_duration_s": 191.6755558877097,
+      "mean_removed_volume_m3": 0.00852414087143572
     }
   },
   "initially_achieved_fraction_all": 0.0,
   "initially_achieved_within_limit": true,
-  "wall_time_s": 155.2411203230149
+  "wall_time_s": 193.94678742799988
 }
