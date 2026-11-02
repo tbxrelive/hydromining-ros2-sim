@@ -16,7 +16,8 @@ sys.path.insert(0, str(ROOT))
 from algorithms.erosion_model import DefaultErosionKernel, ErosionKernel  # noqa: E402
 from experiments.common.crater import flat_plate, measure, through_check  # noqa: E402
 from experiments.common.regression import compare  # noqa: E402
-from experiments.common.stats import adjacent_separation, bootstrap_ci, kendall_tau  # noqa: E402
+from experiments.common.stats import (  # noqa: E402
+    adjacent_separation, bootstrap_ci, bootstrap_kendall, kendall_tau, top_k_agreement)
 
 
 # 标称工况 30 MPa、0.5 m 处的中心冲蚀速度：历次改核都锚定在这个值上，
@@ -141,3 +142,35 @@ def test_regression_compare_detects_field_changes(tmp_path):
     other.write_text('{"steps": 4, "wall_time_s": 9.0}\n')
     differences, count = compare(base, other)
     assert count == 1 and differences[0][1] == 'steps'
+
+
+def test_top_k_agreement_detects_rank_swaps():
+    """前 k 名口径只看主控参数，尾部名次互换不影响。"""
+    names = ['a', 'b', 'c', 'd', 'e', 'f']
+    same = top_k_agreement([6, 5, 4, 3, 2, 1], [6, 5, 4, 3, 2, 1], names, k=4)
+    assert same['identical'] and same['shared_count'] == 4
+    # 前两名互换、尾部名次全反：前 4 名集合仍然一致
+    swapped = top_k_agreement([6, 5, 4, 3, 2, 1], [5, 6, 4, 3, 1, 2], names, k=4)
+    assert swapped['identical']
+    # 真正换了主控参数：集合不一致
+    changed = top_k_agreement([6, 5, 4, 3, 2, 1], [1, 6, 5, 4, 3, 2], names, k=4)
+    assert changed['shared_count'] == 3 and not changed['identical']
+
+
+def test_bootstrap_kendall_returns_ci_and_handles_degenerate_cases():
+    """自助法给出 τ 的点估计与区间；常数向量返回 None。"""
+    def pair(pick):
+        base = np.array([6., 5., 4., 3., 2., 1.])
+        values = base if pick is None else base[np.asarray(pick)]
+        return values, values
+
+    result = bootstrap_kendall(pair, 6, resamples=50)
+    assert result['tau'] == pytest.approx(1.)
+    assert result['ci_low'] <= 1. and result['ci_high'] <= 1.0000001
+
+    def constant(pick):
+        base = np.ones(6)
+        values = base if pick is None else base[np.asarray(pick)]
+        return values, values
+
+    assert bootstrap_kendall(constant, 6, resamples=20) is None

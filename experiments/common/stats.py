@@ -85,6 +85,61 @@ def kendall_tau(a, b):
     return {'tau': float(result.statistic), 'p_value': float(result.pvalue), 'n': int(len(x))}
 
 
+def top_k_agreement(values_a, values_b, names, k=4):
+    """两档扰动下"前 k 名集合"是否一致（E2.1b 的补充口径）。
+
+    只作说明用，不参与通过/不通过的判定：尾部参数的 μ* 常常只有主控参数的
+    千分之一，名次纯噪声，逐位比较完整排序会被这些噪声拖低。
+
+    Returns:
+        字典：两档各自的前 k 名、重合个数、是否完全一致、重合率。
+    """
+    a = dict(zip(names, np.asarray(values_a, float)))
+    b = dict(zip(names, np.asarray(values_b, float)))
+    if len(a) != len(b) or len(a) < k:
+        return None
+    top_a = set(sorted(a, key=lambda n: -a[n])[:k])
+    top_b = set(sorted(b, key=lambda n: -b[n])[:k])
+    shared = top_a & top_b
+    return {'k': int(k), 'top_a': sorted(top_a), 'top_b': sorted(top_b),
+            'shared': sorted(shared), 'shared_count': len(shared),
+            'fraction': len(shared)/k, 'identical': len(shared) == k}
+
+
+def bootstrap_kendall(index_pair, n, resamples=300, confidence=0.95, seed=0):
+    """Kendall τ 的自助法置信区间。
+
+    Args:
+        index_pair: 可调用对象，`index_pair(pick)` 返回 (向量 a, 向量 b)。
+            `pick` 是长度为 n 的重采样下标数组；传 None 表示用全样本（点估计）。
+        n: 设计点个数（Sobol 的基样本数或 Morris 的轨迹数）。
+        resamples: 重采样次数。
+
+    Returns:
+        字典：点估计 τ 与 95% 置信区间；点估计为 None 时返回 None。
+    """
+    if not callable(index_pair) or n < 3:
+        return None
+    point = kendall_tau(*index_pair(None))
+    if point is None:
+        return None
+    rng = np.random.default_rng(seed)
+    draws = []
+    for _ in range(resamples):
+        pick = rng.integers(0, n, n)
+        result = kendall_tau(*index_pair(pick))
+        if result is not None:
+            draws.append(result['tau'])
+    if len(draws) < 10:
+        return {'tau': point['tau'], 'ci_low': None, 'ci_high': None,
+                'resamples': len(draws)}
+    tail = (1-confidence)/2
+    return {'tau': point['tau'],
+            'ci_low': float(np.quantile(draws, tail)),
+            'ci_high': float(np.quantile(draws, 1-tail)),
+            'resamples': len(draws)}
+
+
 def paired_wilcoxon(baseline, proposed):
     """配对样本 Wilcoxon 符号秩检验；样本不足时返回 None。"""
     a, b = np.asarray(baseline, float), np.asarray(proposed, float)
