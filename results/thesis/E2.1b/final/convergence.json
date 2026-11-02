@@ -1,0 +1,97 @@
+{
+  "output": "volume_m3",
+  "layer": 1,
+  "note": "同一输出在不同 Sobol 样本数下的总效应之和与排序，用于判断估计是否收敛",
+  "runs": [
+    {
+      "range": "pct20",
+      "samples": 128,
+      "sum_total": 1.22,
+      "ranking": [
+        "alpha",
+        "pressure_mpa",
+        "beta",
+        "b_distance",
+        "k",
+        "standoff_m",
+        "pressure_threshold",
+        "b_base"
+      ]
+    },
+    {
+      "range": "pct20",
+      "samples": 512,
+      "sum_total": 1.11,
+      "ranking": [
+        "alpha",
+        "pressure_mpa",
+        "beta",
+        "b_distance",
+        "k",
+        "standoff_m",
+        "pressure_threshold",
+        "b_base"
+      ]
+    },
+    {
+      "range": "pct20",
+      "samples": 2048,
+      "sum_total": 1.15,
+      "ranking": [
+        "alpha",
+        "beta",
+        "pressure_mpa",
+        "b_distance",
+        "k",
+        "standoff_m",
+        "pressure_threshold",
+        "b_base"
+      ]
+    },
+    {
+      "range": "pct50",
+      "samples": 128,
+      "sum_total": 4.79,
+      "ranking": [
+        "alpha",
+        "pressure_mpa",
+        "k",
+        "beta",
+        "standoff_m",
+        "b_distance",
+        "pressure_threshold",
+        "b_base"
+      ]
+    },
+    {
+      "range": "pct50",
+      "samples": 512,
+      "sum_total": 1.8,
+      "ranking": [
+        "alpha",
+        "pressure_mpa",
+        "k",
+        "standoff_m",
+        "beta",
+        "b_distance",
+        "pressure_threshold",
+        "b_base"
+      ]
+    },
+    {
+      "range": "pct50",
+      "samples": 2048,
+      "sum_total": 1.97,
+      "ranking": [
+        "alpha",
+        "standoff_m",
+        "pressure_mpa",
+        "k",
+        "beta",
+        "b_distance",
+        "pressure_threshold",
+        "b_base"
+      ]
+    }
+  ]
+}
